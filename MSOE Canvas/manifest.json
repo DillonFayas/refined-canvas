@@ -1,0 +1,58 @@
+{
+  "manifest_version": 3,
+  "name": "Refined Canvas",
+  "version": "1.15.77",
+  "description": "Dark mode, document reading tools, and a final exam calculator for MSOE Canvas.",
+  "permissions": [
+    "storage"
+  ],
+  "action": {
+    "default_popup": "options.html",
+    "default_icon": {
+      "16": "icon-16.png",
+      "32": "icon-32.png",
+      "48": "icon-48.png",
+      "128": "icon-128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://msoe.instructure.com/*"
+      ],
+      "css": [
+        "canvas.css"
+      ],
+      "js": [
+        "theme.js"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "run_at": "document_idle",
+      "all_frames": true,
+      "js": [
+        "document.js"
+      ],
+      "matches": [
+        "https://canvadocs.instructure.com/*"
+      ]
+    }
+  ],
+  "icons": {
+    "16": "icon-16.png",
+    "32": "icon-32.png",
+    "48": "icon-48.png",
+    "128": "icon-128.png"
+  }
+}
+
+
+
+
+
+
+
+
+
+

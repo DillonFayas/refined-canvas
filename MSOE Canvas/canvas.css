@@ -1,0 +1,2062 @@
+html[data-msoe-canvas-dark] {
+  color-scheme: dark;
+  --night-bg: #151922;
+  --night-panel: #202632;
+  --night-raised: #2b3444;
+  --night-text: #edf1f7;
+  --night-border: #4a566b;
+  --night-link: #9bc9ff;
+  background: var(--night-bg);
+}
+
+[data-msoe-canvas-dark] :is(body, #wrapper, #main, #content-wrapper, #content, #left-side, #right-side-wrapper, .ic-app-nav-toggle-and-crumbs) {
+  background-color: var(--night-bg) !important;
+  color: var(--night-text) !important;
+  border-color: var(--night-border) !important;
+}
+
+[data-msoe-canvas-dark] :is(.ic-DashboardCard, .ic-DashboardCard__header_content, .ic-DashboardCard__action-container, .item-group-container, .ig-header, .ig-row, .ui-dialog, .ui-dialog-titlebar, .ui-menu, .menu-item__text, .ic-app-header__secondary-navigation, .ic-Table th, .ic-Table td, #grades_summary th, #grades_summary td, .fc-day, .fc-day-header) {
+  background-color: var(--night-panel) !important;
+  color: var(--night-text) !important;
+  border-color: var(--night-border) !important;
+}
+
+[data-msoe-canvas-dark] :is(.ig-row:hover, .ig-row:focus-within, .ic-Table tr:hover td, #grades_summary tr:hover td, .fc-today) {
+  background-color: var(--night-raised) !important;
+}
+
+[data-msoe-canvas-dark] :is(#content, #right-side, #left-side, #breadcrumbs) a:not(.Button, .btn, .fc-event) {
+  color: var(--night-link);
+}
+
+[data-msoe-canvas-dark] :is(.ic-DashboardCard__header-subtitle, .ic-DashboardCard__term, .ig-details, .secondary, #breadcrumbs) {
+  color: #b8c5d7 !important;
+}
+
+[data-msoe-canvas-dark] :is(input:not([type]), input[type="text"], input[type="search"], input[type="password"], textarea, select, .btn:not(.btn-primary, .btn-danger, .btn-success), .Button:not(.Button--primary, .Button--danger, .Button--success)) {
+  background-color: var(--night-panel) !important;
+  color: var(--night-text) !important;
+  border-color: var(--night-border) !important;
+}
+
+[data-msoe-canvas-dark] :focus-visible {
+  outline: 2px solid var(--night-link);
+  outline-offset: 2px;
+}
+
+[data-msoe-canvas-formatting] .user_content:not([contenteditable="true"]) {
+  overflow-wrap: anywhere;
+  line-height: 1.55;
+}
+
+[data-msoe-canvas-formatting] .user_content :is(img, video, iframe) {
+  max-width: 100%;
+}
+
+[data-msoe-canvas-formatting] .user_content img {
+  height: auto;
+}
+
+[data-msoe-canvas-formatting] .user_content pre {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+[data-msoe-canvas-formatting] :is(.ig-title, .ic-DashboardCard__header-subtitle) {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+[data-msoe-canvas-dark] :is(.ic-Dashboard-header, .ic-Dashboard-header__layout) {
+  background: var(--night-bg) !important;
+  color: var(--night-text) !important;
+  border-color: var(--night-border) !important;
+}
+
+/* Dashboard widgets can supply their own colors outside Canvas's theme. */
+[data-msoe-canvas-dark] [data-msoe-light-surface] {
+  background-color: var(--night-panel) !important;
+}
+[data-msoe-canvas-dark] [data-msoe-dark-label] {
+  color: var(--night-text) !important;
+}
+[data-msoe-canvas-dark] svg [data-msoe-dark-label] {
+  fill: var(--night-text) !important;
+}
+[data-msoe-canvas-formatting] .ic-DashboardCard__header-title,
+[data-msoe-canvas-formatting] .ic-DashboardCard__header-title span {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+/* BetterCampus consumes these variables inside its shadow-root components. */
+html[data-msoe-canvas-dark] {
+  --bcbackground-0: #202632 !important;
+  --bcbackground-0-ungradient: #202632 !important;
+  --bcbackground-1: #2b3444 !important;
+  --bcbackground-2: #354156 !important;
+  --bctext-0: #edf1f7 !important;
+  --bctext-1: #bdc9db !important;
+  --bctext-2: #a9b8ce !important;
+  --bcborders: #465369 !important;
+  --bccards: #202632 !important;
+}
+html[data-msoe-canvas-dark] .ic-DashboardCard__header_content {
+  border: 0 !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+html[data-msoe-canvas-dark] .ic-DashboardCard__link:not(:focus-visible) {
+  outline: none !important;
+  box-shadow: none !important;
+}
+html[data-msoe-canvas-dark] .ic-Dashboard-header button {
+  background-color: #2b3444 !important;
+  color: #edf1f7 !important;
+}
+
+/* Dashboard controls explicitly hidden at the user's request. */
+.ic-Dashboard-header button, .ic-Dashboard-header bettercanvas-searchbar { display: none !important; }
+html[data-msoe-canvas-dark] #breadcrumbs {
+  background: transparent !important;
+}
+html[data-msoe-canvas-dark] :is(#assignments-student-footer, .module-sequence-footer, .module-sequence-footer-content) {
+  background: #202632 !important;
+  color: #edf1f7 !important;
+  border-color: #465369 !important;
+}
+html[data-msoe-canvas-dark] #section-tabs a {
+  display: block;
+  padding: 10px 12px;
+  margin: 3px 0;
+  border-radius: 8px;
+  text-decoration: none !important;
+  color: #bdc9db !important;
+  transition: background-color 120ms;
+}
+html[data-msoe-canvas-dark] #section-tabs a:hover {
+  background: #2b3444;
+  color: #fff !important;
+}
+html[data-msoe-canvas-dark] #section-tabs a.active,
+html[data-msoe-canvas-dark] #section-tabs a[aria-current="page"] {
+  background: #283d59;
+  color: #cde3ff !important;
+  box-shadow: inset 3px 0 #9bc9ff;
+}
+html[data-msoe-canvas-dark] [data-testid="assignments-2-student-view"] :is(span,div,label,p,button) {
+  color: inherit;
+}
+html[data-msoe-canvas-dark] :is(#file-upload-container, [data-testid="upload-box"], [data-testid="upload-box"] label) {
+  background: #202632 !important;
+  color: #edf1f7 !important;
+}
+html[data-msoe-canvas-dark] :is([data-testid="assignments-2-assignment-description"], [data-testid="assignments-2-assignment-toggle-details"]) {
+  color: #edf1f7 !important;
+}
+html[data-msoe-canvas-dark] [data-cid~="Button"]:not(#submit-button, [data-testid="uploaded_files_table"] *):not([disabled]) {
+  background-color: #2b3444 !important;
+  color: #edf1f7 !important;
+  border-color: #465369 !important;
+}
+html[data-msoe-canvas-dark] [data-cid~="Button"]:not(#submit-button, [data-testid="uploaded_files_table"] *):hover {
+  background-color: #354156 !important;
+}
+html[data-msoe-canvas-formatting] .module-sequence-footer {
+  position: static !important;
+  margin-top: 24px !important;
+}
+html[data-msoe-canvas-formatting] .module-sequence-footer-content {
+  position: static !important;
+}
+html[data-msoe-canvas-dark] #file-upload-container [style*="background-color: rgb(242"],
+html[data-msoe-canvas-dark] [data-cid="FileDrop"] label > span {
+  background: #202632 !important;
+}
+html[data-msoe-canvas-dark] [data-cid="FileDrop"] label {
+  border-color: #7185a1 !important;
+}
+html[data-msoe-canvas-dark] [data-cid="FileDrop"] label:hover {
+  background: #2b3444 !important;
+}
+html[data-msoe-canvas-dark] #breadcrumbs a { text-decoration: none; }
+
+/* Canvas InstUI paints button content separately from the button itself. */
+html[data-msoe-canvas-dark] [data-cid~="Button"] > span {
+  background: transparent !important;
+  color: inherit !important;
+}
+html[data-msoe-canvas-dark] [data-cid~="Button"] :is(span,svg) {
+  color: inherit !important;
+}
+html[data-msoe-canvas-dark] [data-cid~="SVGIcon"] { fill: currentColor; }
+html[data-msoe-canvas-dark] [data-cid="FileDrop"] label :is(span,div) {
+  background: transparent !important;
+  color: #edf1f7 !important;
+}
+html[data-msoe-canvas-dark] [data-cid="FileDrop"] label {
+  background: #252e3d !important;
+  border: 2px dashed #7185a1 !important;
+  border-radius: 12px;
+}
+html[data-msoe-canvas-dark] [class*="textInput__inputLayout"] {
+  background: #202632 !important;
+  color: #edf1f7 !important;
+  border-color: #465369 !important;
+}
+html[data-msoe-canvas-dark] :is([role="listbox"],[role="option"],[role="dialog"],[data-cid~="Popover"],.ui-dialog,.ui-dialog-content) {
+  background-color: #202632 !important;
+  color: #edf1f7 !important;
+}
+html[data-msoe-canvas-dark] #section-tabs a.active {
+  border: 0 !important;
+  box-shadow: none !important;
+  font-weight: 600;
+}
+html[data-msoe-canvas-dark] #section-tabs a::after { border: 0 !important; }
+html[data-msoe-canvas-dark] #breadcrumbs {
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: #202632 !important;
+  font-size: 14px;
+}
+html[data-msoe-canvas-dark] #breadcrumbs li { color: #bdc9db !important; }
+html[data-msoe-canvas-dark] :is(#course_syllabus,.user_content) :is(p,span,div,h1,h2,h3,h4,li,strong,em,td,th) {
+  color: #edf1f7 !important;
+  background-color: transparent !important;
+}
+html[data-msoe-canvas-dark] :is(#course_syllabus,.user_content) a { color: #9bc9ff !important; }
+html[data-msoe-canvas-dark] :is(#grades_summary,#syllabus,#student-grades-right-content,#sidebar_content) :is(td,th) {
+  background: #202632 !important;
+  color: #edf1f7 !important;
+  border-color: #39465a !important;
+  padding: 12px;
+}
+html[data-msoe-canvas-dark] #grades_summary {
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+html[data-msoe-canvas-dark] #grades_summary :is(.assignment_score,.assignment_points_possible,.details,.context) { color: #bdc9db !important; }
+html[data-msoe-canvas-dark] #grades_summary tr:nth-child(even) td { background: #252d3a !important; }
+html[data-msoe-canvas-dark] #grades_summary tr:hover td { background: #303d50 !important; }
+html[data-msoe-canvas-dark] #course_syllabus { line-height: 1.7; }
+html[data-msoe-canvas-dark] #course_syllabus h3 { margin-top: 28px; }
+html[data-msoe-canvas-dark] #content a[href*="/download?"]:not(.msoe-file-download) {
+  display: inline-block;
+  padding: 10px 16px;
+  margin: 8px 0 18px;
+  border: 1px solid #465369;
+  border-radius: 8px;
+  background: #283d59;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+html[data-msoe-canvas-formatting] .module-sequence-footer,
+html[data-msoe-canvas-formatting] .module-sequence-footer-content {
+  position: relative !important;
+  inset: auto !important;
+  transform: none !important;
+  clear: both;
+}
+
+/* The outer preview wrapper also has a fixed height set by Canvas. */
+html[data-msoe-canvas-formatting] #doc_preview {
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+}
+html[data-msoe-canvas-dark] #breadcrumbs {
+  background: transparent !important;
+  padding: 8px 12px;
+  border-radius: 0;
+}
+html[data-msoe-canvas-dark] #breadcrumbs a {
+  padding: 5px 8px;
+  border-radius: 6px;
+  color: #b8c8dc !important;
+  font-size: 14px !important;
+  transition: background-color 140ms ease, color 140ms ease;
+}
+html[data-msoe-canvas-dark] #breadcrumbs a:hover {
+  background: #2b3444;
+  color: #fff !important;
+}
+html[data-msoe-canvas-dark] #breadcrumbs li:last-child {
+  font-weight: 600;
+}
+html[data-msoe-canvas-dark] #GradeSummarySelectMenuGroup label,
+html[data-msoe-canvas-dark] #GradeSummarySelectMenuGroup [class*="formFieldLayout__label"] {
+  color: #bdc9db !important;
+}
+html[data-msoe-canvas-dark] #grade-summary-content h1,
+html[data-msoe-canvas-dark] #content > h1 {
+  font-family: system-ui, sans-serif;
+  font-size: 28px;
+  font-weight: 650;
+  letter-spacing: -.5px;
+}
+html[data-msoe-canvas-dark] #grades_summary {
+  overflow: visible;
+  border-collapse: collapse;
+}
+html[data-msoe-canvas-dark] #grades_summary > tbody > tr.student_assignment > :is(td,th) {
+  background: #202632 !important;
+  padding: 14px 12px;
+  vertical-align: middle;
+}
+html[data-msoe-canvas-dark] #grades_summary > tbody > tr.student_assignment:hover > :is(td,th) {
+  background: #283344 !important;
+}
+html[data-msoe-canvas-dark] #grades_summary .title > a {
+  text-decoration: none;
+  font-weight: 550;
+}
+html[data-msoe-canvas-dark] #grades_summary .title > a:hover { text-decoration: underline; }
+html[data-msoe-canvas-dark] #grades_summary .details a[role="button"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  height: 34px;
+  box-sizing: border-box;
+  padding: 6px !important;
+  gap: 4px;
+  float: none !important;
+  vertical-align: middle;
+  margin: 0 6px 0 0 !important;
+  background: #2b3444 !important;
+  color: #c6dcf7 !important;
+  border: 1px solid #465369 !important;
+  border-radius: 7px;
+  text-decoration: none;
+  transition: background-color 140ms ease;
+}
+html[data-msoe-canvas-dark] #grades_summary .details a[role="button"]:hover {
+  background: #3a4a62 !important;
+}
+html[data-msoe-canvas-dark] #grades_summary > tbody > tr.comments > td {
+  padding: 16px !important;
+  background: #19212d !important;
+}
+html[data-msoe-canvas-dark] #grades_summary .score_details_table {
+  width: 100%;
+  table-layout: auto;
+  border: 1px solid #465369;
+}
+html[data-msoe-canvas-dark] #grades_summary .score_details_table :is(td,th) {
+  background: #252f3e !important;
+  padding: 10px !important;
+  white-space: normal;
+}
+html[data-msoe-canvas-dark] #grades_summary .score_details_table svg {
+  max-width: 100%;
+  margin: 0 !important;
+}
+html[data-msoe-canvas-dark] #course_syllabus div[style*="border-left"] {
+  background: #202c3b !important;
+  box-shadow: 0 4px 16px #0002;
+  margin-block: 20px !important;
+}
+html[data-msoe-canvas-dark] #course_syllabus div[style*="#1f7a3f"] {
+  background: #1e302c !important;
+}
+html[data-msoe-canvas-dark] #content a[data-msoe-download] {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font: 600 14px/1.4 system-ui, sans-serif;
+  padding: 10px 16px;
+  background: #30639a;
+  color: #fff !important;
+  border: 1px solid #5686bb;
+  border-radius: 9px;
+  box-shadow: 0 2px 5px #0003;
+  transition: background-color 140ms ease, box-shadow 140ms ease;
+}
+html[data-msoe-canvas-dark] #content a[data-msoe-download]::before {
+  content: "↓";
+  font-size: 19px;
+}
+html[data-msoe-canvas-dark] #content a[data-msoe-download]:hover {
+  background: #3975b4;
+  box-shadow: 0 3px 9px #0004;
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-msoe-canvas-dark] :is(#breadcrumbs a,#grades_summary .details a,#content a[data-msoe-download]) {
+    transition: none;
+  }
+}
+html[data-msoe-canvas-dark] #courseMenuToggle { width:38px;height:38px;border:1px solid #465369!important;border-radius:10px;background:#202c3b!important;color:#c6dcf7!important;transition:background-color 140ms ease; }
+html[data-msoe-canvas-dark] #courseMenuToggle:hover { background:#30435c!important; }
+html[data-msoe-canvas-dark] #apply_select_menus:disabled { color:#a9b8ce!important;background:#242d3b!important;border:1px solid #465369!important;opacity:1; }
+html[data-msoe-canvas-dark] #apply_select_menus:disabled span { color:inherit!important; }
+html[data-msoe-canvas-dark] #grades_summary .details i,
+html[data-msoe-canvas-dark] #grades_summary .details i::before { color:#c6dcf7!important; }
+html[data-msoe-canvas-dark] #grades_summary .score_details_table svg { width:220px!important;height:42px!important;min-width:0;float:none!important; }
+html[data-msoe-canvas-dark] #grades_summary .score_details_table svg :is(line,rect) { stroke:#9bacbf; }
+html[data-msoe-canvas-dark] #grades_summary .score_details_table svg .myScore { stroke:#9bc9ff;fill:#487fb7; }
+html[data-msoe-canvas-dark] [class*="textInput__layout"]:has(#announcements-search),
+html[data-msoe-canvas-dark] [class*="textInput__facade"]:has(#announcements-search) { background:#202632!important;color:#bdc9db!important;border-color:#465369!important;border-radius:8px; }
+html[data-msoe-canvas-dark] #wiki_page_show :is(.header-bar-outer-container,.header-bar,.sticky-toolbar) { background:var(--night-bg)!important;color:#fff!important;border-color:#465369!important; }
+html[data-msoe-canvas-dark] #wiki_page_show .course-title { color:#fff!important; }
+html[data-msoe-canvas-dark] #content:has(#context_modules) .header-bar {
+  background:var(--night-bg)!important;
+  color:var(--night-text)!important;
+  border-color:var(--night-border)!important;
+}
+/* The instructor's introductory table is a layout surface, not a data table. */
+html[data-msoe-canvas-dark] #wiki_page_show .user_content > table[role="presentation"] :is(td,div,strong) {
+  background-color:var(--night-bg)!important;
+  color:#fff!important;
+}
+html[data-msoe-canvas-dark] #wiki_page_show .user_content div[style*="border-left"] { background:#202c3b!important;box-shadow:0 4px 16px #0002; }
+html[data-msoe-canvas-dark] #wiki_page_show .user_content div[style*="#1f7a3f"] { background:#1e302c!important; }
+html[data-msoe-canvas-dark] #content .msoe-download-row { display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin:12px 0 20px;color:#a9b8ce;font:13px/1.5 system-ui,sans-serif; }
+html[data-msoe-canvas-dark] #content .msoe-download-row a[data-msoe-download] { margin:0; }
+@media(prefers-reduced-motion:reduce) { html[data-msoe-canvas-dark] #courseMenuToggle { transition:none; } }
+
+/* Keep action positions stable when Canvas inserts invisible placeholders. */
+html[data-msoe-canvas-dark] #grades_summary td.details {
+  text-align: left !important;
+  white-space: nowrap;
+  width: 160px;
+}
+html[data-msoe-canvas-dark] #grades_summary td.details > a[style*="visibility: hidden"],
+html[data-msoe-canvas-dark] #grades_summary td.details > a[aria-hidden="true"] {
+  display: none !important;
+}
+html[data-msoe-canvas-dark] #grades_summary td.details .comment_count {
+  margin: 0 !important;
+}
+html[data-msoe-canvas-formatting] #content:has(#doc_preview) {
+  padding-top: 12px !important;
+}
+html[data-msoe-canvas-formatting] #content:has(#doc_preview) > h2 {
+  margin-top: 0 !important;
+  margin-bottom: 12px;
+}
+/* Course surfaces and controls */
+html[data-msoe-canvas-dark] .ic-app-header__menu-list-link .menu-item__text { background:transparent!important;color:inherit!important; }
+html[data-msoe-canvas-dark] .ic-app-header__menu-list-item.ic-app-header__menu-list-item--active .ic-app-header__menu-list-link { background:var(--night-panel)!important;color:#fff!important; }
+html[data-msoe-canvas-dark] #content :is([data-testid*="url-submission"],[data-testid*="website-url"],#submit_online_url,[class*="SubmissionType__"],[role="tabpanel"],.ui-tabs-panel,.ui-tabs-active,.rubric_container,.rubric_table,.rubric_table td,.rubric_table th,.quiz-header,.question,.question .header,.question .answers,.quiz-submission) {
+ background-color:var(--night-panel)!important;color:var(--night-text)!important;border-color:var(--night-border)!important;
+}
+html[data-msoe-canvas-dark] #content :is(input[type="url"],[class*="textInput__facade"],[class*="textInput__layout"]) {background:var(--night-panel)!important;color:var(--night-text)!important;border-color:var(--night-border)!important;}
+html[data-msoe-canvas-dark] #content :is(label,[class*="formFieldLayout__label"],[data-testid*="webcam"] svg,button svg) {color:var(--night-text)!important;}
+html[data-msoe-canvas-dark] #content :is(input,textarea)::placeholder {color:#aab8cc!important;}
+html[data-msoe-canvas-dark] #content:has(#files-link.active) :is(table,th,td),
+html[data-msoe-canvas-dark] #main:has(#files-link.active) #content :is(table,th,td,[role="row"],[role="gridcell"],[role="columnheader"]) {background:var(--night-panel)!important;color:var(--night-text)!important;border-color:var(--night-border)!important;}
+html[data-msoe-canvas-dark] #main:has(#files-link.active) #content svg {color:#c6d7ee!important;}
+html[data-msoe-canvas-dark] #context_modules .context_module {margin-block:16px;border-radius:12px;border:1px solid var(--night-border);}
+html[data-msoe-canvas-dark] #context_modules .ig-header {background:var(--night-raised)!important;border-radius:11px 11px 0 0;}
+html[data-msoe-canvas-dark] #context_modules .ig-header-title,
+html[data-msoe-canvas-dark] #context_modules .ig-header-title .name {color:#f2f6ff!important;text-shadow:none!important;font-weight:650;}
+html[data-msoe-canvas-dark] #context_modules .ig-details {color:#c0cee1!important;}
+html[data-msoe-canvas-dark] .user_content table:not([role="presentation"]),
+html[data-msoe-canvas-dark] .user_content table:not([role="presentation"]) :is(thead,tbody,tr,th,td) {background:var(--night-panel)!important;color:var(--night-text)!important;border-color:var(--night-border)!important;}
+html[data-msoe-canvas-dark] .user_content table:not([role="presentation"]) :is(th,td) {padding:6px 10px;}
+html[data-msoe-canvas-dark] .user_content table:not([role="presentation"]) th {background:var(--night-raised)!important;}
+html[data-msoe-canvas-dark] #content a:is([href*="/download?"],[data-msoe-download]) {padding:3px 8px;min-height:0;line-height:1.35;font-size:.875rem;border-radius:6px;box-shadow:none;}
+html[data-msoe-canvas-dark] #content a[data-msoe-download]::before {font-size:1em;}
+.msoe-pdf-tools {position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:6px;background:var(--night-panel,Canvas);color:var(--night-text,CanvasText);border:1px solid var(--night-border,#888);border-radius:8px;}
+.msoe-pdf-tools[data-side] {top:12px;float:right;flex-direction:column;margin:8px 8px 0 0;}
+.msoe-pdf-tools input {width:5ch;}
+.msoe-pdf-tools :is(button,input) {font:inherit;padding:3px 7px;}
+#doc_preview:has(.msoe-pdf-tools) {display:flow-root;}
+html[data-msoe-canvas-dark][data-msoe-canvas-view="files"] #content :is(table,th,td,[role="row"],[role="gridcell"],[role="columnheader"]),
+html[data-msoe-canvas-dark][data-msoe-canvas-view="users"] #content :is([role="tabpanel"],.ui-tabs-panel,.ui-tabs-active),
+html[data-msoe-canvas-dark][data-msoe-canvas-view="quizzes"] #content :is(.question,.question .header,.question .text,.answers,.answer,.quiz-header,.quiz-submission,.alert) {
+ background-color:var(--night-panel)!important;color:var(--night-text)!important;border-color:var(--night-border)!important;
+}
+html:not([data-msoe-canvas-formatting]) .msoe-pdf-tools {display:none;}
+@media(max-width:700px) {
+ .msoe-pdf-tools[data-side] {float:none;flex-direction:row;top:0;margin:0;}
+}
+#doc_preview:has(.msoe-pdf-tools) {position:relative;}
+[data-msoe-canvas-formatting] #doc_preview:has(> .msoe-pdf-tools[data-side]) {display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:start;}
+#doc_preview > .msoe-pdf-tools[data-side] {grid-column:2;grid-row:1;float:none;margin:0;flex-direction:row;max-width:170px;}
+#doc_preview:has(> .msoe-pdf-tools[data-side]) > :has(> iframe) {grid-column:1;grid-row:1;min-width:0;}
+#doc_preview > .msoe-pdf-tools {width:fit-content;justify-content:center;margin:0 auto 10px;padding:5px;gap:4px;top:8px;border-radius:12px;box-shadow:0 4px 16px #0003;font:500 13px/1.3 system-ui,sans-serif;}
+.msoe-pdf-tools :is(button,input) {box-sizing:border-box;height:32px;min-width:32px;border:1px solid transparent;border-radius:7px;background:transparent;color:inherit;text-align:center;}
+.msoe-pdf-tools input {background:var(--night-bg,Canvas);border-color:var(--night-border,#888);appearance:textfield;}
+.msoe-pdf-tools input::-webkit-inner-spin-button {appearance:none;}
+.msoe-pdf-tools button:hover:not(:disabled) {background:var(--night-raised,ButtonFace);}
+.msoe-pdf-tools button:disabled {opacity:.4;}
+.msoe-pdf-tools span {padding-inline:4px;}
+@media(max-width:900px) {
+ [data-msoe-canvas-formatting] #doc_preview:has(> .msoe-pdf-tools[data-side]) {display:flow-root;}
+ #doc_preview > .msoe-pdf-tools[data-side] {max-width:none;margin-inline:auto;}
+}
+html[data-msoe-canvas-dark] :is(#context_modules_sortable_container,#context_modules,.item-group-container:has(#context_modules),#context_modules .context_module) {
+ background:transparent!important;border:0!important;box-shadow:none!important;
+}
+html[data-msoe-canvas-dark] #context_modules .context_module {padding:0;margin:0 0 12px;}
+html[data-msoe-canvas-dark] #context_modules .ig-header {margin:0;border-radius:8px;}
+html[data-msoe-canvas-dark] #context_modules .ig-row {background:var(--night-bg)!important;}
+html[data-msoe-canvas-dark] #context_modules .ig-row:hover {background:var(--night-panel)!important;}
+html[data-msoe-canvas-dark] :is(.fc-toolbar,.fc-head,.fc-head-container,.fc-widget-header,.fc-widget-content,#context-list,.context-list,#mini_calendar,.mini_calendar,.mini-cal,.mini-cal-header,.mini-cal-month,.mini-cal-table) {
+ background:var(--night-panel)!important;color:var(--night-text)!important;border-color:var(--night-border)!important;
+}
+html[data-msoe-canvas-dark] :is(.fc-toolbar a,.fc-toolbar h2,.mini-cal-day,.mini_calendar_day,.mini-cal-day a,#context-list label) {color:var(--night-text)!important;}
+html[data-msoe-canvas-dark] .fc-event {background:var(--night-raised)!important;color:var(--night-text)!important;border-radius:4px;}
+html[data-msoe-canvas-dark] .fc-event :is(.fc-title,.fc-time,.fc-content,i) {color:inherit!important;}
+/* Keep labels on the same branded surface as the global navigation icons. */
+html[data-msoe-canvas-dark] #header .menu-item__text {background:transparent!important;color:inherit!important;}
+html[data-msoe-canvas-dark] #header .ic-app-header__menu-list-item--active .ic-app-header__menu-list-link {color:#fff!important;}
+html[data-msoe-canvas-dark] #header .ic-app-header__menu-list-item--active svg {fill:currentColor!important;}
+
+/* Calendar chrome: keep course accents on events and swatches. */
+html[data-msoe-canvas-dark] :is(.calendar_header,#calendar_header,#calendar-app-header,#context-list-holder,#context-list,.context_list,.context-list,.mini-cal-wrapper,.mini-cal) {
+ background:var(--night-panel)!important;color:var(--night-text)!important;border-color:var(--night-border)!important;
+}
+html[data-msoe-canvas-dark] :is(.calendar_header,#calendar_header,#calendar-app-header) a {color:var(--night-link)!important;}
+html[data-msoe-canvas-dark] :is(#context-list-holder,#context-list,.context_list,.context-list) :is(li,label,.context-list-item) {
+ background-color:transparent!important;color:var(--night-text)!important;
+}
+html[data-msoe-canvas-dark] :is(#context-list-holder,#context-list,.context_list,.context-list) li:hover {background-color:var(--night-raised)!important;}
+html[data-msoe-canvas-dark] .fc-day-grid :is(.fc-row,td) {border-color:var(--night-border)!important;}
+html[data-msoe-canvas-dark] .fc-event:hover {background:var(--night-border)!important;}
+
+#doc_preview > .msoe-pdf-tools {
+ --reader-surface:#fff;--reader-field:#f3f5f9;--reader-hover:#e9eef8;--reader-border:#d7dfea;--reader-text:#253147;--reader-accent:#315fba;
+ background:var(--reader-surface);color:var(--reader-text);border-color:var(--reader-border);
+ padding:4px;gap:4px;border-radius:12px;margin-block-end:8px;
+ box-shadow:0 2px 6px #0001,0 8px 24px #0001;
+}
+html[data-msoe-canvas-dark] #doc_preview > .msoe-pdf-tools {
+ --reader-surface:#212733;--reader-field:#161b25;--reader-hover:#303c51;--reader-border:#3e495d;--reader-text:#e5edf9;--reader-accent:#a3c7ff;
+}
+#doc_preview .msoe-pdf-tools :is(button,input) {
+ display:grid;place-items:center;box-sizing:border-box;height:36px;min-width:36px;margin:0;padding:0;
+ color:var(--reader-text)!important;border-radius:8px;box-shadow:none;
+}
+#doc_preview .msoe-pdf-tools button {background:transparent!important;cursor:pointer;transition:background-color 180ms,color 180ms,transform 180ms;}
+#doc_preview .msoe-pdf-tools button:hover:not(:disabled) {background:var(--reader-hover)!important;color:var(--reader-accent)!important;}
+#doc_preview .msoe-pdf-tools button:active:not(:disabled) {transform:scale(.94);}
+#doc_preview .msoe-pdf-tools button:disabled {cursor:default;}
+#doc_preview .msoe-pdf-tools input {width:48px;background:var(--reader-field)!important;border:1px solid var(--reader-border)!important;font-variant-numeric:tabular-nums;}
+#doc_preview .msoe-pdf-tools :focus-visible {outline:2px solid var(--reader-accent);outline-offset:2px;}
+.msoe-pdf-tools svg {width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.msoe-pdf-tools button[aria-label="Zoom out"],.msoe-pdf-tools button:last-child {border-inline-start:1px solid var(--reader-border)!important;}
+@media(prefers-reduced-motion:reduce) {#doc_preview .msoe-pdf-tools button {transition:none;}}
+html[data-msoe-canvas-dark] #content:has(#doc_preview) .msoe-download-row {margin-block-end:8px;}
+#doc_preview > .msoe-pdf-tools {margin-block-end:4px;}
+#doc_preview .msoe-pdf-tools button[aria-label="Zoom out"],
+#doc_preview .msoe-pdf-tools button:last-child {border-inline-start:1px solid transparent!important;}
+.msoe-reader-divider {width:1px;height:20px;background:var(--reader-border);margin-inline:3px;flex:none;}
+@media(min-width:901px) {
+ #doc_preview > .msoe-pdf-tools[data-side] {flex-direction:column;flex-wrap:nowrap;width:56px;box-sizing:border-box;align-items:center;margin:0;}
+ .msoe-pdf-tools[data-side] .msoe-reader-divider {width:28px;height:1px;margin:3px 0;}
+ .msoe-pdf-tools[data-side] span {padding:0;}
+}
+
+html[data-msoe-canvas-formatting] #courseMenuToggle {
+  position: relative;
+  z-index: 6;
+  translate: 0 var(--msoe-menu-offset, 0px);
+}
+
+/* Keep the pinned toggle above the course rail and reserve its own row. */
+html[data-msoe-canvas-formatting][data-msoe-menu-pinned] .ic-app-nav-toggle-and-crumbs:has(#courseMenuToggle) {
+  position: relative;
+  z-index: 12;
+}
+html[data-msoe-canvas-formatting][data-msoe-menu-pinned] #left-side .sticky-container {
+  top: var(--msoe-course-links-top, 62px) !important;
+}
+
+html[data-msoe-canvas-formatting] .msoe-course-term {
+  transition: opacity 150ms ease;
+}
+html[data-msoe-canvas-formatting][data-msoe-menu-pinned] .msoe-course-term {
+  opacity: 0;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-msoe-canvas-formatting] .msoe-course-term { transition: none; }
+}
+
+
+.msoe-back-to-top[hidden] { display: none !important; }
+html[data-msoe-canvas-formatting] .msoe-back-to-top:not([hidden]) {
+  position: absolute;
+  inset-inline-start: 44px;
+  align-self: center;
+  translate: 0 var(--msoe-menu-offset, 0px);
+  z-index: 6;
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 1px solid var(--night-border, #8995a6);
+  border-radius: 10px;
+  background: var(--night-panel, #fff);
+  color: var(--night-link, #30435c);
+  cursor: pointer;
+}
+html[data-msoe-canvas-formatting] .msoe-back-to-top:hover {
+  background: var(--night-raised, #edf2f8);
+}
+html[data-msoe-canvas-formatting] .msoe-back-to-top:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+html:not([data-msoe-canvas-formatting]) .msoe-back-to-top { display: none; }
+
+@media (prefers-reduced-motion: no-preference) {
+  html[data-msoe-canvas-formatting] body:has(#courseMenuToggle) #left-side {
+    transition: opacity 170ms ease, translate 170ms ease, display 170ms allow-discrete;
+  }
+  html[data-msoe-canvas-formatting] body:has(#courseMenuToggle) #left-side:is([hidden], [aria-hidden="true"]),
+  html[data-msoe-canvas-formatting] body:not(.course-menu-expanded):has(#courseMenuToggle[aria-expanded="false"]) #left-side {
+    opacity: 0;
+    translate: -8px 0;
+  }
+  @starting-style {
+    html[data-msoe-canvas-formatting] body:has(#courseMenuToggle) #left-side {
+      opacity: 0;
+      translate: -8px 0;
+    }
+  }
+}
+
+.msoe-bookmarks {position: relative;}
+.msoe-bookmarks summary {
+  list-style: none;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.msoe-bookmarks summary::-webkit-details-marker {display: none;}
+.msoe-bookmarks summary:hover,
+.msoe-bookmarks[open] summary {background: var(--reader-hover);}
+.msoe-bookmark-panel {
+  position: absolute;
+  inset-block-start: calc(100% + 8px);
+  inset-inline-end: 0;
+  width: min(280px, 65vw);
+  max-height: min(290px, 50vh);
+  overflow: auto;
+  padding: 8px;
+  background: var(--reader-surface);
+  border: 1px solid var(--reader-border);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px #0003;
+}
+.msoe-bookmark-row, .msoe-bookmark-quick {display: flex; gap: 4px;}
+.msoe-bookmark-row + .msoe-bookmark-row {margin-top: 4px;}
+#doc_preview .msoe-bookmark-row > :first-child {flex: 1; min-width: 0;}
+#doc_preview .msoe-bookmark-row button {
+  display: block;
+  padding-inline: 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.msoe-bookmark-quick:empty {display: none;}
+@media (min-width: 901px) {
+  .msoe-pdf-tools[data-side] .msoe-bookmark-panel {
+    inset-block-start: auto;
+    inset-block-end: 0;
+    inset-inline-end: calc(100% + 8px);
+  }
+  .msoe-pdf-tools[data-side] .msoe-bookmark-quick {flex-direction: column;}
+}
+
+#doc_preview .msoe-pdf-tools .msoe-bookmark-row input {
+  padding-inline: 10px;
+  text-align: start;
+}
+#doc_preview .msoe-bookmark-row button:has(svg) {
+  display: grid;
+  place-items: center;
+  flex: 0 0 36px;
+}
+#doc_preview .msoe-bookmark-row button[aria-pressed="true"] {
+  background: var(--reader-hover) !important;
+  color: var(--reader-accent) !important;
+}
+
+/* Canvas uses a separate tooltip when global navigation is collapsed. */
+html[data-msoe-canvas-dark] #header .menu-item__tooltip {
+  background: #29364a !important;
+  color: #f3f7ff !important;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px #0005;
+}
+html[data-msoe-canvas-dark] #header .menu-item__tooltip :is(span, .menu-item__text) {
+  background: transparent !important;
+  color: inherit !important;
+}
+html[data-msoe-canvas-dark] #header .menu-item__tooltip::before {
+  border-inline-end-color: #29364a !important;
+}
+html[data-msoe-canvas-dark] .ui-tooltip,
+html[data-msoe-canvas-dark] .ui-tooltip .ui-tooltip-content {
+  background-color: #29364a !important;
+  color: #f3f7ff !important;
+  border-color: #465369 !important;
+}
+
+/* InstUI tooltips may mount outside the navigation header. */
+html[data-msoe-canvas-dark] [role="tooltip"],
+html[data-msoe-canvas-dark] [class*="tooltip__content"],
+html[data-msoe-canvas-dark] [class*="Tooltip__content"] {
+  background: #29364a !important;
+  color: #f3f7ff !important;
+  border-radius: 6px;
+}
+html[data-msoe-canvas-dark] [role="tooltip"] :is(span, div) {
+  color: inherit !important;
+}
+
+/* Course sidebar feedback. Keep the complete link and its accessible text. */
+html[data-msoe-canvas-dark] #right-side :is(#recent_feedback, .recent_feedback, .recent-feedback, .recent_feedback_item, .recent-feedback-item) {
+  color: var(--night-text) !important;
+  border-color: var(--night-border) !important;
+}
+html[data-msoe-canvas-dark] #right-side :is(#recent_feedback, .recent_feedback, .recent-feedback, .recent_feedback_item, .recent-feedback-item) a {
+  display: block;
+  padding: 8px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+html[data-msoe-canvas-dark] #right-side :is(#recent_feedback, .recent_feedback, .recent-feedback, .recent_feedback_item, .recent-feedback-item) a:hover {
+  background: var(--night-panel);
+}
+html[data-msoe-canvas-dark] #right-side :is(#recent_feedback, .recent_feedback, .recent-feedback, .recent_feedback_item, .recent-feedback-item) :is(.secondary, .context, .score, .feedback, .comment, small, span) {
+  color: #c4cede !important;
+  text-decoration: none;
+}
+html[data-msoe-canvas-dark] #right-side :is(#recent_feedback, .recent_feedback, .recent-feedback, .recent_feedback_item, .recent-feedback-item) :is(.gradient, [class*="fade"], [class*="ellipsis"]) {
+  background-image: none !important;
+}
+html[data-msoe-canvas-dark] #right-side :is(#recent_feedback, .recent_feedback, .recent-feedback, .recent_feedback_item, .recent-feedback-item) :is(a, div, span)::after {
+  background-image: none !important;
+}
+
+.msoe-nav-tooltip {
+  position: fixed;
+  z-index: 10000;
+  transform: translateY(-50%);
+  padding: 6px 10px;
+  border: 1px solid #61738d;
+  border-radius: 7px;
+  background: #253348;
+  color: #fff;
+  font: 600 13px/1.4 system-ui, sans-serif;
+  pointer-events: none;
+  box-shadow: 0 3px 12px #0006;
+}
+html:not([data-msoe-canvas-dark]) .msoe-nav-tooltip,
+html[data-msoe-nav-tooltip] :is([role="tooltip"], .ui-tooltip, #header .menu-item__tooltip) {
+  visibility: hidden !important;
+}
+html[data-msoe-canvas-dark] #right-side :is(#recent_feedback, .recent_feedback, .recent-feedback) {
+  display: grid;
+  gap: 8px;
+}
+html[data-msoe-canvas-dark] #right-side :is(#recent_feedback, .recent_feedback, .recent-feedback) li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+html[data-msoe-canvas-dark] #right-side :is(#recent_feedback, .recent_feedback, .recent-feedback) li a {
+  display: block;
+  padding: 10px 12px;
+  border: 1px solid #435068;
+  border-radius: 10px;
+  background: #202632;
+  color: #b8d6ff !important;
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+html[data-msoe-canvas-dark] #right-side :is(#recent_feedback, .recent_feedback, .recent-feedback) li a:hover {
+  background: #293449;
+  border-color: #7188a8;
+}
+html[data-msoe-canvas-dark] #right-side :is(#recent_feedback, .recent_feedback, .recent-feedback) li a :is(div, p, span) {
+  color: #d5deed !important;
+  background-image: none !important;
+}
+html[data-msoe-canvas-dark] #right-side :is(#recent_feedback, .recent_feedback, .recent-feedback) :is(.score, .grade) {
+  color: #a7ebcc !important;
+  font-weight: 650;
+}
+
+html[data-msoe-canvas-dark] #right-side :is(#recent_feedback, .recent_feedback, .recent-feedback) li + li {
+  margin-block-start: 10px;
+}
+html[data-msoe-canvas-dark] #right-side :is(#recent_feedback, .recent_feedback, .recent-feedback) li {
+  position: relative;
+}
+html[data-msoe-canvas-dark] #right-side :is(#recent_feedback, .recent_feedback, .recent-feedback) li:has(.icon-check) a {
+  padding-inline-start: 34px;
+}
+html[data-msoe-canvas-dark] #right-side :is(#recent_feedback, .recent_feedback, .recent-feedback) li .icon-check {
+  position: absolute;
+  inset-block-start: 10px;
+  inset-inline-start: 12px;
+  line-height: 21px;
+  color: #a7ebcc !important;
+  pointer-events: none;
+}
+
+/* Inbox palette. Canvas owns the split pane, dialogs, and message actions. */
+html[data-msoe-inbox] {
+  --inbox-bg: #f5f7fb;
+  --inbox-panel: #fff;
+  --inbox-hover: #eef3fb;
+  --inbox-selected: #e4eeff;
+  --inbox-text: #202c40;
+  --inbox-muted: #52627a;
+  --inbox-border: #d8e0ec;
+  --inbox-accent: #285db4;
+  --inbox-success: #167052;
+  --inbox-warning: #815600;
+  --inbox-error: #a9233a;
+  --inbox-shadow: 0 8px 28px #17284618;
+}
+html[data-msoe-inbox][data-msoe-canvas-dark] {
+  --inbox-bg: #151922;
+  --inbox-panel: #202632;
+  --inbox-hover: #293447;
+  --inbox-selected: #2b3e59;
+  --inbox-text: #edf2fb;
+  --inbox-muted: #b7c3d7;
+  --inbox-border: #43516a;
+  --inbox-accent: #a3c9ff;
+  --inbox-success: #94dfbc;
+  --inbox-warning: #f4ce87;
+  --inbox-error: #ffadb8;
+  --inbox-shadow: 0 8px 28px #0005;
+}
+html[data-msoe-inbox] #content {
+  font-family: Inter, system-ui, sans-serif;
+  background: var(--inbox-bg) !important;
+  color: var(--inbox-text) !important;
+}
+html[data-msoe-inbox] :is(#content, [role="dialog"]) :is(h1, h2, h3, label, legend, [data-cid~="Text"], [data-cid~="Heading"]) {
+  color: var(--inbox-text) !important;
+}
+html[data-msoe-inbox] #content :is(time, small, [data-testid*="preview"], [data-testid*="timestamp"]) {
+  color: var(--inbox-muted) !important;
+}
+html[data-msoe-inbox] #content :is(h1, h2) { letter-spacing: -.025em; }
+html[data-msoe-inbox] #content :is(a, [data-cid~="Link"]) { color: var(--inbox-accent) !important; }
+html[data-msoe-inbox] :is(#content, [role="dialog"]) :is(
+  input:not([type="checkbox"], [type="radio"], [type="file"]),
+  textarea, select, [class*="textInput__facade"], [class*="textInput__layout"],
+  [class*="textArea__textarea"], [class*="select__facade"]
+) {
+  background-color: var(--inbox-panel) !important;
+  color: var(--inbox-text) !important;
+  border-color: var(--inbox-border) !important;
+  border-radius: 8px;
+}
+html[data-msoe-inbox] :is(#content, [role="dialog"]) :is(input, textarea)::placeholder {
+  color: var(--inbox-muted) !important;
+}
+html[data-msoe-inbox] :is(#content, [role="dialog"], [role="menu"], [role="listbox"]) :focus-visible {
+  outline: 2px solid var(--inbox-accent);
+  outline-offset: 2px;
+}
+html[data-msoe-inbox] :is([role="dialog"], [role="menu"], [role="listbox"], [data-cid~="ModalBody"], [data-cid~="ModalHeader"], [data-cid~="ModalFooter"]) {
+  background-color: var(--inbox-panel) !important;
+  color: var(--inbox-text) !important;
+  border-color: var(--inbox-border) !important;
+}
+html[data-msoe-inbox] :is([role="dialog"], [role="menu"], [role="listbox"]) {
+  border-radius: 12px;
+  box-shadow: var(--inbox-shadow);
+}
+html[data-msoe-inbox] :is([role="menuitem"], [role="option"]) {
+  color: var(--inbox-text) !important;
+}
+html[data-msoe-inbox] :is([role="menuitem"], [role="option"]):is(:hover, :focus, [aria-selected="true"]) {
+  background-color: var(--inbox-selected) !important;
+}
+html[data-msoe-inbox] #content :is([role="row"], [role="option"], [data-testid^="conversation-list-item"]) {
+  background-color: var(--inbox-panel) !important;
+  color: var(--inbox-text) !important;
+  border-color: var(--inbox-border) !important;
+}
+html[data-msoe-inbox] #content :is([role="row"], [role="option"], [data-testid^="conversation-list-item"]):hover {
+  background-color: var(--inbox-hover) !important;
+}
+html[data-msoe-inbox] #content :is([role="row"], [role="option"], [data-testid^="conversation-list-item"]):is([aria-selected="true"], [aria-current="true"], [data-selected="true"]) {
+  background-color: var(--inbox-selected) !important;
+  box-shadow: inset 3px 0 var(--inbox-accent);
+}
+html[data-msoe-inbox] #content :is([data-testid*="unread-indicator"], [data-testid*="unread-badge"]) {
+  background-color: var(--inbox-accent) !important;
+}
+html[data-msoe-inbox] [role="alert"] { border-radius: 8px; }
+html[data-msoe-inbox] :is([role="alert"], [role="status"])[class*="error"] { color: var(--inbox-error) !important; }
+html[data-msoe-inbox] :is([role="alert"], [role="status"])[class*="warning"] { color: var(--inbox-warning) !important; }
+html[data-msoe-inbox] :is([role="alert"], [role="status"])[class*="success"] { color: var(--inbox-success) !important; }
+@media (prefers-reduced-motion: no-preference) {
+  html[data-msoe-inbox] #content :is(button, [role="row"], [data-testid^="conversation-list-item"]) {
+    transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+  }
+  html[data-msoe-inbox] [role="dialog"] { animation: msoe-inbox-enter 180ms ease-out; }
+  @keyframes msoe-inbox-enter {
+    from { opacity: 0; translate: 0 4px; }
+    to { opacity: 1; translate: 0 0; }
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .msoe-nav-tooltip:not([hidden]) {
+    animation: msoe-nav-tooltip-enter 160ms ease-out;
+  }
+  @keyframes msoe-nav-tooltip-enter {
+    from { opacity: 0; transform: translate(-5px, -50%); }
+    to { opacity: 1; transform: translate(0, -50%); }
+  }
+}
+
+/* Canvas can set Inbox surfaces through generated component styles. */
+html[data-msoe-inbox][data-msoe-canvas-dark] #main [data-msoe-inbox-surface] {
+  background-color: var(--inbox-panel) !important;
+  border-color: var(--inbox-border) !important;
+}
+html[data-msoe-inbox][data-msoe-canvas-dark] #main [data-msoe-inbox-text] {
+  color: var(--inbox-muted) !important;
+}
+html[data-msoe-inbox] #main :is([role="toolbar"], [data-testid*="filter-bar"], [data-testid*="toolbar"]) {
+  background: var(--inbox-panel) !important;
+  border-color: var(--inbox-border) !important;
+}
+html[data-msoe-inbox] #main :is(button, [role="button"]) {
+  border-radius: 8px;
+}
+html[data-msoe-inbox] #main :is(button, [role="button"]):is(:disabled, [aria-disabled="true"]) {
+  opacity: .65;
+}
+html[data-msoe-inbox] #main :is([role="option"], [data-testid^="conversation-list-item"]):focus-within {
+  box-shadow: inset 2px 0 var(--inbox-accent);
+}
+html[data-msoe-canvas-dark] #header :is(.menu-item__tooltip, [role="tooltip"]) {
+  display: none !important;
+}
+html[data-msoe-nav-tooltip] :is(.tooltip, .ui-tooltip, [role="tooltip"], [class*="tooltip__content"], [class*="Tooltip__content"]) {
+  visibility: hidden !important;
+}
+
+/* Paint the field frame once. Nested InstUI inputs share its surface. */
+html[data-msoe-inbox] #main :is([class*="textInput__facade"], [class*="select__facade"]) {
+  border-radius: 8px !important;
+  background-color: var(--inbox-panel) !important;
+}
+html[data-msoe-inbox] #main :is([class*="textInput__facade"], [class*="select__facade"]) input,
+html[data-msoe-inbox] #main [class*="textInput__layout"]:has([class*="textInput__facade"]) {
+  background: transparent !important;
+  border-radius: inherit !important;
+  box-shadow: none;
+}
+html[data-msoe-inbox][data-msoe-canvas-dark] #main :is(button, [role="button"]):not(:disabled, [aria-disabled="true"]):hover {
+  background-color: var(--inbox-hover) !important;
+  color: var(--inbox-text) !important;
+}
+html[data-msoe-inbox][data-msoe-canvas-dark] #main :is(button, [role="button"]):is(:disabled, [aria-disabled="true"]) {
+  background-color: var(--inbox-panel) !important;
+  color: var(--inbox-muted) !important;
+}
+html[data-msoe-nav-tooltip] :is([data-position-content], [data-cid~="Tooltip"]):not(:has(:is(button, input, a, [role="menu"], [role="dialog"]))) {
+  visibility: hidden !important;
+}
+/* Stable InstUI facades, inspected on the live Inbox. */
+html[data-msoe-inbox] #content [class*="textInput__facade"] {
+  border: 1px solid var(--inbox-border) !important;
+  border-radius: 8px !important;
+  background: var(--inbox-panel) !important;
+  overflow: hidden;
+}
+html[data-msoe-inbox] #content [class*="textInput__facade"] :is(input, [class*="textInput__layout"], [class*="textInput__inputLayout"], [class*="textInput__afterElement"]) {
+  background: transparent !important; border-radius: 0 !important; box-shadow: none !important;
+}
+html[data-msoe-inbox] #content [class*="textInput__facade"]:focus-within {
+  outline: 2px solid var(--inbox-accent); outline-offset: 2px;
+}
+html[data-msoe-inbox] #content button[data-cid~="BaseButton"] > [class*="baseButton__content"] {
+  background: var(--inbox-panel) !important; color: var(--inbox-text) !important;
+  border-radius: inherit !important; transition: background-color 160ms ease;
+}
+html[data-msoe-inbox] #content button[data-cid~="BaseButton"]:enabled:hover > [class*="baseButton__content"] { background: var(--inbox-hover) !important; }
+html[data-msoe-inbox] #content button[data-cid~="BaseButton"] svg { color: inherit !important; fill: currentColor !important; }
+html[data-msoe-inbox] #content button:disabled > [class*="baseButton__content"] { color: var(--inbox-muted) !important; opacity: .55; }
+html[data-msoe-inbox] [role="listbox"] :is([data-cid="Options.Item"], [role="option"]) {
+  background: var(--inbox-panel) !important; color: var(--inbox-text) !important;
+}
+html[data-msoe-inbox] [role="listbox"] [role="option"]:is(:hover, :focus, [aria-selected="true"]),
+html[data-msoe-inbox] [role="listbox"] [data-cid="Options.Item"]:hover > [role="option"] {
+  background: var(--inbox-selected) !important; color: var(--inbox-text) !important;
+}
+html[data-msoe-inbox] #content [class*="checkboxFacade__facade"] {
+  background: var(--inbox-panel) !important; border: 1px solid var(--inbox-muted) !important;
+  border-radius: 4px !important; transition: none !important;
+}
+html[data-msoe-inbox] #content input[type="checkbox"]:checked + label [class*="checkboxFacade__facade"] {
+  background: #3666a6 !important; border-color: #8dbaff !important; color: white !important;
+}
+html[data-msoe-inbox] #content input[type="checkbox"]:focus-visible + label [class*="checkboxFacade__facade"] { outline: 2px solid var(--inbox-accent); outline-offset: 3px; }
+/* The collapsed navigation flyout is Canvas's actual label. Preserve its accessible name. */
+html[data-msoe-canvas-dark] #header[data-msoe-collapsed] .menu-item__text {
+  position: absolute !important; width: 1px !important; height: 1px !important;
+  padding: 0 !important; margin: -1px !important; overflow: hidden !important;
+  clip-path: inset(50%) !important; white-space: nowrap !important;
+  border: 0 !important; box-shadow: none !important;
+}
+html[data-msoe-canvas-dark] #header[data-msoe-collapsed] .menu-item__text::before,
+html[data-msoe-canvas-dark] #header[data-msoe-collapsed] .menu-item__text::after { display: none !important; }
+
+/* Account notifications, personal files, settings, and announcements. */
+html[data-msoe-canvas-dark][data-msoe-account-view] :is(#content, #right-side) :is(
+  table, th, td, fieldset, .well, .alert, .notification, .communication_channel,
+  .channel, .profile_table, .ic-Action-header, .ic-item-row,
+  [role="grid"], [role="row"], [role="gridcell"], [role="columnheader"],
+  [class*="textInput__facade"], [class*="baseButton__content"]
+) {
+  background-color: var(--night-panel) !important;
+  color: var(--night-text) !important;
+  border-color: var(--night-border) !important;
+}
+html[data-msoe-canvas-dark][data-msoe-account-view] :is(#content, #right-side) :is(
+  label, legend, caption, small, [class*="textInput__layout"]
+) {
+  color: var(--night-text) !important;
+}
+html[data-msoe-canvas-dark][data-msoe-account-view] :is([role="menu"], [role="listbox"], [role="dialog"]) {
+  background-color: var(--night-panel) !important;
+  color: var(--night-text) !important;
+  border-color: var(--night-border) !important;
+}
+
+html[data-msoe-canvas-dark][data-msoe-account-view] #content :is(
+  [role="tabpanel"], .ui-tabs-panel, [class*="baseButton__content"],
+  [class*="textInput__layout"], [class*="checkboxFacade__facade"],
+  [class*="Table__"], [role="tree"], [role="treeitem"]
+) {
+  background-color: var(--night-panel) !important;
+  color: var(--night-text) !important;
+  border-color: var(--night-border) !important;
+}
+html[data-msoe-canvas-dark][data-msoe-account-settings] #content :is(
+  p, label, legend, dt, dd, li, small, strong, em, span:not([aria-hidden="true"])
+):not(a *, button *, [role="alert"] *) {
+  color: var(--night-text) !important;
+}
+
+html[data-msoe-canvas-dark][data-msoe-account-settings] #content :is(
+  #feature_flags, #feature-flags, [id*="feature_flag"], [class*="feature-flag"], [data-testid*="feature"]
+) :is(div, span, p, h2, h3, h4, label, summary, button) {
+  color: var(--night-text) !important;
+  border-color: var(--night-border) !important;
+}
+html[data-msoe-canvas-dark][data-msoe-account-settings] #content :is(
+  [data-cid~="ToggleDetails"], [data-cid~="Text"], [data-cid~="Heading"]
+) { color: var(--night-text) !important; }
+
+html[data-msoe-canvas-dark][data-msoe-personal-files] #content :is(
+  .ef-folder-content, .ef-directory, .ef-header, .ef-item-row, .ef-item-row-header,
+  .ef-folder-list, .ef-main, .ef-search, .ef-file-list, [class*="table__"], [class*="Table__"],
+  [role="toolbar"], [role="tree"], [role="treeitem"], [data-cid~="Table"]
+) {
+  background-color: var(--night-panel) !important;
+  color: var(--night-text) !important;
+  border-color: var(--night-border) !important;
+}
+html[data-msoe-canvas-dark][data-msoe-personal-files] #content :is(
+  [data-cid~="Text"], [data-cid~="Heading"], label, svg
+) { color: var(--night-text) !important; }
+
+html[data-msoe-canvas-formatting] .ic-app-nav-toggle-and-crumbs.msoe-sticky-menu-row {
+  position: sticky !important;
+  top: 0;
+  z-index: 12;
+  background: var(--night-bg, Canvas);
+}
+
+html[data-msoe-canvas-formatting] .msoe-sticky-menu-row {
+  background: transparent;
+  pointer-events: none;
+}
+html[data-msoe-canvas-formatting] .msoe-sticky-menu-row > * {
+  pointer-events: auto;
+}
+html[data-msoe-canvas-formatting] .msoe-sticky-menu-row > :not(#courseMenuToggle, .msoe-back-to-top) {
+  translate: 0 calc(-1 * var(--msoe-crumb-scroll, 0px));
+}
+
+html[data-msoe-canvas-formatting][data-msoe-menu-pinned] .msoe-floating-menu-host :is(#courseMenuToggle, .msoe-back-to-top) {
+  position: fixed;
+  top: 12px;
+  left: var(--msoe-menu-left);
+  right: auto;
+  translate: none;
+}
+html[data-msoe-canvas-formatting][data-msoe-menu-pinned] .msoe-floating-menu-host .msoe-back-to-top {
+  left: calc(var(--msoe-menu-left) + 44px);
+}
+
+html[data-msoe-canvas-formatting][data-msoe-menu-pinned] .msoe-floating-menu-host :is(#courseMenuToggle, .msoe-back-to-top) {
+  left: calc(var(--msoe-menu-left) + var(--msoe-button-offset, 0px));
+}
+.msoe-floating-menu-host .msoe-back-to-top {
+  --msoe-button-offset: 44px;
+}
+
+.msoe-menu-spacer { display: none; }
+html[data-msoe-canvas-formatting][data-msoe-menu-pinned] .msoe-menu-spacer {
+  display: block;
+  flex: none;
+}
+
+/* Modules: one card per module, with quiet rows and a distinct section header. */
+#content:has(#context_modules) {
+  --module-surface: #fff;
+  --module-heading: #f4f6fa;
+  --module-hover: #edf3ff;
+  --module-border: #dce2eb;
+  --module-text: #202a3b;
+  --module-muted: #526079;
+  --module-accent: #2456a6;
+  --module-success: #14704b;
+  --module-warning: #805400;
+  --module-error: #a32741;
+}
+html[data-msoe-canvas-dark] #content:has(#context_modules) {
+  --module-surface: #191e28;
+  --module-heading: #232b39;
+  --module-hover: #263348;
+  --module-border: #374357;
+  --module-text: #ecf1fa;
+  --module-muted: #b3bfd2;
+  --module-accent: #a8caff;
+  --module-success: #86dfb6;
+  --module-warning: #f4cf85;
+  --module-error: #ff9eb1;
+}
+html #content #context_modules {
+  font-family: Inter, system-ui, sans-serif;
+}
+html #content #context_modules .context_module {
+  margin: 0 0 16px;
+  padding: 0;
+  border: 1px solid var(--module-border);
+  border-radius: 12px;
+}
+html #content #context_modules .context_module .ig-header {
+  padding: 16px;
+  margin: 0;
+  border-radius: 11px;
+  background: var(--module-heading) !important;
+  border-color: var(--module-border) !important;
+}
+html #content #context_modules .ig-header-title,
+html #content #context_modules .ig-header-title .name {
+  color: var(--module-text) !important;
+  font-weight: 650;
+  line-height: 1.4;
+  text-shadow: none;
+  overflow-wrap: anywhere;
+}
+html #content #context_modules .ig-row {
+  padding-block: 8px;
+  background: var(--module-surface) !important;
+  border-color: var(--module-border) !important;
+  color: var(--module-text) !important;
+}
+html #content #context_modules .ig-row:is(:hover, :focus-within) {
+  background: var(--module-hover) !important;
+}
+html #content #context_modules .ig-row a { color: var(--module-accent) !important; }
+html #content #context_modules .ig-details { color: var(--module-muted) !important; }
+#context_modules :is(.icon-check, .icon-publish) { color: var(--module-success) !important; }
+#context_modules .icon-lock { color: var(--module-warning) !important; }
+#context_modules .icon-warning { color: var(--module-error) !important; }
+#context_modules :is(a, button, [tabindex]):focus-visible {
+  outline: 2px solid var(--module-accent) !important;
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  #context_modules .ig-row { transition: background-color 180ms ease; }
+}
+@media (max-width: 600px) {
+  html #content #context_modules .context_module .ig-header { padding: 8px; }
+  #context_modules .ig-row :is(.ig-title, .item_name, .ig-details) {
+    min-width: 0;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+}
+
+html #content #context_modules .context_module .ig-header {
+  padding: 8px 12px;
+}
+html #content #context_modules .ig-header-title,
+html #content #context_modules .ig-header-title .name {
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+html #content #context_modules .ig-row :is(.ig-title, .item_name, a.title) {
+  font-weight: 400 !important;
+}
+html #content #context_modules .context_module :is(.content, .context_module_items, .ig-list) {
+  border-end-start-radius: 11px;
+  border-end-end-radius: 11px;
+}
+html #content #context_modules .context_module .context_module_item:last-child .ig-row,
+html #content #context_modules .context_module .ig-list > .ig-row:last-child {
+  border-end-start-radius: 11px;
+  border-end-end-radius: 11px;
+}
+
+html #content #context_modules .ig-row,
+html #content #context_modules .ig-row * {
+  transition: none !important;
+}
+html #content #context_modules .context_module :is(.context_module_items, .ig-list) {
+  overflow: clip;
+  background-color: var(--module-surface);
+}
+html[data-msoe-canvas-dark][data-msoe-assignment-index] #content :is(
+  .header-bar, .assignment-list-header, #assignment_group_filter, .ig-header,
+  .assignment-list-toolbar, .header-bar :is(.btn:not(.active), [aria-pressed="false"])
+) {
+  background: var(--night-panel) !important;
+  color: var(--night-text) !important;
+  border-color: var(--night-border) !important;
+}
+html[data-msoe-canvas-dark][data-msoe-assignment-index] #content .ig-header * {
+  color: var(--night-text) !important;
+  text-shadow: none !important;
+}
+html[data-msoe-canvas-dark][data-msoe-courses-index] #content :is(
+  .header-bar, .ic-Action-header, .courses-header, #my_courses h1, #my_courses h2
+) {
+  background: var(--night-bg) !important;
+  color: var(--night-text) !important;
+  border-color: var(--night-border) !important;
+}
+html[data-msoe-canvas-dark][data-msoe-courses-index] #content :is(h1, h2, .header-bar label) {
+  color: var(--night-text) !important;
+}
+html[data-msoe-canvas-dark] :is(#nav-tray-portal, #global_nav_tray_container) :is(
+  h1, h2, h3, p, li, small, [data-cid~="Heading"], [data-cid~="Text"]
+) {
+  color: var(--night-text) !important;
+}
+html[data-msoe-canvas-dark] :is(#nav-tray-portal, #global_nav_tray_container) :is(a, a span) {
+  color: #a8caff !important;
+}
+
+/* BetterCampus inserts its quick-access host directly into the global menu. */
+#header #menu > bettercampus-element {
+  display: none !important;
+}
+
+/* Keep the optional shortcut suppressed when BetterCampus rebuilds the menu. */
+#header #menu bettercampus-element,
+#header #menu :is(button, a)[aria-label="Open BetterCanvas Quick Access"],
+#header #menu :is(button, a)[aria-label="Open BetterCampus Quick Access"] {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+html[data-msoe-canvas-dark] #content :is([role="tabpanel"], [data-testid*="submission"]) :is(.tox-tinymce, .tox-editor-container),
+html[data-msoe-canvas-dark] #content :is([role="tabpanel"], section, div):has(> .tox-tinymce),
+html[data-msoe-canvas-dark] #content :is([role="tabpanel"], [data-testid*="submission"]):has(input:is([type="url"], [placeholder^="https://"])),
+html[data-msoe-canvas-dark] #content :is(.tox-editor-header, .tox-menubar, .tox-toolbar, .tox-toolbar__primary, .tox-toolbar__overflow, .tox-statusbar, .tox-edit-area, .tox-menu) {
+  background: var(--night-panel) !important;
+  color: var(--night-text) !important;
+  border-color: var(--night-border) !important;
+}
+html[data-msoe-canvas-dark] #content :is(.tox-tbtn, .tox-mbtn, .tox-statusbar button, .tox-statusbar a),
+html[data-msoe-canvas-dark] #content input:is([type="url"], [placeholder^="https://"]) {
+  background: var(--night-panel) !important;
+  color: var(--night-text) !important;
+}
+html[data-msoe-canvas-dark] #content :is(.tox-tbtn, .tox-mbtn):hover { background: var(--night-raised) !important; }
+html[data-msoe-canvas-dark] #content :is(.tox-tbtn, .tox-mbtn, .tox-statusbar) svg { fill: currentColor !important; }
+
+/* Canvas nests the editor and URL field inside padded submission surfaces. */
+html[data-msoe-canvas-dark][data-msoe-submission] #content :is(div, section, form, [role="tabpanel"]):has(
+  .tox-tinymce, input[type="url"], input[placeholder^="https://"]
+):not(:has(h1)) {
+  background-color: var(--night-panel) !important;
+  border-color: var(--night-border) !important;
+}
+html[data-msoe-canvas-dark][data-msoe-submission] :is(
+  .tox-tinymce, .tox-editor-container, .tox-editor-header, .tox-toolbar-overlord,
+  .tox-toolbar__group, .tox-sidebar-wrap, .tox-statusbar, .tox-statusbar__text-container,
+  .tox-statusbar__path, .tox-statusbar__branding, .tox-statusbar__wordcount,
+  .tox-menu, .tox-collection, .tox-collection__group, .tox-collection__item,
+  .tox-pop, .tox-pop__dialog, .tox-dialog, .tox-dialog__header, .tox-dialog__body,
+  .tox-dialog__footer, .tox-textfield, .tox-listboxfield .tox-listbox
+) {
+  background-color: var(--night-panel) !important;
+  color: var(--night-text) !important;
+  border-color: var(--night-border) !important;
+}
+html[data-msoe-canvas-dark][data-msoe-submission] :is(
+  .tox-statusbar *, .tox-collection__item-label, .tox-collection__item-accessory,
+  .tox-tbtn, .tox-mbtn, .tox-tbtn__select-label, .tox-mbtn__select-label,
+  .tox-listboxfield .tox-listbox
+) { color: var(--night-text) !important; }
+html[data-msoe-canvas-dark][data-msoe-submission] :is(
+  .tox-tbtn, .tox-mbtn, .tox-statusbar, .tox-collection__item-icon,
+  .tox-collection__item-caret, .tox-listboxfield
+) svg { fill: var(--night-text) !important; }
+html[data-msoe-canvas-dark][data-msoe-submission] :is(
+  .tox-collection__item--active, .tox-collection__item--enabled,
+  .tox-tbtn--enabled, .tox-mbtn--active, .tox-statusbar button:hover
+) { background-color: var(--night-raised) !important; }
+
+html[data-msoe-canvas-dark][data-msoe-submission] #content button svg:is([name*="Camera" i], [name*="Webcam" i]),
+html[data-msoe-canvas-dark][data-msoe-submission] #content button svg:is([name*="Camera" i], [name*="Webcam" i]) path:not([fill="none"]) {
+  color: var(--night-text) !important;
+  fill: currentColor !important;
+}
+
+html[data-msoe-canvas-dark] #content img[alt="Take a Photo via Webcam"] {
+  filter: brightness(0) invert(1) !important;
+}
+
+/* Canvas uses the same table for pending uploads and submitted files. */
+html[data-msoe-canvas-dark] span:has(> table[data-testid="uploaded_files_table"]),
+html[data-msoe-canvas-dark] table[data-testid="uploaded_files_table"],
+html[data-msoe-canvas-dark] table[data-testid="uploaded_files_table"] :is(caption, thead, tbody, tr, th, td) {
+  background: var(--night-panel) !important;
+  color: var(--night-text) !important;
+  border-color: var(--night-border) !important;
+}
+
+html[data-msoe-canvas-dark] table[data-testid="uploaded_files_table"] thead :is(tr, th),
+html[data-msoe-canvas-dark]:not([data-msoe-canvas-formatting]) table[data-testid="uploaded_files_table"] tbody tr:hover > td {
+  background-color: var(--night-raised) !important;
+}
+
+html[data-msoe-canvas-dark] table[data-testid="uploaded_files_table"] :is(button[data-cid~="IconButton"], [data-testid="download-file"] > a[href]) {
+  display: inline-flex !important;
+  align-items: center;
+  vertical-align: middle;
+  background: var(--night-panel) !important;
+  color: var(--night-text) !important;
+  border: 1px solid var(--night-border) !important;
+  border-radius: 8px !important;
+  text-decoration: none !important;
+}
+
+html[data-msoe-canvas-dark] table[data-testid="uploaded_files_table"] :is(button[data-cid~="IconButton"], [data-testid="download-file"] > a[href]) > [class*="baseButton__content"] {
+  background: transparent !important;
+  border: 0 !important;
+  color: inherit !important;
+}
+
+html[data-msoe-canvas-dark] table[data-testid="uploaded_files_table"] [data-testid="download-file"] > a[href] [class*="baseButton__childrenLayout"] {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+html[data-msoe-canvas-dark] table[data-testid="uploaded_files_table"] :is(button[data-cid~="IconButton"]:enabled, [data-testid="download-file"] > a[href]):is(:hover, :focus-visible) {
+  background: var(--night-raised) !important;
+}
+
+html[data-msoe-canvas-dark] table[data-testid="uploaded_files_table"] svg:is([name="IconPdf"], [name="IconTrash"], [name="IconDownload"]) {
+  fill: var(--night-text) !important;
+}
+
+/* Keep editor hover and keyboard focus surfaces dark, including portal menus. */
+html[data-msoe-canvas-dark][data-msoe-submission] :is(
+  .tox-statusbar button, .tox-statusbar a, .tox-statusbar__path-item,
+  .tox-tbtn, .tox-mbtn, .tox-collection__item, .tox-listboxfield .tox-listbox
+):is(:hover, :focus-visible):not(:disabled, [aria-disabled="true"], .tox-collection__item--disabled) {
+  background: var(--night-raised) !important;
+  color: var(--night-text) !important;
+}
+
+/* Canvas editor footer controls can paint hover on an inner InstUI span. */
+html[data-msoe-canvas-dark][data-msoe-submission] :is(.tox-statusbar, [class*="RceStatusBar"], [class*="rceStatusBar"], [class*="rce-status"], [data-testid*="status-bar"]) :is(button, [role="button"], a):is(:hover, :focus-visible),
+html[data-msoe-canvas-dark][data-msoe-submission] #content :is(button, [role="button"]):is(:hover, :focus-visible) > [class*="baseButton__content"] {
+  background: var(--night-raised, #293447) !important;
+  color: var(--night-text) !important;
+}
+
+html[data-msoe-canvas-dark] :is(
+  #rubrics, #rubric_holder, .rubric_container, .rubric,
+  [data-testid*="rubric" i]:is(div, section, table, [role="dialog"])
+),
+html[data-msoe-canvas-dark] :is(
+  #rubrics, #rubric_holder, .rubric_container, .rubric,
+  [data-testid*="rubric" i]:is(div, section, table, [role="dialog"])
+) :is(table, thead, tbody, th, td, [role="row"], [role="cell"], [role="columnheader"], [class*="baseButton__content"]) {
+  background-color: var(--night-panel) !important;
+  color: var(--night-text) !important;
+  border-color: var(--night-border) !important;
+}
+html[data-msoe-canvas-dark] :is(.rubric, .rubric_container, [data-testid*="rubric" i]) :is(
+  p, label, h2, h3, h4, [data-cid~="Text"], [data-cid~="Heading"]
+) {
+  color: var(--night-text) !important;
+}
+html[data-msoe-canvas-dark] :is(.rubric, .rubric_container, [data-testid*="rubric" i]) :is(
+  [aria-selected="true"], [aria-pressed="true"], .rating-tier.selected
+) {
+  background-color: var(--night-raised) !important;
+  outline: 1px solid #8bb8ff;
+  outline-offset: -1px;
+}
+
+html[data-msoe-canvas-dark] :is(
+  .rubric_title, .rubric-title, .rubric_header, [data-testid*="rubric-title" i]
+),
+html[data-msoe-canvas-dark] :is(.rubric_title, .rubric-title, .rubric_header, [data-testid*="rubric-title" i]) :is(.title, input, span, h2, h3) {
+  background-color: var(--night-panel) !important;
+  color: var(--night-text) !important;
+  border-color: var(--night-border) !important;
+}
+
+html[data-msoe-canvas-dark] .css-1tv7aoa-view:has(> .css-8v6bp4-view--flex-flex > .css-g5lcut-text) {
+  background: var(--night-panel) !important;
+  border-color: var(--night-border) !important;
+}
+html[data-msoe-canvas-dark] .css-1tv7aoa-view > .css-8v6bp4-view--flex-flex > .css-g5lcut-text {
+  color: var(--night-text) !important;
+}
+
+html[data-msoe-canvas-dark] .css-12pzab8-pill:has(> .css-xbajoi-pill__text) {
+  background: #432630 !important;
+  border: 1px solid #925565 !important;
+  border-radius: 999px;
+}
+html[data-msoe-canvas-dark] .css-12pzab8-pill > .css-xbajoi-pill__text {
+  color: #ffd0da !important;
+  background: transparent !important;
+}
+
+/* Keep the original module links together at the start of the content column. */
+html[data-msoe-canvas-formatting] :is(.module-sequence-footer, .module-sequence-footer-content) {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+html[data-msoe-canvas-formatting] .module-sequence-footer-content {
+  display: flex !important;
+  justify-content: flex-start !important;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px 0 !important;
+}
+html[data-msoe-canvas-formatting] .module-sequence-footer-content :is(.module-sequence-footer-button--previous, .module-sequence-footer-button--next) {
+  float: none !important;
+  margin: 0 !important;
+}
+
+html:not([data-msoe-canvas-formatting]) .msoe-module-buttons,
+html[data-msoe-canvas-formatting] .module-sequence-footer[data-msoe-module-relocated],
+.msoe-module-buttons:empty {
+  display: none !important;
+}
+.msoe-module-buttons {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-inline-end: 8px;
+}
+html[data-msoe-canvas-formatting] .msoe-module-buttons {
+  position: fixed; bottom: 20px;
+  z-index: 1001;
+}
+.msoe-module-buttons .msoe-module-button {
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+  inline-size: var(--module-button-size, 40px);
+  block-size: var(--module-button-size, 40px);
+  border: 1px solid #66778d;
+  border-radius: 10px;
+  background: #263345;
+  color: #edf5ff;
+  font-size: 22px;
+  text-decoration: none;
+}
+.msoe-module-button:focus-visible { outline: 2px solid #83baff; outline-offset: 2px; }
+
+html[data-msoe-canvas-formatting] .msoe-module-button {
+  transition: background-color 160ms ease;
+}
+html[data-msoe-canvas-formatting] .msoe-module-button:hover {
+  background: #30435c !important;
+  color: #edf5ff;
+  text-decoration: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-msoe-canvas-formatting] .msoe-module-button { transition: none; }
+}
+
+.msoe-grade-calculator {
+  display: grid;
+  gap: 8px;
+  margin-block: 16px;
+  padding: 16px;
+  border: 1px solid #8191a555;
+  border-radius: 10px;
+  background: #f4f7fb;
+}
+html[data-msoe-canvas-dark] .msoe-grade-calculator {
+  background: #202632;
+  color: #edf1f7;
+}
+.msoe-grade-calculator h3,
+.msoe-grade-calculator p { margin: 0; }
+.msoe-grade-calculator label { display: grid; gap: 4px; font-weight: 600; }
+.msoe-grade-calculator input {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  border-radius: 8px;
+}
+.msoe-grade-calculator input:focus-visible { outline: 2px solid #5795de; outline-offset: 2px; }
+.msoe-grade-weight-note { font-size: .85em; }
+.msoe-grade-calculator output {
+  padding: 8px;
+  border-radius: 8px;
+  background: #5795de26;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+html[data-msoe-canvas-dark] .msoe-grade-calculator input[type="number"] {
+  background: #171c25 !important;
+  color: #edf1f7 !important;
+  border: 1px solid #58677c !important;
+  color-scheme: dark;
+}
+.msoe-grade-calculator output:empty { display: none; }
+
+html[data-msoe-canvas-dark] [data-cid="Pill"] > .css-1nbn9fw-pill {
+  background: #392e1d !important;
+  border-color: #80602f !important;
+  color: #ffd491 !important;
+}
+html[data-msoe-canvas-dark] [data-cid="Pill"] > .css-1nbn9fw-pill > [class$="-pill__text"] {
+  color: inherit !important;
+}
+
+html[data-msoe-canvas-formatting] .msoe-module-buttons {
+  left: calc(var(--ic-global-nav-width, 84px) + 16px);
+}
+
+html[data-msoe-canvas-formatting] #assignments-student-footer[data-msoe-module-relocated] :is([data-testid="previous-assignment-btn"], [data-testid="next-assignment-btn"]) {
+  display: none !important;
+}
+html[data-msoe-canvas-formatting] #assignments-student-footer[data-msoe-module-relocated]:not(:has(button, input, a[href]:not([data-testid="previous-assignment-btn"], [data-testid="next-assignment-btn"]))) {
+  display: none !important;
+}
+
+/* Keep Canvas's native submit action in the floating controls row. */
+html[data-msoe-canvas-formatting] #assignments-student-footer:has(:is(#submit-button, [data-msoe-new-attempt])) {
+  position: fixed !important;
+  inset: auto 16px 20px auto !important;
+  inline-size: max-content !important;
+  max-inline-size: calc(100% - 32px);
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  z-index: 1001;
+}
+
+html[data-msoe-canvas-formatting] #assignments-student-footer :is(#submit-button, [data-msoe-new-attempt]) {
+  border: 1px solid #66778d !important;
+  border-radius: 10px !important;
+  background: #263345 !important;
+  color: #edf5ff !important;
+}
+html[data-msoe-canvas-formatting] #assignments-student-footer :is(#submit-button, [data-msoe-new-attempt]) > [class*="baseButton__content"] {
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+  min-block-size: calc(var(--module-button-size, 40px) - 2px);
+  padding: 0 14px;
+  border: 0 !important;
+  background: transparent !important;
+  color: inherit !important;
+}
+html[data-msoe-canvas-formatting] #assignments-student-footer :is(#submit-button, [data-msoe-new-attempt]):enabled:hover {
+  background: #30435c !important;
+}
+html[data-msoe-canvas-formatting] #assignments-student-footer :is(#submit-button, [data-msoe-new-attempt]):focus-visible {
+  outline: 2px solid #83baff;
+  outline-offset: 2px;
+}
+html[data-msoe-canvas-formatting] #assignments-student-footer :is(#submit-button, [data-msoe-new-attempt]):is(:disabled, [aria-disabled="true"]) {
+  opacity: .55;
+}
+
+.msoe-week-shortcuts { display: none; }
+html[data-msoe-canvas-formatting] .msoe-week-shortcuts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 4px 8px;
+  margin-block: 8px 16px;
+}
+.msoe-week-shortcuts-label {
+  margin-inline-end: 4px;
+  font-weight: 600;
+}
+.msoe-week-shortcuts button {
+  flex: none;
+  border: 1px solid #879bb4;
+  box-sizing: border-box;
+  inline-size: 32px;
+  block-size: 32px;
+  border-radius: 7px;
+  padding: 0;
+  background: #edf4ff;
+  color: #20436a;
+  font: inherit;
+  font-size: .875em;
+  cursor: pointer;
+}
+.msoe-week-shortcuts button:hover { background: #dbeaff; }
+html[data-msoe-canvas-dark] .msoe-week-shortcuts button {
+  background: #253449;
+  color: #e2eeff;
+  border-color: #526d90;
+}
+html[data-msoe-canvas-dark] .msoe-week-shortcuts button:hover { background: #344b68; }
+.msoe-week-shortcuts button:focus-visible { outline: 2px solid #5795de; outline-offset: 2px; }
+html[data-msoe-canvas-formatting] #context_modules .ig-header { scroll-margin-top: 70px; }
+
+/* Submission previews retain DocViewer's native annotation and navigation tools. */
+html[data-msoe-canvas-formatting] [data-testid="assignments_2_submission_preview"] {
+  box-sizing: border-box;
+  width: 100%;
+  height: clamp(300px, 72vh, 960px) !important;
+  padding: 0 !important;
+  margin-block-start: 12px;
+  border: 1px solid #879bb4;
+  border-radius: 12px;
+  overflow: hidden;
+}
+html[data-msoe-canvas-formatting] [data-testid="assignments_2_submission_preview"] > iframe {
+  display: block;
+  position: static !important;
+  width: 100% !important;
+  height: 100% !important;
+  border: 0 !important;
+}
+html[data-msoe-canvas-dark] [data-testid="assignments_2_submission_preview"] {
+  background: #151922;
+  border-color: #465369;
+}
+
+html[data-msoe-canvas-formatting] [data-testid="file-preview"] {
+  gap: 8px;
+}
+html[data-msoe-canvas-formatting] :is(
+  [data-testid="attempt-tab"] > div:has([data-testid="file-preview"] [data-testid="uploaded_files_table"]),
+  [data-testid="file-preview"]:has(> :has(> [data-testid="uploaded_files_table"]))
+) {
+  border-block-start: 0 !important;
+}
+html[data-msoe-canvas-formatting] [data-testid="file-preview"] > :has(> [data-testid="uploaded_files_table"] tbody tr)::before {
+  content: "Submitted Files";
+  display: block;
+  margin-block-end: 12px;
+  color: var(--attachment-text);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+/* Reflow Canvas's attachment rows while keeping its original file controls. */
+html[data-msoe-canvas-formatting] [data-testid="file-preview"] {
+  --attachment-surface: #f8fafc;
+  --attachment-border: #d4deea;
+  --attachment-text: #182739;
+  --attachment-muted: #506176;
+  --attachment-accent: #245784;
+  --attachment-hover: #e0ecfa;
+}
+html[data-msoe-canvas-formatting][data-msoe-canvas-dark] [data-testid="file-preview"] {
+  --attachment-surface: var(--night-panel);
+  --attachment-border: var(--night-border);
+  --attachment-text: var(--night-text);
+  --attachment-muted: #b4c1d3;
+  --attachment-accent: var(--night-link);
+  --attachment-hover: var(--night-raised);
+}
+html[data-msoe-canvas-formatting] [data-testid="file-preview"] :is(
+  :has(> table[data-testid="uploaded_files_table"]),
+  table[data-testid="uploaded_files_table"],
+  table[data-testid="uploaded_files_table"] :is(tbody, td)
+) {
+  background: transparent !important;
+  border: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+html[data-msoe-canvas-formatting] [data-testid="file-preview"] table[data-testid="uploaded_files_table"] {
+  display: block;
+  width: 100%;
+}
+html[data-msoe-canvas-formatting] [data-testid="file-preview"] table[data-testid="uploaded_files_table"] thead {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+html[data-msoe-canvas-formatting] [data-testid="file-preview"] table[data-testid="uploaded_files_table"] tbody {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 360px), 1fr));
+  gap: 8px;
+}
+html[data-msoe-canvas-formatting] [data-testid="file-preview"] table[data-testid="uploaded_files_table"] tbody tr {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas: "file name download" "file size download";
+  align-items: center;
+  gap: 2px 8px;
+  padding: 8px;
+  border: 1px solid var(--attachment-border) !important;
+  border-radius: 12px;
+  background: var(--attachment-surface) !important;
+}
+html[data-msoe-canvas-formatting] [data-testid="file-preview"] table[data-testid="uploaded_files_table"] td {
+  min-width: 0;
+  color: var(--attachment-text) !important;
+}
+html[data-msoe-canvas-formatting] [data-testid="file-preview"] table[data-testid="uploaded_files_table"] td:first-child {
+  grid-area: file;
+}
+html[data-msoe-canvas-formatting] [data-testid="file-preview"] table[data-testid="uploaded_files_table"] td:nth-child(2) {
+  grid-area: name;
+  align-self: end;
+  overflow-wrap: anywhere;
+  font-weight: 600;
+  line-height: 1.35;
+}
+html[data-msoe-canvas-formatting] [data-testid="file-preview"] table[data-testid="uploaded_files_table"] td:nth-child(2):has(> [class*="screenReaderContent"]) {
+  font-size: 0;
+}
+html[data-msoe-canvas-formatting] [data-testid="file-preview"] table[data-testid="uploaded_files_table"] td:nth-child(2) > [class*="screenReaderContent"] {
+  position: static !important;
+  display: inline !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  clip: auto !important;
+  clip-path: none !important;
+  white-space: normal !important;
+  font-size: 0.875rem;
+}
+html[data-msoe-canvas-formatting] [data-testid="file-preview"] table[data-testid="uploaded_files_table"] td[data-testid="file-size"] {
+  grid-area: size;
+  align-self: start;
+  color: var(--attachment-muted) !important;
+  font-size: 0.75rem;
+}
+html[data-msoe-canvas-formatting] [data-testid="file-preview"] table[data-testid="uploaded_files_table"] td[data-testid="download-file"] {
+  grid-area: download;
+  display: flex;
+  align-self: stretch;
+  align-items: center;
+}
+html[data-msoe-canvas-formatting] [data-testid="file-preview"] table[data-testid="uploaded_files_table"] td:nth-child(4):not([data-testid]):empty {
+  display: none;
+}
+html[data-msoe-canvas-formatting] [data-testid="file-preview"] table[data-testid="uploaded_files_table"] :is(td:first-child button, [data-testid="download-file"] > a[href]) {
+  background: transparent !important;
+  border-color: transparent !important;
+  border-radius: 8px !important;
+  color: var(--attachment-accent) !important;
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+html[data-msoe-canvas-formatting] [data-testid="file-preview"] table[data-testid="uploaded_files_table"] :is(td:first-child button:enabled, [data-testid="download-file"] > a[href]):is(:hover, :focus-visible) {
+  background: var(--attachment-hover) !important;
+  border-color: var(--attachment-border) !important;
+}
+html[data-msoe-canvas-formatting] [data-testid="file-preview"] table[data-testid="uploaded_files_table"] :is(td:first-child button, [data-testid="download-file"] > a[href]):focus-visible {
+  outline: 2px solid var(--attachment-accent);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-msoe-canvas-formatting] [data-testid="file-preview"] table[data-testid="uploaded_files_table"] :is(td:first-child button, [data-testid="download-file"] > a[href]) {
+    transition: none;
+  }
+}
+html[data-msoe-canvas-formatting] [data-testid="file-preview"] > :has(> [data-testid="assignments_2_submission_preview"]) {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+html[data-msoe-canvas-formatting] [data-testid="file-preview"] [data-testid="assignments_2_submission_preview"] {
+  margin-block-start: 0;
+}
+html[data-msoe-canvas-dark] [data-testid="file-preview"],
+html[data-msoe-canvas-dark] [data-testid="file-preview"] > :has(> [data-testid="assignments_2_submission_preview"]) {
+  background: #151922 !important;
+  border-color: #465369 !important;
+}
+
+/* Shared interaction for Refined Canvas controls. */
+html[data-msoe-canvas-formatting] :is(#courseMenuToggle, .msoe-back-to-top, .msoe-module-buttons .msoe-module-button, #assignments-student-footer #submit-button, #assignments-student-footer [data-msoe-new-attempt], .msoe-week-shortcuts button, #msoe-grade-calculator-title, #content a[data-msoe-download]) {
+  transition: background-color 160ms ease, border-color 160ms ease !important;
+}
+html[data-msoe-canvas-formatting] :is(#courseMenuToggle, .msoe-back-to-top, .msoe-module-buttons .msoe-module-button, #assignments-student-footer #submit-button, #assignments-student-footer [data-msoe-new-attempt], .msoe-week-shortcuts button, #msoe-grade-calculator-title, #content a[data-msoe-download]):hover:not(:disabled, [aria-disabled="true"]) {
+  background-color: #dbeaff !important;
+  border-color: #879bb4 !important;
+  color: #20436a !important;
+}
+html[data-msoe-canvas-formatting][data-msoe-canvas-dark] :is(#courseMenuToggle, .msoe-back-to-top, .msoe-module-buttons .msoe-module-button, #assignments-student-footer #submit-button, #assignments-student-footer [data-msoe-new-attempt], .msoe-week-shortcuts button, #msoe-grade-calculator-title, #content a[data-msoe-download]):hover:not(:disabled, [aria-disabled="true"]) {
+  background-color: #30435c !important;
+  border-color: #7088a8 !important;
+  color: #edf5ff !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-msoe-canvas-formatting] :is(#courseMenuToggle, .msoe-back-to-top, .msoe-module-buttons .msoe-module-button, #assignments-student-footer #submit-button, #assignments-student-footer [data-msoe-new-attempt], .msoe-week-shortcuts button, #msoe-grade-calculator-title, #content a[data-msoe-download]) {
+    transition: none !important;
+  }
+}
+
+html[data-msoe-canvas-formatting] [data-testid="file-preview"] > :has(> [data-testid="assignments_2_submission_preview"]) {
+  align-self: stretch;
+  min-width: 0;
+}
+html[data-msoe-canvas-formatting] [data-testid="file-preview"] [data-testid="assignments_2_submission_preview"] {
+  margin-inline: auto !important;
+}
+/* Assignment description links open the standalone reader. */
+html[data-msoe-canvas-formatting] [data-msoe-inline-pdf] {
+  display: none !important;
+}
+html[data-msoe-canvas-formatting] #content a.msoe-open-pdf {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin-block: 8px;
+  overflow-wrap: anywhere;
+  padding: 6px 12px;
+  border: 1px solid #8096ad;
+  border-radius: 8px;
+  background: #eef5fd;
+  color: #214d79 !important;
+  font-weight: 600;
+  text-decoration: none;
+}
+html[data-msoe-canvas-formatting][data-msoe-canvas-dark] #content a.msoe-open-pdf {
+  background: var(--night-panel);
+  border-color: var(--night-border);
+  color: var(--night-link) !important;
+}
+html[data-msoe-canvas-formatting] #content a.msoe-open-pdf:hover {
+  border-color: currentColor;
+  text-decoration: underline;
+}
+html[data-msoe-canvas-formatting] #content a.msoe-open-pdf:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* Keep Canvas's rubric controls and separate each criterion visually. */
+html[data-msoe-canvas-formatting] :is(table, [role="table"]):has(#rubric-header-criteria, #rubric-header-ratings) {
+  --rubric-card: #f8fafc;
+  --rubric-rating: #fff;
+  --rubric-selected: #e5f0ff;
+  --rubric-line: #d4deea;
+  --rubric-accent: #326498;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+  width: 100%;
+  min-width: 0 !important;
+  table-layout: fixed;
+  border: 0 !important;
+  outline: 0 !important;
+}
+html[data-msoe-canvas-formatting] :is(
+  :has(> :is(table, [role="table"]):has(#rubric-header-criteria)),
+  [data-testid*="rubric" i]:has(#rubric-header-criteria),
+  .rubric_container:has(#rubric-header-criteria)
+) {
+  border: 0 !important;
+  outline: 0 !important;
+  overflow: visible !important;
+}
+html[data-msoe-canvas-formatting] #content :is(tr, [role="row"]):has(#rubric-header-criteria),
+html[data-msoe-canvas-formatting] #content :is(#rubric-header-criteria, #rubric-header-ratings, #rubric-header-points) {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+}
+html[data-msoe-canvas-formatting] #rubric-header-points {
+  width: 5rem;
+}
+html[data-msoe-canvas-formatting][data-msoe-canvas-dark] :is(table, [role="table"]):has(#rubric-header-criteria, #rubric-header-ratings) {
+  --rubric-card: var(--night-panel);
+  --rubric-rating: var(--night-bg);
+  --rubric-selected: color-mix(in srgb, var(--night-bg) 80%, var(--night-raised));
+  --rubric-line: var(--night-border);
+  --rubric-accent: var(--night-link);
+}
+html[data-msoe-canvas-formatting] :is(table, [role="table"]):has(#rubric-header-criteria) :is(td, [role="cell"]) {
+  padding: 8px !important;
+  background: var(--rubric-card) !important;
+  border-block: 1px solid var(--rubric-line) !important;
+  overflow-wrap: break-word;
+}
+html[data-msoe-canvas-formatting] :is(table, [role="table"]):has(#rubric-header-criteria) :is(
+  #rubric-header-criteria, tbody tr > :is(td, th):first-child:not([colspan]), [role="row"] > [role="cell"]:first-child:not([aria-colspan])
+) {
+  min-width: 0 !important;
+  width: 18%;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+html[data-msoe-canvas-formatting] :is(table, [role="table"]):has(#rubric-header-criteria) :is(td, [role="cell"]):first-child {
+  border-inline-start: 1px solid var(--rubric-line);
+  border-start-start-radius: 10px;
+  border-end-start-radius: 10px;
+}
+html[data-msoe-canvas-formatting] :is(table, [role="table"]):has(#rubric-header-criteria) :is(td, [role="cell"]):last-child {
+  border-inline-end: 1px solid var(--rubric-line);
+  border-start-end-radius: 10px;
+  border-end-end-radius: 10px;
+  font-variant-numeric: tabular-nums;
+}
+html[data-msoe-canvas-formatting] :is(table, [role="table"]):has(#rubric-header-ratings) :is(td, [role="cell"]):nth-child(2) :has(> button + button) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr));
+  gap: 0;
+  min-width: 0;
+  background: var(--rubric-rating) !important;
+}
+html[data-msoe-canvas-formatting] :is(table, [role="table"]):has(#rubric-header-ratings) :is(td, [role="cell"]):nth-child(2) button {
+  background: var(--rubric-rating) !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  min-width: 0 !important;
+  max-width: 100%;
+  color: inherit !important;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+html[data-msoe-canvas-formatting] :is(table, [role="table"]):has(#rubric-header-ratings) :is(td, [role="cell"]):nth-child(2) button:is([aria-label^="Selected " i], [aria-pressed="true"], [aria-selected="true"]) {
+  background: var(--rubric-selected) !important;
+  box-shadow: inset 0 -2px var(--rubric-accent) !important;
+}
+
+/* Rubric section shells should blend into the page; criterion rows provide grouping. */
+html[data-msoe-canvas-formatting] #content :is(div, section, span):has(#rubric-header-criteria):not(:is(td, th, [role="cell"])) {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+html[data-msoe-canvas-formatting] #content .msoe-file-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  max-width: 100%;
+  margin-block: 12px;
+}
+html[data-msoe-canvas-formatting] #content .msoe-file-actions .msoe-open-pdf {
+  margin: 0;
+  font-weight: 500;
+}
+html[data-msoe-canvas-formatting] #content .msoe-file-download {
+  display: inline-flex;
+  flex: 0 0 36px;
+  box-sizing: border-box;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #8096ad;
+  border-radius: 8px;
+  color: #245784;
+  background: #eef5fd;
+}
+html[data-msoe-canvas-formatting][data-msoe-canvas-dark] #content .msoe-file-download {
+  color: var(--night-link);
+  background: var(--night-panel);
+  border-color: var(--night-border);
+}
+html[data-msoe-canvas-formatting] #content .msoe-file-download:hover {
+  border-color: currentColor;
+}
+html[data-msoe-canvas-formatting] #content .msoe-file-download:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+html[data-msoe-canvas-formatting] #content :is(p, span):has(> [data-msoe-inline-pdf]) > a[role="button"] {
+  display: none !important;
+}
+
+/* Keep the rubric heading and the gaps between criteria on the page surface. */
+html[data-msoe-canvas-formatting] #content :is(table, [role="table"]):has(#rubric-header-criteria),
+html[data-msoe-canvas-formatting] #content :is(table, [role="table"]):has(#rubric-header-criteria) :is(caption, thead, tbody, [role="rowgroup"]),
+html[data-msoe-canvas-formatting] #content :is([data-testid*="rubric-title" i], .rubric_title, .rubric-title) * {
+  background: transparent !important;
+}
+html[data-msoe-canvas-formatting] #content :is(table, [role="table"]):has(#rubric-header-ratings) :is(td, [role="cell"]):nth-child(2)
+  button:is([data-msoe-rubric-selected], [aria-label^="Selected " i], [aria-pressed="true"], [aria-selected="true"]) {
+  background: var(--rubric-selected) !important;
+  position: relative;
+  z-index: 1;
+  box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--rubric-accent) 70%, black) !important;
+}
+html[data-msoe-canvas-formatting] #content [data-msoe-rubric-description] {
+  display: inline-block;
+  text-transform: capitalize;
+  padding: 4px 9px;
+  border: 1px solid var(--rubric-line) !important;
+  border-radius: 8px;
+  background: var(--rubric-rating) !important;
+  color: var(--rubric-accent) !important;
+  text-decoration: none !important;
+  white-space: normal;
+}
+html[data-msoe-canvas-formatting] #content [data-msoe-rubric-description]:is(:hover, :focus-visible) {
+  border-color: currentColor !important;
+}
+html[data-msoe-canvas-dark] [data-msoe-rubric-dialog],
+html[data-msoe-canvas-dark] [data-msoe-rubric-dialog] :is([class*="modalHeader"], [class*="modalBody"], [class*="modalFooter"], [data-cid~="ModalHeader"], [data-cid~="ModalBody"], [data-cid~="ModalFooter"]) {
+  background: var(--night-panel) !important;
+  color: var(--night-text) !important;
+  border-color: var(--night-border) !important;
+  color-scheme: dark;
+}
+html[data-msoe-canvas-dark] [data-msoe-rubric-dialog] :is(h1, h2, h3, p, [data-cid~="Text"], [data-cid~="Heading"]) {
+  color: var(--night-text) !important;
+}
+html[data-msoe-canvas-dark] [class*="-mask"]:has(> [role="dialog"][aria-label="Criterion Long Description"]) {
+  background: rgb(0 0 0 / 75%) !important;
+}
+html[data-msoe-canvas-formatting] #content :is(table, [role="table"]):has(#rubric-header-ratings)
+  :is(td, [role="cell"]):nth-child(2) :is(button:disabled, button[aria-disabled="true"], button:disabled *, button[aria-disabled="true"] *) {
+  cursor: default !important;
+}

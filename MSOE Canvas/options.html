@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Refined Canvas</title>
+  <style>
+    :root { color-scheme: dark; font: 14px system-ui, sans-serif; background: #151922; color: #edf1f7; }
+    body { width: 316px; margin: 0; }
+    main { padding: 16px; }
+    header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .mark { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: #293d58; color: #b4d3ff; }
+    h1 { font-size: 17px; margin: 0; }
+    p { margin: 3px 0 0; color: #b3bfd1; font-size: 12px; }
+    .settings { background: #202632; border: 1px solid #394458; border-radius: 12px; }
+    label { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px; cursor: pointer; }
+    label + label { border-top: 1px solid #394458; }
+    label:hover { background: #ffffff08; }
+    .hint { display: block; margin-top: 4px; color: #b3bfd1; font-size: 12px; }
+    input { appearance: none; flex: none; margin: 0; width: 36px; height: 20px; border: 1px solid #66768e; border-radius: 20px; background: #354156; cursor: pointer; }
+    input::before { content: ''; display: block; width: 12px; height: 12px; margin: 3px; border-radius: 50%; background: #e2eaf6; transition: transform 150ms ease; }
+    input:checked { background: #91bbf5; border-color: #91bbf5; }
+    input:checked::before { transform: translateX(16px); background: #18283f; }
+    input:focus-visible { outline: 2px solid #b4d3ff; outline-offset: 3px; }
+    input:disabled { opacity: .5; cursor: wait; }
+    #status { color: #ffb7b7; }
+    #status:not(:empty) { margin-top: 10px; }
+    @media (prefers-reduced-motion: reduce) { input::before { transition: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <span class="mark"><img src="icon-48.png" width="32" height="32" alt=""></span>
+      <div><h1>Refined Canvas</h1><p>Appearance &amp; reading preferences</p></div>
+    </header>
+    <div class="settings">
+      <label><span><strong>Dark mode</strong><span class="hint" id="dark-hint">Use a dark theme in Canvas</span></span><input id="dark" type="checkbox" role="switch" aria-label="Dark mode" aria-describedby="dark-hint" disabled></label>
+      <label><span><strong>Reading and layout fixes</strong><span class="hint" id="formatting-hint">Improve course navigation and file previews</span></span><input id="formatting" type="checkbox" role="switch" aria-label="Reading and layout fixes" aria-describedby="formatting-hint" disabled></label>
+    </div>
+    <p id="status" role="status"></p>
+  </main>
+  <script src="options.js"></script>
+</body>
+</html>
+
+
