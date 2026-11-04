@@ -1,14 +1,14 @@
 (() => {
-  const canvasOrigin = 'https://msoe.instructure.com';
-  if (location.ancestorOrigins[0] !== canvasOrigin) return;
+  const canvasOrigin = location.ancestorOrigins[0];
+  if (!/^https:\/\/(?:[a-z0-9-]+\.)*instructure\.com$/i.test(canvasOrigin) || canvasOrigin === location.origin) return;
 
   const layout = document.createElement('style');
   let settings = {formatting: true, dark: true};
   let lastHeight = 0;
   function update() {
-    const customReader = settings.formatting && document.documentElement.hasAttribute('data-msoe-custom-tools');
+    const customReader = settings.formatting && document.documentElement.hasAttribute('data-refined-custom-tools');
     const nativeToolbar = settings.formatting && !customReader ? '.ViewerControls{min-height:60px!important;flex-shrink:0!important;overflow-x:auto!important;overflow-y:hidden!important;align-items:center!important;padding-block:4px!important;scrollbar-width:thin}' : '';
-    const css = nativeToolbar + (customReader ? 'html,body,#App{height:auto!important;min-height:0!important;overflow:clip!important}#App{display:block!important}.Pages{height:auto!important;min-height:0!important;max-height:none!important;flex:none!important;overflow-x:auto!important;overflow-y:clip!important}html[data-msoe-custom-tools] .ViewerControls{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip-path:inset(50%);visibility:hidden}html[data-msoe-custom-tools] .Pages{padding-block-start:0!important;margin-block-start:0!important}html[data-msoe-custom-tools] .Page-container:first-child{margin-block-start:0!important}html[data-msoe-custom-tools] #App:has(.Pages){padding-block-start:0!important}html[data-msoe-custom-tools] .ViewerControls{display:none!important}' : '') +
+    const css = nativeToolbar + (customReader ? 'html,body,#App{height:auto!important;min-height:0!important;overflow:clip!important}#App{display:block!important}.Pages{height:auto!important;min-height:0!important;max-height:none!important;flex:none!important;overflow-x:auto!important;overflow-y:clip!important}html[data-refined-custom-tools] .ViewerControls{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip-path:inset(50%);visibility:hidden}html[data-refined-custom-tools] .Pages{padding-block-start:0!important;margin-block-start:0!important}html[data-refined-custom-tools] .Page-container:first-child{margin-block-start:0!important}html[data-refined-custom-tools] #App:has(.Pages){padding-block-start:0!important}html[data-refined-custom-tools] .ViewerControls{display:none!important}' : '') +
       (settings.dark ? 'html,body,#App,.Pages{background:#151922!important;scrollbar-color:#63748d #151922}.ViewerControls{background:#202632!important;color:#edf1f7!important;border-bottom:1px solid #465369;padding:4px 8px;box-sizing:border-box;scrollbar-color:#63748d #202632}.AnnotationControlButton,.AnnotationControlButton-outer,.AnnotationControlButton-inner{background:transparent!important;color:#edf1f7!important;border-radius:7px!important;box-shadow:none!important}.AnnotationControlButton{margin:0 2px!important;min-width:32px;min-height:32px;transition:background-color 140ms ease}.AnnotationControlButton svg{color:inherit}.AnnotationControlButton:focus-visible{outline:2px solid #9bc9ff;outline-offset:1px}.AnnotationControlButton:hover:not(:disabled){background:#354156!important}.AnnotationControlButton:disabled{opacity:.4}.ViewerControls input{background:#151922!important;color:#edf1f7!important;border:1px solid #465369!important;border-radius:6px!important}.ViewerControls button:focus-visible{outline:2px solid #9bc9ff;outline-offset:2px}@media(prefers-reduced-motion:reduce){.AnnotationControlButton{transition:none}}' : '');
     const downloadStyle = settings.formatting && !customReader ? `
       .ViewerControls :is(a[href], button):is(
@@ -50,7 +50,7 @@
     const height = Math.ceil(bottom + 48);
     if (height === lastHeight) return;
     lastHeight = height;
-    window.parent.postMessage({type:'msoe-document-height',height}, 'https://msoe.instructure.com');
+    window.parent.postMessage({type:'refined-document-height',height}, canvasOrigin);
   }
   chrome.storage.local.get(settings).then(value => { settings = value; update(); });
   chrome.storage.onChanged.addListener((changes, area) => {
@@ -72,7 +72,7 @@
     if (!bounds.length) return;
     if (!initialPageWidth && bounds[0].width > 0) initialPageWidth = bounds[0].width;
     const state = {
-      type: 'msoe-pdf-state',
+      type: 'refined-pdf-state',
       count: bounds.length,
       zoom: initialPageWidth ? Math.round(100 * bounds[0].width / initialPageWidth) : null,
       tops: bounds.map(rect => rect.top + window.scrollY)
@@ -98,16 +98,16 @@
   document.addEventListener('visibilitychange', () => { if (!document.hidden) { update(); refreshReaderState(); } });
   window.addEventListener('message', event => {
     if (!settings.formatting || event.origin !== canvasOrigin || event.source !== window.parent ||
-        event.data?.type !== 'msoe-pdf-action') return;
+        event.data?.type !== 'refined-pdf-action') return;
     const {action,page} = event.data;
-    if (action === 'ready' && !document.documentElement.hasAttribute('data-msoe-custom-tools')) {
-      document.documentElement.setAttribute('data-msoe-custom-tools', '');
+    if (action === 'ready' && !document.documentElement.hasAttribute('data-refined-custom-tools')) {
+      document.documentElement.setAttribute('data-refined-custom-tools', '');
       update();
       reportReaderState();
     }
     if (action === 'page' && Number.isInteger(page)) {
       const target = pdfPages()[page - 1];
-      if (target) window.parent.postMessage({type:'msoe-pdf-jump',top:target.getBoundingClientRect().top + window.scrollY},canvasOrigin);
+      if (target) window.parent.postMessage({type:'refined-pdf-jump',top:target.getBoundingClientRect().top + window.scrollY},canvasOrigin);
     } else if (action === 'in' || action === 'out') {
       const name = action === 'in' ? 'Zoom In' : 'Zoom Out';
       document.querySelector('.ViewerControls [aria-label="' + name + '"]')?.click();

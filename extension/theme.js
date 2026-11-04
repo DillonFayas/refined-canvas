@@ -2,7 +2,7 @@ const defaults = { dark: true, formatting: true };
 
 function apply(settings) {
   for (const key of Object.keys(defaults)) {
-    document.documentElement.toggleAttribute('data-msoe-canvas-' + key, settings[key]);
+    document.documentElement.toggleAttribute('data-refined-canvas-' + key, settings[key]);
   }
 }
 
@@ -11,7 +11,7 @@ chrome.storage.onChanged.addListener((changes, area) => {
   for (const key of Object.keys(defaults)) {
     if (changes[key]) {
       apply({ ...Object.fromEntries(Object.keys(defaults).map(name => [
-        name, document.documentElement.hasAttribute('data-msoe-canvas-' + name)
+        name, document.documentElement.hasAttribute('data-refined-canvas-' + name)
       ])), [key]: changes[key].newValue ?? defaults[key] });
     }
   }
@@ -20,7 +20,7 @@ chrome.storage.local.get(defaults).then(apply);
 
 if (location.pathname === '/' || location.pathname === '/dashboard' || location.pathname === '/calendar') {
   const widgetAreas = location.pathname === '/calendar' ? '#content, #right-side' : '#right-side, .ic-Dashboard-header, .ic-DashboardCard';
-  const markers = ['data-msoe-light-surface', 'data-msoe-dark-label'];
+  const markers = ['data-refined-light-surface', 'data-refined-dark-label'];
 
   function luminance(color) {
     const channels = color.match(/[\d.]+/g)?.map(Number);
@@ -31,7 +31,7 @@ if (location.pathname === '/' || location.pathname === '/dashboard' || location.
   function themeWidgets() {
     document.querySelectorAll(markers.map(marker => '[' + marker + ']').join(','))
       .forEach(element => markers.forEach(marker => element.removeAttribute(marker)));
-    if (!document.documentElement.hasAttribute('data-msoe-canvas-dark')) return;
+    if (!document.documentElement.hasAttribute('data-refined-canvas-dark')) return;
 
     const surfaces = [];
     const labels = [];
@@ -56,7 +56,7 @@ if (location.pathname === '/' || location.pathname === '/dashboard' || location.
 
   let pending;
   new MutationObserver(records => {
-    if (!records.some(record => record.attributeName === 'data-msoe-canvas-dark' ||
+    if (!records.some(record => record.attributeName === 'data-refined-canvas-dark' ||
       record.target.parentElement?.closest(widgetAreas) ||
       record.target instanceof Element && (
         record.target.closest(widgetAreas) || [...record.addedNodes].some(node =>
@@ -68,7 +68,7 @@ if (location.pathname === '/' || location.pathname === '/dashboard' || location.
     pending = setTimeout(themeWidgets, 60);
   }).observe(document.documentElement, {
     subtree: true, childList: true, characterData: true, attributes: true,
-    attributeFilter: ['data-msoe-canvas-dark', 'class', 'style']
+    attributeFilter: ['data-refined-canvas-dark', 'class', 'style']
   });
   themeWidgets();
 }
@@ -105,18 +105,18 @@ campusSheet.replaceSync(`
   --brand-text: #b6b3ff !important;
 }
 :focus-visible { outline: 2px solid #9bc9ff; outline-offset: 2px; }
-[data-msoe-gauge] circle {
-  stroke-width: var(--msoe-ring-width) !important;
+[data-refined-gauge] circle {
+  stroke-width: var(--refined-ring-width) !important;
 }
-[data-msoe-gauge] circle:not([stroke-dasharray]) { stroke: transparent !important; }
-[data-msoe-gauge] circle.opacity-33 { stroke: #354156 !important; opacity: 1 !important; }
-[data-msoe-gauge] circle[data-msoe-empty] { visibility: hidden; }
+[data-refined-gauge] circle:not([stroke-dasharray]) { stroke: transparent !important; }
+[data-refined-gauge] circle.opacity-33 { stroke: #354156 !important; opacity: 1 !important; }
+[data-refined-gauge] circle[data-refined-empty] { visibility: hidden; }
 @media (prefers-reduced-motion: reduce) {
-  [data-msoe-gauge] circle { transition: none !important; }
+  [data-refined-gauge] circle { transition: none !important; }
 }
 `);
 function syncCampusRoots() {
-  const enabled = document.documentElement.hasAttribute('data-msoe-canvas-dark');
+  const enabled = document.documentElement.hasAttribute('data-refined-canvas-dark');
   for (const host of document.querySelectorAll('bettercampus-element, bettercampus-todo-list, bettercanvas-todo-list, bc-stickers-root')) {
     if (!/^(bettercampus-|bettercanvas-|bc-stickers-root)/.test(host.localName)) continue;
     const root = host.shadowRoot;
@@ -126,22 +126,22 @@ function syncCampusRoots() {
     if (!enabled && installed) root.adoptedStyleSheets = root.adoptedStyleSheets.filter(sheet => sheet !== campusSheet);
     if (host.localName === 'bettercampus-todo-list') {
       for (const svg of root.querySelectorAll('svg[viewBox="0 0 300 300"]')) {
-        svg.setAttribute('data-msoe-gauge', '');
+        svg.setAttribute('data-refined-gauge', '');
         for (const circle of svg.querySelectorAll('circle')) {
           const width = Number(circle.getAttribute('stroke-width'));
           if (Number.isFinite(width) && width > 0) {
-            circle.style.setProperty('--msoe-ring-width', Math.min(width, 14) + 'px');
+            circle.style.setProperty('--refined-ring-width', Math.min(width, 14) + 'px');
           }
           const dash = Number(circle.getAttribute('stroke-dasharray'));
           const offset = Number(circle.getAttribute('stroke-dashoffset'));
-          circle.toggleAttribute('data-msoe-empty', dash > 0 && offset >= dash - 0.01);
+          circle.toggleAttribute('data-refined-empty', dash > 0 && offset >= dash - 0.01);
         }
       }
     }
   }
 }
 new MutationObserver(syncCampusRoots).observe(document.documentElement, {
-  attributes: true, attributeFilter: ['data-msoe-canvas-dark']
+  attributes: true, attributeFilter: ['data-refined-canvas-dark']
 });
 setInterval(() => { if (!document.hidden) syncCampusRoots(); }, 3000);
 syncCampusRoots();
@@ -149,8 +149,8 @@ syncCampusRoots();
 // Accept only height reports from the actual Canvas document preview frame.
 window.addEventListener('message', event => {
   if (event.origin !== 'https://canvadocs.instructure.com' ||
-      event.data?.type !== 'msoe-document-height') return;
-  if (!document.documentElement.hasAttribute('data-msoe-canvas-formatting')) return;
+      event.data?.type !== 'refined-document-height') return;
+  if (!document.documentElement.hasAttribute('data-refined-canvas-formatting')) return;
   const height = event.data.height;
   if (!Number.isFinite(height) || height < 100 || height > 1000000) return;
   for (const frame of document.querySelectorAll('iframe[aria-label^="File preview"]')) {
@@ -166,7 +166,7 @@ window.addEventListener('message', event => {
 let weeklyModuleTargets = [];
 function syncWeekShortcuts() {
   const modules = document.getElementById('context_modules');
-  const existing = document.querySelector('.msoe-week-shortcuts');
+  const existing = document.querySelector('.refined-week-shortcuts');
   const targets = new Map();
   for (const module of modules?.querySelectorAll('.context_module') ?? []) {
     if (module.closest('[hidden], [aria-hidden="true"], .template')) continue;
@@ -194,10 +194,10 @@ function syncWeekShortcuts() {
       weeks.every((week, i) => week.module === weeklyModuleTargets[i].module && week.name === weeklyModuleTargets[i].name)) return;
 
   const shortcuts = document.createElement('nav');
-  shortcuts.className = 'msoe-week-shortcuts';
+  shortcuts.className = 'refined-week-shortcuts';
   shortcuts.setAttribute('aria-label', 'Jump to a module week');
   const label = document.createElement('span');
-  label.className = 'msoe-week-shortcuts-label';
+  label.className = 'refined-week-shortcuts-label';
   label.textContent = 'Jump to week:';
   shortcuts.append(label);
   for (const week of weeks) {
@@ -221,7 +221,7 @@ function syncWeekShortcuts() {
 }
 
 function refinePageLayout() {
-  if (!document.documentElement.hasAttribute('data-msoe-canvas-formatting')) return;
+  if (!document.documentElement.hasAttribute('data-refined-canvas-formatting')) return;
   if (/\/modules\/?$/.test(location.pathname)) syncWeekShortcuts();
   const table = document.querySelector('#grades_summary');
   if (table) {
@@ -235,8 +235,8 @@ function refinePageLayout() {
   }
   if (document.querySelector('#doc_preview')) {
     for (const link of document.querySelectorAll('#content a[href*="/download?"]')) {
-      if (link.hasAttribute('data-msoe-download')) continue;
-      link.setAttribute('data-msoe-download', ''); link.parentElement.classList.add('msoe-download-row');
+      if (link.hasAttribute('data-refined-download')) continue;
+      link.setAttribute('data-refined-download', ''); link.parentElement.classList.add('refined-download-row');
       link.title = link.textContent.trim();
       link.setAttribute('aria-label', link.textContent.trim());
       link.textContent = /\.pptx\b/i.test(link.title) ? 'Download PowerPoint' : 'Download PDF';
@@ -267,22 +267,22 @@ function readerTopInset(toolbar) {
 
 const pdfOrigin = 'https://canvadocs.instructure.com';
 window.addEventListener('message', event => {
-  if (event.origin !== pdfOrigin || event.data?.type !== 'msoe-pdf-state') return;
+  if (event.origin !== pdfOrigin || event.data?.type !== 'refined-pdf-state') return;
   const frame = [...document.querySelectorAll('#doc_preview iframe')].find(item => item.contentWindow === event.source);
-  if (!frame || !document.documentElement.hasAttribute('data-msoe-canvas-formatting')) return;
+  if (!frame || !document.documentElement.hasAttribute('data-refined-canvas-formatting')) return;
   const preview = frame.closest('#doc_preview');
-    const existing = preview.querySelector('.msoe-pdf-tools');
+    const existing = preview.querySelector('.refined-pdf-tools');
   if (existing?.pdfFrame === frame) {
     existing.updateReader(event.data);
-    frame.contentWindow.postMessage({type:'msoe-pdf-action',action:'ready'},pdfOrigin);
+    frame.contentWindow.postMessage({type:'refined-pdf-action',action:'ready'},pdfOrigin);
     return;
   }
   existing?.disposeReader?.();
   existing?.remove();
   const bar = document.createElement('form');
-  bar.className = 'msoe-pdf-tools';
+  bar.className = 'refined-pdf-tools';
   bar.setAttribute('aria-label', 'PDF navigation');
-  const send = (action, page) => frame.contentWindow.postMessage({type:'msoe-pdf-action',action,page},pdfOrigin);
+  const send = (action, page) => frame.contentWindow.postMessage({type:'refined-pdf-action',action,page},pdfOrigin);
   const button = (label, click, title = label) => {
     const item = document.createElement('button');
     item.type = 'button';
@@ -305,7 +305,7 @@ window.addEventListener('message', event => {
     item.onclick = click;
     if (title === 'Zoom out' || title === 'Move to side') {
       const divider = document.createElement('i');
-      divider.className = 'msoe-reader-divider';
+      divider.className = 'refined-reader-divider';
       divider.setAttribute('aria-hidden', 'true');
       bar.append(divider);
     }
@@ -385,17 +385,17 @@ window.addEventListener('message', event => {
     bar.updateCount(count);
     bar.syncPage();
   };
-  const bookmarkKey = 'reader-bookmarks:' + location.pathname;
+  const bookmarkKey = 'reader-bookmarks:' + location.origin + location.pathname;
   const bookmarks = document.createElement('details');
-  bookmarks.className = 'msoe-bookmarks';
+  bookmarks.className = 'refined-bookmarks';
   const summary = document.createElement('summary');
   summary.title = 'Bookmarks';
   summary.setAttribute('aria-label', 'Bookmarks');
   summary.innerHTML = '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 4h12v16l-6-4-6 4z"/></svg>';
   const panel = document.createElement('div');
-  panel.className = 'msoe-bookmark-panel';
+  panel.className = 'refined-bookmark-panel';
   const quick = document.createElement('div');
-  quick.className = 'msoe-bookmark-quick';
+  quick.className = 'refined-bookmark-quick';
   bookmarks.append(summary, panel);
   bar.append(bookmarks, quick);
   let saved = [];
@@ -434,12 +434,12 @@ window.addEventListener('message', event => {
       add.click();
     });
     const editor = document.createElement('div');
-    editor.className = 'msoe-bookmark-row';
+    editor.className = 'refined-bookmark-row';
     editor.append(label, add);
     panel.append(editor);
     for (const entry of saved) {
       const row = document.createElement('div');
-      row.className = 'msoe-bookmark-row';
+      row.className = 'refined-bookmark-row';
       const name = entry.label ? entry.page + ' · ' + entry.label : 'Page ' + entry.page;
       const go = bookmarkButton(name, () => {
         bookmarks.open = false;
@@ -486,7 +486,7 @@ window.addEventListener('message', event => {
       previewResize.disconnect();
       return;
     }
-    if (document.documentElement.hasAttribute('data-msoe-canvas-formatting')) bar.syncPage();
+    if (document.documentElement.hasAttribute('data-refined-canvas-formatting')) bar.syncPage();
   });
   bar.disposeReader = () => {
     previewResize.disconnect();
@@ -495,12 +495,12 @@ window.addEventListener('message', event => {
   previewResize.observe(frame);
 });
 window.addEventListener('message', event => {
-  if (event.origin !== pdfOrigin || event.data?.type !== 'msoe-pdf-jump' ||
-      !document.documentElement.hasAttribute('data-msoe-canvas-formatting')) return;
+  if (event.origin !== pdfOrigin || event.data?.type !== 'refined-pdf-jump' ||
+      !document.documentElement.hasAttribute('data-refined-canvas-formatting')) return;
   const frame = [...document.querySelectorAll('#doc_preview iframe')].find(item => item.contentWindow === event.source);
   const top = event.data.top;
   if (!frame || !Number.isFinite(top) || top < 0 || top > 1000000) return;
-  const toolbar = frame.closest('#doc_preview').querySelector('.msoe-pdf-tools');
+  const toolbar = frame.closest('#doc_preview').querySelector('.refined-pdf-tools');
   const marker = document.createElement('span');
   const preview = frame.closest('#doc_preview');
   marker.style.cssText = 'position:absolute;width:1px;height:1px;pointer-events:none';
@@ -511,7 +511,7 @@ window.addEventListener('message', event => {
   marker.remove();
 });
 const canvasView = location.pathname.match(/^\/(?:courses|groups|users)\/\d+\/(users|files|quizzes)(?:\/|$)/)?.[1];
-if (canvasView) document.documentElement.dataset.msoeCanvasView = canvasView;
+if (canvasView) document.documentElement.dataset.refinedCanvasView = canvasView;
 
 
 
@@ -522,26 +522,26 @@ window.addEventListener('scroll', () => {
   if (readerScrollFrame) return;
   readerScrollFrame = requestAnimationFrame(() => {
     readerScrollFrame = null;
-    document.querySelector('#doc_preview .msoe-pdf-tools')?.syncPage();
+    document.querySelector('#doc_preview .refined-pdf-tools')?.syncPage();
   });
 }, {capture:true, passive:true});
 
 window.addEventListener('resize', () => {
-  if (!document.documentElement.hasAttribute('data-msoe-canvas-formatting')) return;
-  document.querySelector('#doc_preview .msoe-pdf-tools')?.restoreAfterResize();
+  if (!document.documentElement.hasAttribute('data-refined-canvas-formatting')) return;
+  document.querySelector('#doc_preview .refined-pdf-tools')?.restoreAfterResize();
 });
 
 document.addEventListener('DOMContentLoaded', () => {
   const moduleButtons = document.createElement('nav');
-  moduleButtons.className = 'msoe-module-buttons';
+  moduleButtons.className = 'refined-module-buttons';
   moduleButtons.setAttribute('aria-label', 'Module navigation');
   document.body.append(moduleButtons);
   function syncModuleButtons() {
     for (const button of document.querySelectorAll('#assignments-student-footer button')) {
-      button.toggleAttribute('data-msoe-new-attempt', /^new attempt$/i.test(button.textContent.trim()));
+      button.toggleAttribute('data-refined-new-attempt', /^new attempt$/i.test(button.textContent.trim()));
     }
     const footer = document.querySelector('.module-sequence-footer, #assignments-student-footer');
-    if (!footer || footer.hasAttribute('data-msoe-module-relocated')) return;
+    if (!footer || footer.hasAttribute('data-refined-module-relocated')) return;
     const links = footer.querySelectorAll('a[href][data-testid="previous-assignment-btn"], a[href][data-testid="next-assignment-btn"], a[href][rel~=prev], a[href][rel~=next], .module-sequence-footer-button--previous a[href], .module-sequence-footer-button--next a[href], a.module-sequence-footer-button--previous[href], a.module-sequence-footer-button--next[href]');
     if (!links.length) return;
     moduleButtons.replaceChildren();
@@ -549,13 +549,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const previous = link.dataset.testid === 'previous-assignment-btn' || link.relList.contains('prev') || !!link.closest('.module-sequence-footer-button--previous');
       const control = document.createElement('a');
       control.href = link.href;
-      control.className = 'msoe-module-button';
+      control.className = 'refined-module-button';
       control.title = previous ? 'Previous module item' : 'Next module item';
       control.setAttribute('aria-label', control.title);
       control.textContent = previous ? '←' : '→';
       moduleButtons.append(control);
     }
-    footer.setAttribute('data-msoe-module-relocated', '');
+    footer.setAttribute('data-refined-module-relocated', '');
   }
   new MutationObserver(syncModuleButtons).observe(document.body, {childList: true, subtree: true});
   syncModuleButtons();
@@ -571,15 +571,15 @@ if (courseMenuToggle) {
   const anchor = document.createElement('div');
   anchor.setAttribute('aria-hidden', 'true');
   menuRow.before(anchor);
-  menuRow.classList.add('msoe-floating-menu-host');
+  menuRow.classList.add('refined-floating-menu-host');
   const menuSpacer = document.createElement('span');
-  menuSpacer.className = 'msoe-menu-spacer';
+  menuSpacer.className = 'refined-menu-spacer';
   menuSpacer.setAttribute('aria-hidden', 'true');
   courseMenuToggle.before(menuSpacer);
-  termLabel?.classList.add('msoe-course-term');
+  termLabel?.classList.add('refined-course-term');
   const backToTop = document.createElement('button');
   backToTop.type = 'button';
-  backToTop.className = 'msoe-back-to-top';
+  backToTop.className = 'refined-back-to-top';
   backToTop.hidden = true;
   backToTop.title = 'Back to top';
   backToTop.setAttribute('aria-label', 'Back to top');
@@ -601,20 +601,20 @@ if (courseMenuToggle) {
   function positionCourseMenu() {
     menuFrame = null;
     const top = anchor.getBoundingClientRect().top;
-    menuOffset = document.documentElement.hasAttribute('data-msoe-canvas-formatting')
+    menuOffset = document.documentElement.hasAttribute('data-refined-canvas-formatting')
       ? Math.max(0, -top)
       : 0;
-    menuRow.style.setProperty('--msoe-menu-left', menuRow.getBoundingClientRect().left + 'px');
+    menuRow.style.setProperty('--refined-menu-left', menuRow.getBoundingClientRect().left + 'px');
     const toggleStyle = getComputedStyle(courseMenuToggle);
     menuSpacer.style.inlineSize = courseMenuToggle.offsetWidth + 'px';
     menuSpacer.style.marginInline = toggleStyle.marginInline;
-    document.documentElement.toggleAttribute('data-msoe-menu-pinned', menuOffset > 0);
+    document.documentElement.toggleAttribute('data-refined-menu-pinned', menuOffset > 0);
     backToTop.hidden = menuOffset < 64;
     const toggleBounds = courseMenuToggle.getBoundingClientRect();
     moduleButtons.style.left = toggleBounds.left + 'px';
     moduleButtons.style.setProperty('--module-button-size', toggleBounds.height + 'px');
     document.documentElement.style.setProperty(
-      '--msoe-course-links-top', (courseMenuToggle.offsetHeight + 24) + 'px'
+      '--refined-course-links-top', (courseMenuToggle.offsetHeight + 24) + 'px'
     );
   }
   function scheduleCourseMenu() {
@@ -661,11 +661,11 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
   const header = document.getElementById('header');
   if (!header) return;
-  const syncCollapsed = () => header.toggleAttribute('data-msoe-collapsed', header.getBoundingClientRect().width < 85);
+  const syncCollapsed = () => header.toggleAttribute('data-refined-collapsed', header.getBoundingClientRect().width < 85);
   new ResizeObserver(syncCollapsed).observe(header);
   syncCollapsed();
   const tooltip = document.createElement('div');
-  tooltip.className = 'msoe-nav-tooltip';
+  tooltip.className = 'refined-nav-tooltip';
   tooltip.setAttribute('aria-hidden', 'true');
   tooltip.hidden = true;
   document.body.append(tooltip);
@@ -678,7 +678,7 @@ document.addEventListener('DOMContentLoaded', () => {
     link.removeAttribute('title');
     link.querySelectorAll('[title]').forEach(element => element.removeAttribute('title'));
     const show = () => {
-      if (!document.documentElement.hasAttribute('data-msoe-canvas-dark') ||
+      if (!document.documentElement.hasAttribute('data-refined-canvas-dark') ||
           label.getClientRects().length && getComputedStyle(label).visibility === 'visible' &&
           label.getBoundingClientRect().width > 4 && link.offsetWidth > 80) return;
       const bounds = link.getBoundingClientRect();
@@ -686,17 +686,17 @@ document.addEventListener('DOMContentLoaded', () => {
       tooltip.style.left = (bounds.right + 8) + 'px';
       tooltip.style.top = (bounds.top + bounds.height / 2) + 'px';
       tooltip.hidden = !tooltip.textContent;
-      document.documentElement.toggleAttribute('data-msoe-nav-tooltip', !tooltip.hidden);
+      document.documentElement.toggleAttribute('data-refined-nav-tooltip', !tooltip.hidden);
     };
     let hoverTimer;
     const hide = () => {
       clearTimeout(hoverTimer);
       tooltip.hidden = true;
-      document.documentElement.removeAttribute('data-msoe-nav-tooltip');
+      document.documentElement.removeAttribute('data-refined-nav-tooltip');
     };
     link.addEventListener('mouseenter', () => {
-      if (document.documentElement.hasAttribute('data-msoe-canvas-dark')) {
-        document.documentElement.setAttribute('data-msoe-nav-tooltip', '');
+      if (document.documentElement.hasAttribute('data-refined-canvas-dark')) {
+        document.documentElement.setAttribute('data-refined-nav-tooltip', '');
       }
       if (immediateTooltipLink === link) show();
       else hoverTimer = setTimeout(show, 1000);
@@ -716,21 +716,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 if (/^\/(?:conversations|inbox)(?:\/|$)/.test(location.pathname)) {
-  document.documentElement.setAttribute('data-msoe-inbox', '');
+  document.documentElement.setAttribute('data-refined-inbox', '');
 }
 
 
-if (document.documentElement.hasAttribute('data-msoe-inbox')) {
+if (document.documentElement.hasAttribute('data-refined-inbox')) {
   document.addEventListener('DOMContentLoaded', () => {
     const inbox = document.querySelector('#main');
     if (!inbox) return;
     let refreshFrame;
     function refreshInbox() {
       refreshFrame = null;
-      const dark = document.documentElement.hasAttribute('data-msoe-canvas-dark');
-      for (const element of inbox.querySelectorAll('[data-msoe-inbox-surface], [data-msoe-inbox-text]')) {
-        element.removeAttribute('data-msoe-inbox-surface');
-        element.removeAttribute('data-msoe-inbox-text');
+      const dark = document.documentElement.hasAttribute('data-refined-canvas-dark');
+      for (const element of inbox.querySelectorAll('[data-refined-inbox-surface], [data-refined-inbox-text]')) {
+        element.removeAttribute('data-refined-inbox-surface');
+        element.removeAttribute('data-refined-inbox-text');
       }
       if (!dark) return;
 
@@ -751,8 +751,8 @@ if (document.documentElement.hasAttribute('data-msoe-inbox')) {
               node.nodeType === Node.TEXT_NODE && node.textContent.trim()
             ))) labels.push(element);
       }
-      surfaces.forEach(element => element.setAttribute('data-msoe-inbox-surface', ''));
-      labels.forEach(element => element.setAttribute('data-msoe-inbox-text', ''));
+      surfaces.forEach(element => element.setAttribute('data-refined-inbox-surface', ''));
+      labels.forEach(element => element.setAttribute('data-refined-inbox-text', ''));
     }
 
     function scheduleInboxRefresh() {
@@ -763,7 +763,7 @@ if (document.documentElement.hasAttribute('data-msoe-inbox')) {
       subtree: true, childList: true, characterData: true, attributes: true,
       attributeFilter: ['class', 'style', 'aria-selected', 'aria-checked', 'disabled']
     });
-    observer.observe(document.documentElement, {attributes: true, attributeFilter: ['data-msoe-canvas-dark']});
+    observer.observe(document.documentElement, {attributes: true, attributeFilter: ['data-refined-canvas-dark']});
     scheduleInboxRefresh();
   });
 }
@@ -771,19 +771,19 @@ if (document.documentElement.hasAttribute('data-msoe-inbox')) {
 
 
 if (/^\/profile\/(?:communication|files|settings|announcements)(?:\/|$)/.test(location.pathname)) {
-  document.documentElement.setAttribute('data-msoe-account-view', '');
+  document.documentElement.setAttribute('data-refined-account-view', '');
 }
 
 if (/^\/users\/\d+\/files(?:\/|$)/.test(location.pathname)) {
-  document.documentElement.setAttribute('data-msoe-account-view', '');
+  document.documentElement.setAttribute('data-refined-account-view', '');
 }
 if (/^\/profile\/settings\/?$/.test(location.pathname)) {
-  document.documentElement.setAttribute('data-msoe-account-settings', '');
+  document.documentElement.setAttribute('data-refined-account-settings', '');
 }
 
 if (/^\/(?:profile\/files|users\/\d+\/files|files)(?:\/|$)/.test(location.pathname)) {
-  document.documentElement.setAttribute('data-msoe-personal-files', '');
-  document.documentElement.setAttribute('data-msoe-account-view', '');
+  document.documentElement.setAttribute('data-refined-personal-files', '');
+  document.documentElement.setAttribute('data-refined-account-view', '');
 }
 
 
@@ -792,10 +792,10 @@ if (/^\/(?:profile\/files|users\/\d+\/files|files)(?:\/|$)/.test(location.pathna
 
 
 if (/^\/courses\/\d+\/assignments\/?$/.test(location.pathname)) {
-  document.documentElement.setAttribute('data-msoe-assignment-index', '');
+  document.documentElement.setAttribute('data-refined-assignment-index', '');
 }
 if (/^\/courses\/?$/.test(location.pathname)) {
-  document.documentElement.setAttribute('data-msoe-courses-index', '');
+  document.documentElement.setAttribute('data-refined-courses-index', '');
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -806,9 +806,9 @@ document.addEventListener('DOMContentLoaded', () => {
       // Keep the mounted component alive: removing it makes BetterCampus recreate it.
       // Its shadow reset overrides host inline styles, so hide from inside that root.
       const root = host.shadowRoot;
-      if (!root || root.getElementById('msoe-hide-shortcut')) continue;
+      if (!root || root.getElementById('refined-hide-shortcut')) continue;
       const style = document.createElement('style');
-      style.id = 'msoe-hide-shortcut';
+      style.id = 'refined-hide-shortcut';
       style.textContent = ':host{display:none!important}';
       root.append(style);
     }
@@ -824,7 +824,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 if (/^\/courses\/\d+\/assignments\/\d+/.test(location.pathname)) {
-  document.documentElement.setAttribute('data-msoe-submission', '');
+  document.documentElement.setAttribute('data-refined-submission', '');
   document.addEventListener('DOMContentLoaded', () => {
     const content = document.getElementById('content');
     if (!content) return;
@@ -832,31 +832,31 @@ if (/^\/courses\/\d+\/assignments\/\d+/.test(location.pathname)) {
     const pdfLinks = new WeakMap();
     let rubricDescriptionPending = false;
     content.addEventListener('click', event => {
-      rubricDescriptionPending = Boolean(event.target.closest('[data-msoe-rubric-description]'));
+      rubricDescriptionPending = Boolean(event.target.closest('[data-refined-rubric-description]'));
     }, true);
     const syncRubric = () => {
       const table = content.querySelector('#rubric-header-criteria')?.closest('table, [role="table"]');
       for (const button of table?.querySelectorAll('button, a') || []) {
         const label = button.getAttribute('aria-label') || button.textContent.trim();
-        button.toggleAttribute('data-msoe-rubric-description', /^view longer description$/i.test(label.trim()));
+        button.toggleAttribute('data-refined-rubric-description', /^view longer description$/i.test(label.trim()));
         const selectedLabel = [...button.querySelectorAll('[class*="screenReaderContent"]')]
           .some(element => /^(?:selected(?: rating)?|rating selected)[:.!]?$/i.test(element.textContent.trim()));
-        button.toggleAttribute('data-msoe-rubric-selected',
+        button.toggleAttribute('data-refined-rubric-selected',
           /^selected\b/i.test(label.trim()) || selectedLabel);
       }
       if (!rubricDescriptionPending) return;
       const dialog = [...document.querySelectorAll('[role="dialog"], [role="alertdialog"]')]
         .reverse().find(element => element.getClientRects().length);
       if (dialog) {
-        dialog.setAttribute('data-msoe-rubric-dialog', '');
+        dialog.setAttribute('data-refined-rubric-dialog', '');
         rubricDescriptionPending = false;
       }
     };
     new MutationObserver(syncRubric).observe(document.body, { childList: true, subtree: true });
     syncRubric();
     const syncDescriptionPdfs = () => {
-      const enabled = document.documentElement.hasAttribute('data-msoe-canvas-formatting');
-      for (const link of content.querySelectorAll(`${description} a[href]:not(.msoe-open-pdf, .msoe-file-download)`)) {
+      const enabled = document.documentElement.hasAttribute('data-refined-canvas-formatting');
+      for (const link of content.querySelectorAll(`${description} a[href]:not(.refined-open-pdf, .refined-file-download)`)) {
         const url = new URL(link.href);
         if (!/^https?:$/.test(url.protocol)) continue;
         const name = [link.title, link.textContent.trim(), url.pathname].find(value => /\.pdf$/i.test(value));
@@ -871,15 +871,15 @@ if (/^\/courses\/\d+\/assignments\/\d+/.test(location.pathname)) {
           if (existing) {
             link.classList.toggle('auto_open', existing.autoOpen);
             link.classList.toggle('inline_disabled', existing.inlineDisabled);
-            link.removeAttribute('data-msoe-inline-pdf');
-            existing.button.closest('.msoe-file-actions')?.remove();
+            link.removeAttribute('data-refined-inline-pdf');
+            existing.button.closest('.refined-file-actions')?.remove();
             pdfLinks.delete(link);
           }
           continue;
         }
         if (existing?.button.isConnected) continue;
         const button = document.createElement('a');
-        button.className = 'msoe-open-pdf';
+        button.className = 'refined-open-pdf';
         if (canvasFile) {
           url.pathname = url.pathname.replace(/\/(?:preview|download)\/?$/, '').replace(/\/$/, '');
           url.searchParams.set('wrap', '1');
@@ -900,12 +900,12 @@ if (/^\/courses\/\d+\/assignments\/\d+/.test(location.pathname)) {
         pdfLinks.get(link).button = button;
         link.classList.remove('auto_open');
         link.classList.add('inline_disabled');
-        link.setAttribute('data-msoe-inline-pdf', '');
+        link.setAttribute('data-refined-inline-pdf', '');
         const actions = document.createElement('span');
-        actions.className = 'msoe-file-actions';
+        actions.className = 'refined-file-actions';
         actions.append(button);
         const download = document.createElement('a');
-        download.className = 'msoe-file-download';
+        download.className = 'refined-file-download';
         const downloadUrl = new URL(url);
         if (canvasFile) {
           downloadUrl.pathname += '/download';
@@ -927,7 +927,7 @@ if (/^\/courses\/\d+\/assignments\/\d+/.test(location.pathname)) {
       )`)) {
         const toggle = (frame.closest('.file_preview, .inline_preview') || frame.parentElement)
           .querySelector('a[href="#"]');
-        if (toggle) toggle.setAttribute('data-msoe-inline-pdf', '');
+        if (toggle) toggle.setAttribute('data-refined-inline-pdf', '');
         frame.remove();
       }
     };
@@ -942,25 +942,25 @@ if (/^\/courses\/\d+\/assignments\/\d+/.test(location.pathname)) {
     };
     const pdfObserver = new MutationObserver(schedulePdfUpdate);
     pdfObserver.observe(content, { childList: true, subtree: true });
-    pdfObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-msoe-canvas-formatting'] });
+    pdfObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-refined-canvas-formatting'] });
     syncDescriptionPdfs();
     const syncEditors = () => {
       for (const frame of content.querySelectorAll('iframe.tox-edit-area__iframe')) {
         const editor = frame.contentDocument;
-        if (!editor?.head || editor.getElementById('msoe-editor-theme')) continue;
+        if (!editor?.head || editor.getElementById('refined-editor-theme')) continue;
         const style = editor.createElement('style');
-        style.id = 'msoe-editor-theme';
+        style.id = 'refined-editor-theme';
         style.textContent = 'html, body { background: #191e28 !important; color: #ecf1fa !important; color-scheme: dark; }';
         editor.head.append(style);
       }
       for (const frame of content.querySelectorAll('iframe.tox-edit-area__iframe')) {
-        const style = frame.contentDocument?.getElementById('msoe-editor-theme');
-        if (style) style.disabled = !document.documentElement.hasAttribute('data-msoe-canvas-dark');
+        const style = frame.contentDocument?.getElementById('refined-editor-theme');
+        if (style) style.disabled = !document.documentElement.hasAttribute('data-refined-canvas-dark');
       }
     };
     const observer = new MutationObserver(syncEditors);
     observer.observe(content, { childList: true, subtree: true });
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-msoe-canvas-dark'] });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-refined-canvas-dark'] });
     content.addEventListener('load', syncEditors, true);
     syncEditors();
   });
@@ -970,7 +970,7 @@ if (/^\/courses\/\d+\/assignments\/\d+/.test(location.pathname)) {
 
 
 function addFinalGradeCalculator() {
-  if (!document.querySelector('#grades_summary') || document.querySelector('.msoe-grade-calculator')) return;
+  if (!document.querySelector('#grades_summary') || document.querySelector('.refined-grade-calculator')) return;
   const weights = [...document.querySelectorAll('#right-side table')].find(table =>
     [...table.rows].some(row => /\bgroup\b/i.test(row.cells[0]?.textContent) &&
       /^weight$/i.test(row.cells[1]?.textContent.trim()))
@@ -984,12 +984,12 @@ function addFinalGradeCalculator() {
   const weightText = candidates.length === 1 ? candidates[0].cells[1]?.textContent.trim() : '';
   const detectedWeight = /^(\d+(?:\.\d+)?)\s*%$/.exec(weightText || '')?.[1];
   const calculator = document.createElement('section');
-  calculator.className = 'msoe-grade-calculator';
-  calculator.setAttribute('aria-labelledby', 'msoe-grade-calculator-title');
+  calculator.className = 'refined-grade-calculator';
+  calculator.setAttribute('aria-labelledby', 'refined-grade-calculator-title');
   calculator.innerHTML = `
     <label>Current grade before final (%)<input name="coursework" type="number" min="0" step="any" placeholder="e.g. 88"></label>
     <label>Final exam weight (%)<input name="weight" type="number" min="0" max="100" step="any"></label>
-    <p class="msoe-grade-weight-note"></p>
+    <p class="refined-grade-weight-note"></p>
     <label>Desired course grade (%)<input name="target" type="number" min="0" step="any" placeholder="e.g. 90"></label>
     <output aria-live="polite"></output>
   `;
@@ -1038,7 +1038,7 @@ function addFinalGradeCalculator() {
   let messages = pickQuips();
   const validWeight = Number(detectedWeight) > 0 && Number(detectedWeight) <= 100;
   if (validWeight) weight.value = detectedWeight;
-  const note = calculator.querySelector('.msoe-grade-weight-note');
+  const note = calculator.querySelector('.refined-grade-weight-note');
   note.hidden = validWeight;
   note.textContent = 'Enter the exam weight from your syllabus.';
 
@@ -1076,7 +1076,7 @@ function addFinalGradeCalculator() {
 
   const disclosure = document.createElement('details');
   const toggle = document.createElement('summary');
-  toggle.id = 'msoe-grade-calculator-title';
+  toggle.id = 'refined-grade-calculator-title';
   toggle.className = 'Button';
   toggle.textContent = 'Open final exam calculator';
   disclosure.append(toggle, calculator);
