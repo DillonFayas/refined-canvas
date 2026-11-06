@@ -1,5 +1,48 @@
 const defaults = { dark: true, formatting: true };
 
+if (/^\/courses\/\d+\/grades(?:\/|$)/.test(location.pathname)) {
+  document.documentElement.setAttribute('data-refined-grades', '');
+}
+
+if (/^\/calendar\/?$/.test(location.pathname)) {
+  document.documentElement.setAttribute('data-refined-calendar', '');
+}
+
+if (/^\/courses\/\d+\/?$/.test(location.pathname)) {
+  document.documentElement.setAttribute('data-refined-course-home', '');
+}
+
+if (/^\/(?:courses|groups)\/\d+\/discussion_topics(?:\/|$)/.test(location.pathname)) {
+  document.documentElement.setAttribute('data-refined-discussions', '');
+}
+
+if (document.documentElement.matches('[data-refined-discussions], [data-refined-grades]')) {
+  // InstUI keeps keyboard focus in the combobox. Reflect its active descendant
+  // on the option row without depending on generated Emotion class names.
+  const syncActiveOptions = () => {
+    document.querySelectorAll('[data-refined-option-active]').forEach(row =>
+      row.removeAttribute('data-refined-option-active'));
+    for (const input of document.querySelectorAll(':is(#discussion-drawer-layout, #GradeSummarySelectMenuGroup) [role="combobox"][aria-expanded="true"]')) {
+      const option = document.getElementById(input.getAttribute('aria-activedescendant'));
+      const list = document.getElementById(input.getAttribute('aria-controls'));
+      if (option?.matches('[role="option"]') && list?.contains(option)) {
+        option.closest('[data-cid="Options.Item"]')?.setAttribute('data-refined-option-active', '');
+      }
+    }
+  };
+  let optionFrame;
+  new MutationObserver(() => {
+    if (optionFrame) return;
+    optionFrame = requestAnimationFrame(() => {
+      optionFrame = null;
+      syncActiveOptions();
+    });
+  }).observe(document.documentElement, {
+    subtree: true, childList: true, attributes: true,
+    attributeFilter: ['aria-activedescendant', 'aria-expanded', 'aria-controls']
+  });
+}
+
 function apply(settings) {
   for (const key of Object.keys(defaults)) {
     document.documentElement.toggleAttribute('data-refined-canvas-' + key, settings[key]);
@@ -164,16 +207,79 @@ window.addEventListener('message', event => {
 
 // Keep Canvas's native actions and table structure, correcting detail-cell spans.
 let weeklyModuleTargets = [];
+const courseHome = /^\/courses\/\d+\/?$/.test(location.pathname);
+const modulesPage = /\/modules\/?$/.test(location.pathname);
+if (modulesPage) document.documentElement.setAttribute('data-refined-modules', '');
+const modulesPath = location.pathname.replace(/\/$/, '') + (courseHome ? '/modules' : '');
+const modulePinsKey = 'module-pins:' + location.origin + modulesPath;
+let modulePins;
+let savingModulePin = false;
+if (courseHome || modulesPage) {
+  chrome.storage.onChanged.addListener((changes, area) => {
+    if (area !== 'local' || !changes[modulePinsKey]) return;
+    modulePins = changes[modulePinsKey].newValue ?? {};
+    refinePageLayout();
+  });
+  chrome.storage.local.get({[modulePinsKey]: {}}).then(result => {
+    modulePins = result[modulePinsKey];
+    refinePageLayout();
+  }, () => {
+    modulePins = {};
+    refinePageLayout();
+  });
+}
 function syncWeekShortcuts() {
   const modules = document.getElementById('context_modules');
   const existing = document.querySelector('.refined-week-shortcuts');
+  if (!modules) {
+    existing?.remove();
+    weeklyModuleTargets = [];
+    return;
+  }
+  if (!modulePins) return;
   const targets = new Map();
+  const otherTargets = [];
   for (const module of modules?.querySelectorAll('.context_module') ?? []) {
     if (module.closest('[hidden], [aria-hidden="true"], .template')) continue;
     const title = module.querySelector('.ig-header-title');
     const name = (title?.querySelector('.name') ?? title)?.textContent.trim();
     const match = /^(?:week|wk\.?)\s*#?\s*(\d{1,2})\b(?:\s*(?:[-–—/&]|to\b)\s*(?:week|wk\.?)?\s*#?\s*(\d{1,2})\b)?/i.exec(name ?? '');
-    if (!match) continue;
+    const id = module.id || module.getAttribute('data-module-id');
+    if (!id || !title || !name) continue;
+    const pinned = modulePins[id] ?? Boolean(match);
+    let pin = module.querySelector('.refined-module-pin');
+    if (!pin) {
+      pin = document.createElement('button');
+      pin.type = 'button';
+      pin.className = 'refined-module-pin';
+      pin.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m16 3 5 5-3 1-3 3v4l-1 1-7-7 1-1h4l3-3zM10 14l-7 7"/></svg>';
+      (title.closest('.ig-header') || title.parentElement).append(pin);
+      pin.addEventListener('click', async event => {
+        event.stopPropagation();
+        if (savingModulePin) return;
+        savingModulePin = true;
+        const next = {...modulePins, [id]: pin.getAttribute('aria-pressed') !== 'true'};
+        pin.disabled = true;
+        try {
+          await chrome.storage.local.set({[modulePinsKey]: next});
+          modulePins = next;
+          syncWeekShortcuts();
+        } catch {
+          pin.title = 'Could not save pin. Try again.';
+        } finally {
+          savingModulePin = false;
+          pin.disabled = false;
+        }
+      });
+    }
+    pin.setAttribute('aria-label', 'Pin ' + name + ' to module shortcuts');
+    pin.setAttribute('aria-pressed', String(pinned));
+    pin.title = pinned ? 'Unpin module' : 'Pin module';
+    if (!pinned) continue;
+    if (!match) {
+      otherTargets.push({module, name});
+      continue;
+    }
     const first = Number(match[1]);
     const last = Number(match[2] ?? match[1]);
     if (first < 1 || last < first) continue;
@@ -184,27 +290,28 @@ function syncWeekShortcuts() {
       }
     }
   }
-  const weeks = [...targets.values()].sort((a, b) => a.number - b.number);
-  if (weeks.length < 3 || !weeks.every((week, index) => week.number === index + 1)) {
+  const weeks = [...[...targets.values()].sort((a, b) => a.number - b.number), ...otherTargets];
+  if (!weeks.length) {
     existing?.remove();
     weeklyModuleTargets = [];
     return;
   }
   if (existing?.nextElementSibling === modules && weeks.length === weeklyModuleTargets.length &&
-      weeks.every((week, i) => week.module === weeklyModuleTargets[i].module && week.name === weeklyModuleTargets[i].name)) return;
+      weeks.every((week, i) => week.module === weeklyModuleTargets[i].module &&
+        week.name === weeklyModuleTargets[i].name && week.number === weeklyModuleTargets[i].number)) return;
 
   const shortcuts = document.createElement('nav');
   shortcuts.className = 'refined-week-shortcuts';
-  shortcuts.setAttribute('aria-label', 'Jump to a module week');
+  shortcuts.setAttribute('aria-label', 'Jump to module');
   const label = document.createElement('span');
   label.className = 'refined-week-shortcuts-label';
-  label.textContent = 'Jump to week:';
+  label.textContent = 'Jump to module:';
   shortcuts.append(label);
   for (const week of weeks) {
     const button = document.createElement('button');
     button.type = 'button';
-    button.textContent = String(week.number);
-    button.setAttribute('aria-label', 'Week ' + week.number);
+    button.textContent = week.number === undefined ? week.name : String(week.number);
+    button.setAttribute('aria-label', week.number === undefined ? week.name : 'Week ' + week.number);
     button.title = week.name;
     button.addEventListener('click', () => {
       const heading = week.module.querySelector('.ig-header') ?? week.module;
@@ -220,9 +327,57 @@ function syncWeekShortcuts() {
   weeklyModuleTargets = weeks;
 }
 
+let exportForm;
+let exportAnchor;
+let collapseButton;
+let collapseAnchor;
+function syncCourseCollapse() {
+  const nativeButton = document.querySelector('#content #expand_collapse_all');
+  if (nativeButton && nativeButton !== collapseButton) {
+    collapseButton?.remove();
+    collapseAnchor?.remove();
+    collapseButton = nativeButton;
+    collapseAnchor = document.createComment('Collapse All position');
+    collapseButton.before(collapseAnchor);
+  }
+  if (!collapseAnchor?.isConnected) return;
+  const shortcuts = document.querySelector('html[data-refined-canvas-formatting] #content .refined-week-shortcuts');
+  if (shortcuts) {
+    if (collapseButton.parentElement !== shortcuts) shortcuts.append(collapseButton);
+  } else if (collapseAnchor.nextSibling !== collapseButton) {
+    collapseAnchor.after(collapseButton);
+  }
+}
+
+function syncCourseExport(formatting) {
+  const sidebar = document.querySelector('#right-side');
+  const lastAction = sidebar && [...sidebar.querySelectorAll('.button-sidebar-wide')].at(-1);
+  const nativeForm = document.querySelector('#content button.offline_web_export')?.closest('form');
+  if (nativeForm && nativeForm !== exportForm) {
+    if (exportForm?.classList.contains('refined-sidebar-export')) exportForm.remove();
+    exportAnchor?.remove();
+    exportForm = nativeForm;
+    exportAnchor = document.createComment('Course export position');
+    exportForm.before(exportAnchor);
+  }
+  if (!exportForm || !exportAnchor?.isConnected) return;
+  if (formatting && lastAction && sidebar.getClientRects().length) {
+    if (exportForm.previousElementSibling !== lastAction) lastAction.after(exportForm);
+    exportForm.classList.add('refined-sidebar-export');
+  } else if (exportAnchor.isConnected) {
+    if (exportAnchor.nextSibling !== exportForm) exportAnchor.after(exportForm);
+    exportForm.classList.remove('refined-sidebar-export');
+  }
+}
+
 function refinePageLayout() {
-  if (!document.documentElement.hasAttribute('data-refined-canvas-formatting')) return;
-  if (/\/modules\/?$/.test(location.pathname)) syncWeekShortcuts();
+  const formatting = document.documentElement.hasAttribute('data-refined-canvas-formatting');
+  if (formatting && (courseHome || modulesPage)) syncWeekShortcuts();
+  if (courseHome) {
+    syncCourseExport(formatting);
+    syncCourseCollapse();
+  }
+  if (!formatting) return;
   const table = document.querySelector('#grades_summary');
   if (table) {
     addFinalGradeCalculator();
@@ -254,7 +409,24 @@ function refinePageLayout() {
     }
   }
 }
-if (/\/(?:grades|files|modules)(?:\/|$)/.test(location.pathname)) {
+if (courseHome || modulesPage) {
+  // Canvas can mount the modules, export form and sidebar in separate renders.
+  // Reconcile each batch once, including when the formatting preference arrives.
+  let layoutFrame = 0;
+  const scheduleLayout = () => {
+    if (layoutFrame) return;
+    layoutFrame = requestAnimationFrame(() => {
+      layoutFrame = 0;
+      refinePageLayout();
+    });
+  };
+  new MutationObserver(scheduleLayout).observe(document.documentElement, {
+    subtree: true, childList: true, characterData: true, attributes: true,
+    attributeFilter: ['data-refined-canvas-formatting', 'hidden', 'aria-hidden']
+  });
+  if (courseHome) window.addEventListener('resize', scheduleLayout);
+  scheduleLayout();
+} else if (/\/(?:grades|files|modules)(?:\/|$)/.test(location.pathname)) {
   setInterval(() => { if (!document.hidden) refinePageLayout(); }, 3000);
   refinePageLayout();
 }
@@ -557,7 +729,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     footer.setAttribute('data-refined-module-relocated', '');
   }
-  new MutationObserver(syncModuleButtons).observe(document.body, {childList: true, subtree: true});
+  if (!/\/taking(?:\/|$)/.test(location.pathname)) {
+    new MutationObserver(syncModuleButtons).observe(document.body, {childList: true, subtree: true});
+  }
   syncModuleButtons();
 const courseMenuToggle = document.getElementById('courseMenuToggle');
 if (courseMenuToggle) {
@@ -828,6 +1002,34 @@ if (/^\/courses\/\d+\/assignments\/\d+/.test(location.pathname)) {
   document.addEventListener('DOMContentLoaded', () => {
     const content = document.getElementById('content');
     if (!content) return;
+    const syncEditors = () => {
+      for (const frame of content.querySelectorAll('iframe.tox-edit-area__iframe')) {
+        const editor = frame.contentDocument;
+        if (!editor?.head || editor.getElementById('refined-editor-theme')) continue;
+        const style = editor.createElement('style');
+        style.id = 'refined-editor-theme';
+        style.textContent = 'html, body { background: #191e28 !important; color: #ecf1fa !important; color-scheme: dark; }';
+        editor.head.append(style);
+      }
+      for (const frame of content.querySelectorAll('iframe.tox-edit-area__iframe')) {
+        const style = frame.contentDocument?.getElementById('refined-editor-theme');
+        if (style) style.disabled = !document.documentElement.hasAttribute('data-refined-canvas-dark');
+      }
+    };
+    const editorSelector = 'iframe.tox-edit-area__iframe';
+    const observer = new MutationObserver(records => {
+      if (records.some(record => record.type === 'attributes' ||
+        [...record.addedNodes].some(node => node instanceof Element &&
+          (node.matches(editorSelector) || node.querySelector(editorSelector))))) {
+        syncEditors();
+      }
+    });
+    observer.observe(content, { childList: true, subtree: true });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-refined-canvas-dark'] });
+    content.addEventListener('load', syncEditors, true);
+    syncEditors();
+    if (/\/taking(?:\/|$)/.test(location.pathname)) return;
+
     const description = ':is(#assignment_description, [data-testid="assignment-description"], .user_content)';
     const pdfLinks = new WeakMap();
     let rubricDescriptionPending = false;
@@ -944,25 +1146,7 @@ if (/^\/courses\/\d+\/assignments\/\d+/.test(location.pathname)) {
     pdfObserver.observe(content, { childList: true, subtree: true });
     pdfObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-refined-canvas-formatting'] });
     syncDescriptionPdfs();
-    const syncEditors = () => {
-      for (const frame of content.querySelectorAll('iframe.tox-edit-area__iframe')) {
-        const editor = frame.contentDocument;
-        if (!editor?.head || editor.getElementById('refined-editor-theme')) continue;
-        const style = editor.createElement('style');
-        style.id = 'refined-editor-theme';
-        style.textContent = 'html, body { background: #191e28 !important; color: #ecf1fa !important; color-scheme: dark; }';
-        editor.head.append(style);
-      }
-      for (const frame of content.querySelectorAll('iframe.tox-edit-area__iframe')) {
-        const style = frame.contentDocument?.getElementById('refined-editor-theme');
-        if (style) style.disabled = !document.documentElement.hasAttribute('data-refined-canvas-dark');
-      }
-    };
-    const observer = new MutationObserver(syncEditors);
-    observer.observe(content, { childList: true, subtree: true });
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-refined-canvas-dark'] });
-    content.addEventListener('load', syncEditors, true);
-    syncEditors();
+
   });
 }
 
@@ -1074,22 +1258,47 @@ function addFinalGradeCalculator() {
     }
   });
 
+  const filterGroup = document.querySelector('#GradeSummarySelectMenuGroup');
+  const applyRow = filterGroup?.querySelector('#apply_select_menus')?.closest('[direction="row"]');
   const disclosure = document.createElement('details');
   const toggle = document.createElement('summary');
   toggle.id = 'refined-grade-calculator-title';
   toggle.className = 'Button';
   toggle.textContent = 'Open final exam calculator';
   disclosure.append(toggle, calculator);
-  disclosure.addEventListener('toggle', () => {
-    toggle.textContent = disclosure.open ? 'Close final exam calculator' : 'Open final exam calculator';
-    if (!disclosure.open) return;
+  const updateCalculator = (control, open) => {
+    control.textContent = open ? 'Close final exam calculator' : 'Open final exam calculator';
+    if (!open) return;
     messages = pickQuips();
     const total = document.querySelector('#right-side .final_grade, #right-side #final_grade');
     const grade = total?.textContent.match(/\b(\d+(?:\.\d+)?)\s*%/);
     if (grade && !coursework.value) coursework.value = grade[1];
     if (target.value) calculator.dispatchEvent(new Event('input'));
+  };
+  if (!applyRow) {
+    disclosure.addEventListener('toggle', () => updateCalculator(toggle, disclosure.open));
+    weights.after(disclosure);
+    return;
+  }
+
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.id = toggle.id;
+  button.className = 'Button';
+  button.textContent = toggle.textContent;
+  button.setAttribute('aria-expanded', 'false');
+  calculator.id = 'refined-grade-calculator-panel';
+  calculator.hidden = true;
+  button.setAttribute('aria-controls', calculator.id);
+  button.addEventListener('click', () => {
+    const open = calculator.hidden;
+    calculator.hidden = !open;
+    button.setAttribute('aria-expanded', String(open));
+    updateCalculator(button, open);
   });
-  weights.after(disclosure);
+  applyRow.classList.add('refined-grades-filter-row');
+  applyRow.append(button);
+  filterGroup.after(calculator);
 }
 
 

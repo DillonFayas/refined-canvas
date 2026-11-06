@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Refined Canvas",
-  "version": "1.15.78",
+  "version": "1.17",
   "description": "Dark mode, document reading tools, and a final exam calculator for Canvas LMS.",
   "permissions": [
     "storage"
@@ -25,7 +25,7 @@
         "canvas.css"
       ],
       "js": [
-        "theme.js"
+        "theme.js", "assignment-data.js", "dashboard.js", "todo.js"
       ],
       "run_at": "document_start"
     },

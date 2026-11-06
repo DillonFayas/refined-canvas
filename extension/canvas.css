@@ -57,6 +57,57 @@ html[data-refined-canvas-dark] {
   height: auto;
 }
 
+html[data-refined-canvas-dark] #content pre {
+  background-color: var(--night-panel) !important;
+  border-color: var(--night-border) !important;
+  color: var(--night-text) !important;
+}
+
+html[data-refined-canvas-dark] #content pre > code {
+  background-color: transparent !important;
+  color: inherit !important;
+}
+
+html[data-refined-canvas-dark] #content code:not(pre code) {
+  background-color: var(--night-raised) !important;
+  border-color: var(--night-border) !important;
+  color: var(--night-text) !important;
+}
+
+html[data-refined-canvas-dark] [data-testid="notebook-button"],
+html[data-refined-canvas-dark] [data-testid="notebook-button"] [class*="baseButton__content"],
+html[data-refined-canvas-dark] #student-study-drawer-tray,
+html[data-refined-canvas-dark] #student-study-drawer-tray > [role="dialog"],
+html[data-refined-canvas-dark] [data-testid="notebook-panel"],
+html[data-refined-canvas-dark] [data-testid="notebook-panel"] :is(
+  div[class$="-view"], input, textarea, select, [contenteditable="true"], [data-testid="notebook-close-button"] button
+) {
+  background-color: var(--night-panel) !important;
+  border-color: var(--night-border) !important;
+  color: var(--night-text) !important;
+}
+
+html[data-refined-canvas-dark] [data-testid="notebook-button"]:is(:hover, :focus-visible, [aria-expanded="true"]),
+html[data-refined-canvas-dark] [data-testid="notebook-button"]:is(:hover, :focus-visible, [aria-expanded="true"]) [class*="baseButton__content"] {
+  background-color: var(--night-raised) !important;
+}
+
+html[data-refined-canvas-dark] [data-testid="notebook-button"] svg {
+  color: var(--night-text) !important;
+}
+
+html[data-refined-canvas-dark] [data-testid="notebook-panel"] :is([data-cid="Heading"], [color="secondary"], svg) {
+  color: var(--night-text) !important;
+}
+
+html[data-refined-canvas-dark] [data-testid="notebook-close-button"] svg {
+  fill: currentColor !important;
+}
+
+html[data-refined-canvas-dark] [data-testid="notebook-panel"] a {
+  color: var(--night-link) !important;
+}
+
 [data-refined-canvas-formatting] .user_content pre {
   max-width: 100%;
   overflow-x: auto;
@@ -111,12 +162,41 @@ html[data-refined-canvas-dark] .ic-DashboardCard__link:not(:focus-visible) {
   box-shadow: none !important;
 }
 html[data-refined-canvas-dark] .ic-Dashboard-header button {
-  background-color: #2b3444 !important;
-  color: #edf1f7 !important;
+  background-color: var(--night-panel) !important;
+  color: var(--night-text) !important;
+  border-color: var(--night-border) !important;
 }
 
-/* Dashboard controls explicitly hidden at the user's request. */
-.ic-Dashboard-header button, .ic-Dashboard-header bettercanvas-searchbar { display: none !important; }
+html[data-refined-canvas-dark] .ic-Dashboard-header button [class*="baseButton__content"] {
+  background-color: transparent !important;
+  color: inherit !important;
+}
+
+html[data-refined-canvas-dark] .ic-Dashboard-header button:is(:hover, :focus-visible, [aria-expanded="true"]) {
+  background-color: var(--night-raised) !important;
+}
+
+html[data-refined-canvas-dark] :is(
+  #DashboardOptionsMenu_Container [role="menu"],
+  [data-refined-dashboard-menu],
+  [data-refined-dashboard-menu] :is([role="menu"], [class*="popover__content"])
+) {
+  background: var(--night-panel) !important;
+  color: var(--night-text) !important;
+  border-color: var(--night-border) !important;
+}
+
+html[data-refined-canvas-dark] :is(#DashboardOptionsMenu_Container, [data-refined-dashboard-menu])
+  :is([role="menuitem"], [role="menuitemradio"], [role="menuitemcheckbox"]) {
+  background-color: transparent !important;
+  color: var(--night-text) !important;
+}
+
+html[data-refined-canvas-dark] :is(#DashboardOptionsMenu_Container, [data-refined-dashboard-menu])
+  :is([role="menuitem"], [role="menuitemradio"], [role="menuitemcheckbox"]):is(:hover, :focus, :focus-within) {
+  background-color: var(--night-raised) !important;
+}
+
 html[data-refined-canvas-dark] #breadcrumbs {
   background: transparent !important;
 }
@@ -1292,7 +1372,7 @@ html[data-refined-canvas-dark] #content :is(.tox-tbtn, .tox-mbtn):hover { backgr
 html[data-refined-canvas-dark] #content :is(.tox-tbtn, .tox-mbtn, .tox-statusbar) svg { fill: currentColor !important; }
 
 /* Canvas nests the editor and URL field inside padded submission surfaces. */
-html[data-refined-canvas-dark][data-refined-submission] #content :is(div, section, form, [role="tabpanel"]):has(
+html[data-refined-canvas-dark][data-refined-submission] #content:not(:has(> #new-quizzes-root)) :is(div, section, form, [role="tabpanel"]):has(
   .tox-tinymce, input[type="url"], input[placeholder^="https://"]
 ):not(:has(h1)) {
   background-color: var(--night-panel) !important;
@@ -1328,6 +1408,19 @@ html[data-refined-canvas-dark][data-refined-submission] #content button svg:is([
 html[data-refined-canvas-dark][data-refined-submission] #content button svg:is([name*="Camera" i], [name*="Webcam" i]) path:not([fill="none"]) {
   color: var(--night-text) !important;
   fill: currentColor !important;
+}
+
+/* Canvas group submission warning. Match the alert and icon without generated class hashes. */
+html[data-refined-canvas-dark] #content [class*="-view-alert"]:has(> div > svg[name="IconWarningBorderless"]) {
+  background-color: var(--night-panel) !important;
+  color: var(--night-text) !important;
+  border-color: #b68b42 !important;
+}
+html[data-refined-canvas-dark] #content [class*="-view-alert"]:has(> div > svg[name="IconWarningBorderless"]) > div {
+  color: inherit !important;
+}
+html[data-refined-canvas-dark] #content [class*="-view-alert"] > div > svg[name="IconWarningBorderless"] {
+  fill: #f4cf85 !important;
 }
 
 html[data-refined-canvas-dark] #content img[alt="Take a Photo via Webcam"] {
@@ -1623,13 +1716,16 @@ html[data-refined-canvas-formatting] .refined-week-shortcuts {
   font-weight: 600;
 }
 .refined-week-shortcuts button {
-  flex: none;
+  flex: 0 1 auto;
   border: 1px solid #879bb4;
   box-sizing: border-box;
-  inline-size: 32px;
-  block-size: 32px;
+  min-inline-size: 32px;
+  max-inline-size: 100%;
+  min-block-size: 32px;
   border-radius: 7px;
-  padding: 0;
+  padding: 4px 8px;
+  white-space: normal;
+  overflow-wrap: anywhere;
   background: #edf4ff;
   color: #20436a;
   font: inherit;
@@ -1644,6 +1740,20 @@ html[data-refined-canvas-dark] .refined-week-shortcuts button {
 }
 html[data-refined-canvas-dark] .refined-week-shortcuts button:hover { background: #344b68; }
 .refined-week-shortcuts button:focus-visible { outline: 2px solid #5795de; outline-offset: 2px; }
+html[data-refined-canvas-formatting][data-refined-course-home] #content:has(#course_home_content .refined-week-shortcuts) {
+  padding-block-start: 0 !important;
+}
+html[data-refined-canvas-formatting][data-refined-course-home] #course_home_content:has(.refined-week-shortcuts) > .header-bar:not(:has(button, input, select, [role="button"], a:not([href$="/offline_web_exports"]))) {
+  display: none !important;
+}
+html[data-refined-canvas-formatting][data-refined-course-home] .refined-week-shortcuts {
+  margin-block-start: 0;
+}
+html[data-refined-canvas-formatting][data-refined-course-home] .refined-week-shortcuts #expand_collapse_all {
+  margin-inline-start: auto;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
 html[data-refined-canvas-formatting] #context_modules .ig-header { scroll-margin-top: 70px; }
 
 /* Submission previews retain DocViewer's native annotation and navigation tools. */
@@ -1818,21 +1928,21 @@ html[data-refined-canvas-dark] [data-testid="file-preview"] > :has(> [data-testi
 }
 
 /* Shared interaction for Refined Canvas controls. */
-html[data-refined-canvas-formatting] :is(#courseMenuToggle, .refined-back-to-top, .refined-module-buttons .refined-module-button, #assignments-student-footer #submit-button, #assignments-student-footer [data-refined-new-attempt], .refined-week-shortcuts button, #refined-grade-calculator-title, #content a[data-refined-download]) {
+html[data-refined-canvas-formatting] :is(#courseMenuToggle, .refined-back-to-top, .refined-module-buttons .refined-module-button, #assignments-student-footer #submit-button, #assignments-student-footer [data-refined-new-attempt], .refined-week-shortcuts button, #refined-grade-calculator-title, #content a[data-refined-download], [data-refined-discussions] #discussion-drawer-layout button) {
   transition: background-color 160ms ease, border-color 160ms ease !important;
 }
-html[data-refined-canvas-formatting] :is(#courseMenuToggle, .refined-back-to-top, .refined-module-buttons .refined-module-button, #assignments-student-footer #submit-button, #assignments-student-footer [data-refined-new-attempt], .refined-week-shortcuts button, #refined-grade-calculator-title, #content a[data-refined-download]):hover:not(:disabled, [aria-disabled="true"]) {
+html[data-refined-canvas-formatting] :is(#courseMenuToggle, .refined-back-to-top, .refined-module-buttons .refined-module-button, #assignments-student-footer #submit-button, #assignments-student-footer [data-refined-new-attempt], .refined-week-shortcuts button, #refined-grade-calculator-title, #content a[data-refined-download], [data-refined-discussions] #discussion-drawer-layout button):hover:not(:disabled, [aria-disabled="true"]) {
   background-color: #dbeaff !important;
   border-color: #879bb4 !important;
   color: #20436a !important;
 }
-html[data-refined-canvas-formatting][data-refined-canvas-dark] :is(#courseMenuToggle, .refined-back-to-top, .refined-module-buttons .refined-module-button, #assignments-student-footer #submit-button, #assignments-student-footer [data-refined-new-attempt], .refined-week-shortcuts button, #refined-grade-calculator-title, #content a[data-refined-download]):hover:not(:disabled, [aria-disabled="true"]) {
+html[data-refined-canvas-formatting][data-refined-canvas-dark] :is(#courseMenuToggle, .refined-back-to-top, .refined-module-buttons .refined-module-button, #assignments-student-footer #submit-button, #assignments-student-footer [data-refined-new-attempt], .refined-week-shortcuts button, #refined-grade-calculator-title, #content a[data-refined-download], [data-refined-discussions] #discussion-drawer-layout button):hover:not(:disabled, [aria-disabled="true"]) {
   background-color: #30435c !important;
   border-color: #7088a8 !important;
   color: #edf5ff !important;
 }
 @media (prefers-reduced-motion: reduce) {
-  html[data-refined-canvas-formatting] :is(#courseMenuToggle, .refined-back-to-top, .refined-module-buttons .refined-module-button, #assignments-student-footer #submit-button, #assignments-student-footer [data-refined-new-attempt], .refined-week-shortcuts button, #refined-grade-calculator-title, #content a[data-refined-download]) {
+  html[data-refined-canvas-formatting] :is(#courseMenuToggle, .refined-back-to-top, .refined-module-buttons .refined-module-button, #assignments-student-footer #submit-button, #assignments-student-footer [data-refined-new-attempt], .refined-week-shortcuts button, #refined-grade-calculator-title, #content a[data-refined-download], [data-refined-discussions] #discussion-drawer-layout button) {
     transition: none !important;
   }
 }
@@ -2059,4 +2169,1523 @@ html[data-refined-canvas-dark] [class*="-mask"]:has(> [role="dialog"][aria-label
 html[data-refined-canvas-formatting] #content :is(table, [role="table"]):has(#rubric-header-ratings)
   :is(td, [role="cell"]):nth-child(2) :is(button:disabled, button[aria-disabled="true"], button:disabled *, button[aria-disabled="true"] *) {
   cursor: default !important;
+}
+
+/* Dashboard cards and upcoming course work. */
+html[data-refined-canvas-formatting] .ic-DashboardCard {
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px #0003;
+  transition: box-shadow 180ms ease;
+}
+html[data-refined-canvas-formatting] .ic-DashboardCard:hover {
+  transform: none !important;
+  box-shadow: 0 5px 20px #0006;
+}
+html[data-refined-canvas-formatting] .ic-DashboardCard a,
+html[data-refined-canvas-formatting] .ic-DashboardCard a * {
+  text-decoration: none !important;
+}
+.refined-course-due { display: none; }
+html[data-refined-canvas-formatting] .refined-course-due { display: block; padding: 4px 20px 18px; }
+.refined-course-due h3 { font-size: 16px; font-weight: 700; margin: 8px 0 12px; }
+.refined-course-due ul { list-style: none; margin: 0; padding: 0; }
+.refined-course-due li { display: flex; gap: 12px; align-items: baseline; padding: 7px 8px; border-radius: 6px; }
+.refined-course-due li:is(:hover, :focus-within) { background-color: rgb(49 94 150 / 10%); }
+html[data-refined-canvas-dark] .refined-course-due li:is(:hover, :focus-within) { background-color: rgb(255 255 255 / 8%); }
+.refined-course-due a { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+html[data-refined-canvas-dark] #content .refined-course-due a { color: var(--night-text); }
+.refined-course-due time { flex: none; font-size: 12px; opacity: .75; }
+.refined-course-due p { font-size: 13px; margin: 0; }
+html[data-refined-canvas-formatting] #right-side .to-do-list > li {
+  border: 1px solid #c7cdd1;
+  border-left: 4px solid #537eae;
+  border-radius: 12px;
+  padding: 12px;
+  margin: 0 0 12px;
+  box-shadow: 0 2px 5px #0001;
+}
+html[data-refined-canvas-dark][data-refined-canvas-formatting] #right-side .to-do-list > li {
+  background: var(--night-panel);
+  border-color: var(--night-border);
+  border-left-color: var(--night-link);
+}
+html[data-refined-canvas-formatting] #right-side .to-do-list a { text-decoration: none; }
+html[data-refined-canvas-formatting] #right-side .to-do-list a:hover { text-decoration: underline; }
+@media (prefers-reduced-motion: reduce) {
+  html[data-refined-canvas-formatting] .ic-DashboardCard { transition: none; }
+}
+
+/* Compact, responsive course layout matching the dashboard reference. */
+html[data-refined-canvas-formatting] .ic-DashboardCard__box__container {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
+  gap: 24px 18px;
+  align-items: start;
+}
+html[data-refined-canvas-formatting] .ic-DashboardCard__box__container > .ic-DashboardCard {
+  width: 100% !important;
+  min-width: 0;
+  margin: 0 !important;
+  box-sizing: border-box;
+  height: auto !important;
+}
+html[data-refined-canvas-formatting] .ic-DashboardCard__header_hero {
+  height: 64px !important;
+}
+html[data-refined-canvas-formatting] .ic-DashboardCard__header_content {
+  padding: 14px 18px 6px;
+}
+html[data-refined-canvas-formatting] .ic-DashboardCard__action-container {
+  padding: 0 12px 8px;
+}
+html[data-refined-canvas-formatting] .ic-DashboardCard:has(.bettercanvas-card-assignments) .refined-course-due {
+  display: none;
+}
+html[data-refined-canvas-formatting] #right-side :is(.to-do-list, .todo-list) {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+html[data-refined-canvas-formatting] #right-side :is(.todo, .todo-list > li, .to-do-list > li) {
+  position: relative;
+  box-sizing: border-box;
+  border: 1px solid var(--night-border, #c7cdd1);
+  border-left: 4px solid var(--night-link, #537eae);
+  background: var(--night-panel, #fff);
+  color: var(--night-text, #273540);
+  border-radius: 12px;
+  padding: 12px 30px 12px 14px;
+  margin: 0 0 12px;
+  box-shadow: 0 2px 5px #0002;
+}
+html[data-refined-canvas-formatting] #right-side .todo :is(.todo-details, .todo-info) {
+  margin-left: 0;
+  min-width: 0;
+}
+html[data-refined-canvas-formatting] #right-side .todo a {
+  text-decoration: none !important;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+html[data-refined-canvas-formatting] #right-side .todo .todo-title {
+  font-weight: 600;
+}
+
+html[data-refined-canvas-formatting] #planner-todosidebar-item-list {
+  padding: 0;
+  list-style: none;
+}
+html[data-refined-canvas-formatting] #planner-todosidebar-item-list > li {
+  padding: 0;
+  margin: 0 0 12px;
+}
+html[data-refined-canvas-formatting] .ToDoSidebarItem {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 24px;
+  gap: 8px;
+  padding: 12px 10px 12px 14px;
+  border: 1px solid #c7cdd1;
+  border-left: 4px solid #537eae;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 2px 6px #0002;
+}
+html[data-refined-canvas-dark][data-refined-canvas-formatting] .ToDoSidebarItem {
+  background: var(--night-panel);
+  border-color: var(--night-border);
+  border-left-color: var(--night-link);
+  color: var(--night-text);
+}
+html[data-refined-canvas-formatting] .ToDoSidebarItem > .ToDoSidebarItem__Icon { display: none; }
+html[data-refined-canvas-formatting] .ToDoSidebarItem__Info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  margin: 0;
+}
+html[data-refined-canvas-formatting] .ToDoSidebarItem__Info > span {
+  order: -1;
+  font-size: 12px;
+  line-height: 1.4;
+  margin-bottom: 5px;
+}
+html[data-refined-canvas-formatting] .ToDoSidebarItem__Title a {
+  font-weight: 600;
+  text-decoration: none !important;
+}
+html[data-refined-canvas-formatting] .ToDoSidebarItem__Close { position: static; }
+html[data-refined-canvas-dark][data-refined-canvas-formatting] .ToDoSidebarItem__Close button {
+  color: var(--night-text) !important;
+}
+html[data-refined-canvas-formatting] [data-testid="ToDoSidebarItem__InformationRow"] {
+  font-size: 12px;
+  margin-top: 8px;
+}
+html[data-refined-canvas-formatting] .ic-DashboardCard__box__container {
+  margin: 0 !important;
+  padding: 0 !important;
+  position: static !important;
+  top: auto !important;
+}
+html[data-refined-canvas-formatting] .ToDoSidebarItem {
+  border-width: 2px;
+  border-left-width: 8px;
+  border-radius: 13px;
+  padding: 8px 8px 8px 10px;
+  gap: 4px;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+html[data-refined-canvas-formatting] .ToDoSidebarItem:hover {
+  border-color: var(--refined-course-color, #537eae);
+  box-shadow: 0 3px 10px #0003;
+}
+html[data-refined-canvas-formatting] .ToDoSidebarItem,
+html[data-refined-canvas-dark][data-refined-canvas-formatting] .ToDoSidebarItem {
+  border-left-color: var(--refined-course-color, #537eae);
+}
+html[data-refined-canvas-formatting] .ToDoSidebarItem__Title a {
+  font-size: 16px;
+  line-height: 1.4;
+  color: inherit !important;
+}
+html[data-refined-canvas-formatting] .ToDoSidebarItem__Info > span {
+  font-weight: 600;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+html[data-refined-canvas-formatting] [data-testid="ToDoSidebarItem__InformationRow"] {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.refined-grouped-todo { display: none; }
+html[data-refined-canvas-formatting] .refined-grouped-todo { display: block; }
+html[data-refined-canvas-formatting] :is(.Sidebar__TodoListContainer, #right-side [data-testid="ToDoSidebar"]):has(+ .refined-grouped-todo) { display: none; }
+.refined-grouped-todo h2 { font-size: 18px; border-bottom: 1px solid var(--night-border, #ccc); padding-bottom: 12px; }
+.refined-grouped-todo h2 { margin-bottom: 6px; }
+.refined-grouped-todo summary { cursor: pointer; text-transform: uppercase; font-weight: 600; font-size: 12px; padding: 5px 2px 2px; }
+.refined-todo-loading {
+  width: 22px;
+  height: 22px;
+  margin: 16px auto;
+  border: 2px solid var(--night-border, #ccd5e0);
+  border-top-color: var(--night-link, #315e96);
+  border-radius: 50%;
+  animation: refined-todo-spin 750ms linear infinite;
+}
+@keyframes refined-todo-spin { to { transform: rotate(1turn); } }
+
+@supports selector(details::details-content) {
+  .refined-grouped-todo details::details-content {
+    interpolate-size: allow-keywords;
+    block-size: 0;
+    overflow: clip;
+    opacity: 0;
+    transition: block-size 200ms ease, opacity 160ms ease, content-visibility 200ms allow-discrete;
+  }
+  .refined-grouped-todo details[open]::details-content {
+    block-size: auto;
+    opacity: 1;
+  }
+}
+
+html[data-refined-canvas-formatting] .ic-Dashboard-header button[data-refined-dashboard-switch] {
+  background: var(--night-panel, #f5f8fc) !important;
+  color: var(--night-text, #20436a) !important;
+  border: 1px solid var(--night-border, #a8b9ce) !important;
+  border-radius: 9px;
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+html[data-refined-canvas-formatting] .ic-Dashboard-header button[data-refined-dashboard-switch]:is(:hover, :focus-visible) {
+  background: #dbeaff !important;
+  border-color: #879bb4 !important;
+}
+html[data-refined-canvas-formatting][data-refined-canvas-dark] .ic-Dashboard-header button[data-refined-dashboard-switch]:is(:hover, :focus-visible) {
+  background: #30435c !important;
+  border-color: #7088a8 !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .refined-todo-loading { animation: none; }
+  .refined-grouped-todo details::details-content,
+  html[data-refined-canvas-formatting] .ic-Dashboard-header button[data-refined-dashboard-switch] { transition: none; }
+}
+.refined-grouped-todo .refined-todo-card {
+  position: relative;
+  display: grid;
+  gap: 2px;
+  padding: 6px 32px 7px 9px;
+  margin: 5px 0;
+  line-height: 1.3;
+  border: 2px solid var(--night-border, #ccc);
+  border-left: 8px solid var(--course-color);
+  border-radius: 13px;
+  background: var(--night-panel, white);
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+.refined-todo-card:hover, .refined-todo-card:focus-within {
+  border-color: var(--course-color);
+  box-shadow: 0 2px 10px #0003;
+}
+.refined-todo-card :is(small, time) { font-size: 12px; opacity: .85; }
+.refined-todo-card small { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+html[data-refined-canvas-formatting] #right-side .refined-todo-card a {
+  font-size: 16px;
+  line-height: 1.25;
+  font-weight: 600;
+  text-decoration: none;
+  color: inherit;
+}
+.refined-todo-check {
+  appearance: none;
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  margin: 0 !important;
+  border: 0;
+  background: transparent;
+  color: var(--night-link, #315e96);
+  cursor: pointer;
+}
+.refined-todo-check::before {
+  content: '';
+  width: 14px;
+  height: 14px;
+  box-sizing: border-box;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  opacity: .65;
+  transition: opacity 150ms ease, transform 150ms ease, background-color 150ms ease;
+}
+.refined-todo-check:is(:hover, :focus-visible, :checked)::before { opacity: 1; }
+.refined-todo-check:active::before { transform: scale(.8); }
+.refined-todo-check:checked::before { background: currentColor; }
+.refined-todo-check:checked::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 3px;
+  border: solid var(--night-panel, white);
+  border-width: 0 0 2px 2px;
+  transform: translateY(-1px) rotate(-45deg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .refined-grouped-todo .refined-todo-card, .refined-todo-check::before { transition: none; }
+}
+html[data-refined-canvas-formatting] .refined-course-due ul { max-height: 220px; overflow-y: auto; }
+
+html[data-refined-canvas-formatting] .ic-Dashboard-header button[data-refined-dashboard-switch] {
+  min-height: 40px;
+  border: 1px solid #66778d !important;
+  border-radius: 10px !important;
+  background: #263345 !important;
+  color: #edf5ff !important;
+}
+html[data-refined-canvas-formatting] .ic-Dashboard-header button[data-refined-dashboard-switch] > [class*="baseButton__content"] {
+  display: grid;
+  place-items: center;
+  min-block-size: 38px;
+  padding: 0 14px;
+  border: 0 !important;
+  background: transparent !important;
+  color: inherit !important;
+}
+html[data-refined-canvas-formatting] .ic-Dashboard-header button[data-refined-dashboard-switch]:is(:hover, :focus-visible) {
+  background: #30435c !important;
+  border-color: #7088a8 !important;
+}
+
+html[data-refined-canvas-dark] [data-refined-dashboard-menu] :is([class*="view--block-menu"], [class*="popover__"], [class*="position__content"]) {
+  background-color: var(--night-panel) !important;
+  border-color: var(--night-border) !important;
+  color: var(--night-text) !important;
+}
+html[data-refined-canvas-dark] [data-refined-dashboard-menu] :is(label, [data-cid="Text"], [class*="-text"]) {
+  color: var(--night-text) !important;
+}
+html[data-refined-canvas-dark] [data-refined-dashboard-menu] :is(input, select) {
+  background: var(--night-raised) !important;
+  color: var(--night-text) !important;
+  border-color: var(--night-border) !important;
+}
+html[data-refined-canvas-formatting] .ic-DashboardCard [data-refined-card-replaced],
+.ic-DashboardCard .refined-card-text[hidden],
+html:not([data-refined-canvas-formatting]) .ic-DashboardCard :is(.refined-card-text, .refined-card-edit, .refined-card-shortcuts) {
+  display: none !important;
+}
+.refined-card-edit, .refined-card-dialog button {
+  border: 1px solid #66778d;
+  border-radius: 8px;
+  background: #263345;
+  color: #edf5ff;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.refined-card-edit { margin: 4px 18px 8px; }
+.refined-card-shortcuts:not(:empty) { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 16px 6px; }
+.refined-card-shortcuts a { display: inline-grid; place-items: center; min-width: 32px; min-height: 32px; }
+html[data-refined-canvas-formatting] .ic-DashboardCard :is(.ic-DashboardCard__action, .refined-card-shortcuts a) {
+  border-radius: 8px;
+  transition: background-color 150ms ease, transform 150ms ease;
+}
+html[data-refined-canvas-formatting] .ic-DashboardCard :is(.ic-DashboardCard__action, .refined-card-shortcuts a):is(:hover, :focus-visible) {
+  background-color: var(--night-raised, #e3eeff);
+  transform: translateY(-2px);
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-refined-canvas-formatting] .ic-DashboardCard :is(.ic-DashboardCard__action, .refined-card-shortcuts a) {
+    transition: none;
+    transform: none;
+  }
+}
+.refined-card-dialog {
+  width: min(460px, 90vw);
+  border: 1px solid var(--night-border, #a8b9ce);
+  border-radius: 12px;
+  background: var(--night-panel, white);
+  color: var(--night-text, #253449);
+  padding: 20px;
+}
+.refined-card-dialog::backdrop { background: #0008; }
+.refined-card-dialog fieldset { margin: 0 0 12px; }
+.refined-card-dialog label { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; color: inherit; }
+.refined-card-dialog label input { margin: 0; }
+.refined-card-dialog input[type="text"] { flex: 1; min-width: 0; }
+
+html[data-refined-canvas-dark] [data-refined-dashboard-menu] :is([data-cid~="View"], [role="dialog"], [class*="popover"], [class*="menu__"]) {
+  background-color: var(--night-panel) !important;
+  color: var(--night-text) !important;
+  border-color: var(--night-border) !important;
+}
+html[data-refined-canvas-dark] [data-refined-dashboard-menu] :is(button, [role="menuitem"], [role="menuitemradio"]):is(:hover, :focus-visible) {
+  background-color: var(--night-raised) !important;
+}
+html[data-refined-canvas-formatting] .ic-DashboardCard__header { position: relative; }
+.refined-card-edit {
+  position: absolute;
+  z-index: 1;
+  inset: 12px 54px auto auto;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  margin: 0;
+  padding: 0;
+  border-radius: 50%;
+}
+.refined-card-edit:hover, .refined-card-dialog button:hover { background: #30435c; }
+html[data-refined-canvas-formatting] .ic-DashboardCard__header_content { padding: 10px 18px 4px; }
+html[data-refined-canvas-formatting] .ic-DashboardCard__action-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  min-height: 0;
+  padding: 0 16px;
+}
+.ic-DashboardCard__action-container .refined-card-shortcuts:not(:empty) { display: contents; }
+html[data-refined-canvas-formatting] #content .ic-DashboardCard :is(.ic-DashboardCard__action, .refined-card-shortcuts a) {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  color: var(--night-link, #315e96);
+}
+.ic-DashboardCard .ic-DashboardCard__action svg { width: 1em !important; height: 1em !important; }
+html[data-refined-canvas-formatting] .refined-course-due { padding-bottom: 10px; }
+.refined-card-dialog :is(h2, legend, label) { color: inherit !important; }
+.refined-card-dialog legend { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+.refined-card-dialog fieldset { padding: 8px 0; border: 0; border-top: 1px solid var(--night-border, #cbd5e1); }
+.refined-card-dialog label { min-height: 28px; }
+.refined-card-dialog input[type="checkbox"] {
+  appearance: none;
+  display: grid;
+  place-items: center;
+  width: 17px;
+  height: 17px;
+  flex: 0 0 17px;
+  border: 1px solid #7088a8;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+.refined-card-dialog input[type="checkbox"]:checked { background: #315e96; border-color: #729bd0; }
+.refined-card-dialog input[type="checkbox"]:checked::after {
+  content: '';
+  width: 8px;
+  height: 4px;
+  border: solid white;
+  border-width: 0 0 2px 2px;
+  transform: translateY(-1px) rotate(-45deg);
+}
+.refined-card-dialog input[type="text"] {
+  background: var(--night-raised, #f5f8fc) !important;
+  color: inherit !important;
+  border-color: var(--night-border, #a8b9ce) !important;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .refined-card-dialog[open] { animation: refined-card-editor-in 180ms ease-out; }
+  .refined-card-dialog[open]::backdrop { animation: refined-card-backdrop-in 180ms ease-out; }
+}
+@keyframes refined-card-editor-in {
+  from { opacity: 0; transform: translateY(8px) scale(.985); }
+}
+@keyframes refined-card-backdrop-in { from { opacity: 0; } }
+
+/* Canvas renders Color and Move inside a tabbed popup, not an ARIA menu. */
+html[data-refined-canvas-dark] span:has(> div > div > [data-cid="Tabs"] .DashboardCardMenu__ColorPicker),
+html[data-refined-canvas-dark] [data-cid~="Popover"]:has(.DashboardCardMenu__ColorPicker),
+html[data-refined-canvas-dark] [data-cid="Tabs"]:has(.DashboardCardMenu__ColorPicker)
+  :is([role="tablist"], [role="tab"], [role="tabpanel"], [class*="panel__content"], [class*="panelsContainer"], [class*="textInput__facade"]) {
+  background-color: var(--night-panel) !important;
+  color: var(--night-text) !important;
+  border-color: var(--night-border) !important;
+}
+html[data-refined-canvas-dark] [data-cid="Tabs"]:has(.DashboardCardMenu__ColorPicker) [role="tab"]:is(:hover, [aria-selected="true"]) {
+  background-color: var(--night-raised) !important;
+}
+html[data-refined-canvas-dark] :is(.DashboardCardMenu__ColorPicker, [data-cid="Tabs"]:has(.DashboardCardMenu__ColorPicker))
+  :is(label, [class*="formFieldLayout__label"], button, input) {
+  color: var(--night-text) !important;
+}
+html[data-refined-canvas-dark] .DashboardCardMenu__ColorPicker input {
+  background-color: var(--night-raised) !important;
+  border-color: var(--night-border) !important;
+}
+html[data-refined-canvas-formatting] .refined-card-edit {
+  inset: var(--refined-edit-top, 12px) var(--refined-edit-right, 54px) auto auto;
+  width: var(--refined-edit-width, 36px);
+  height: var(--refined-edit-height, 36px);
+  box-sizing: border-box;
+}
+
+html[data-refined-canvas-formatting] .ic-DashboardCard .ic-DashboardCard__action-container {
+  height: auto !important;
+  block-size: auto !important;
+}
+html[data-refined-canvas-formatting] .ic-DashboardCard :is(.ic-DashboardCard__action, .refined-card-shortcuts a) {
+  order: var(--refined-shortcut-order, 99);
+}
+html[data-refined-canvas-dark] [class*="contextView__content"]:has(:is(.DashboardCardMenu__ColorPicker, [data-refined-dashboard-menu])),
+html[data-refined-canvas-dark] [data-refined-dashboard-menu][role="menu"],
+html[data-refined-canvas-dark] [data-refined-dashboard-menu] [class*="menuItemGroup"] {
+  background: var(--night-panel) !important;
+  color: var(--night-text) !important;
+  border-color: var(--night-border) !important;
+}
+html[data-refined-canvas-dark] [data-refined-dashboard-menu] :is([class*="menuItemGroup"], [class*="menuItemLabel"]) {
+  color: var(--night-text) !important;
+}
+.refined-card-dialog { padding: 16px 20px; max-height: 85vh; overflow: auto; }
+.refined-card-dialog form, .refined-card-dialog h2 { margin: 0; }
+.refined-card-dialog h2 { font-size: 20px; margin-bottom: 12px; }
+.refined-card-dialog [role="status"]:empty { display: none; }
+.refined-shortcut-option { display: flex; align-items: center; gap: 4px; margin-bottom: 4px; }
+.refined-shortcut-option label { flex: 1; margin: 0; }
+.refined-shortcut-option button { padding: 2px 8px; }
+.refined-card-dialog input[type="checkbox"] { border-radius: 50%; background: var(--night-raised, #edf3fa); }
+.refined-card-dialog input[type="checkbox"]:checked { background: #315e96; }
+
+html[data-refined-canvas-dark] :is([data-refined-course-menu], [data-refined-course-menu] :is(
+  .ColorPicker__Container, [role="tabpanel"], [role="tablist"], [role="tab"],
+  [data-cid="Menu"], [class*="menuItem"], [class*="panel__content"], [class*="textInput__facade"]
+)) {
+  background: var(--night-panel) !important;
+  color: var(--night-text) !important;
+  border-color: var(--night-border) !important;
+}
+html[data-refined-canvas-dark] :is([data-refined-course-menu], [data-refined-dashboard-menu])
+  :is([class*="menuItem__label"], [class*="menuItemGroup__label"], [class*="-text"], label, button) {
+  color: var(--night-text) !important;
+}
+html[data-refined-canvas-dark] [data-refined-course-menu]
+  :is([role="tab"], [class*="-menuItem"]):is(:hover, :focus-visible, [aria-selected="true"]) {
+  background: var(--night-raised) !important;
+}
+html[data-refined-canvas-dark] [data-refined-course-menu] [data-cid~="CloseButton"] > [class*="baseButton__content"] {
+  background: transparent !important;
+  color: inherit !important;
+}
+html[data-refined-canvas-formatting] .ic-Dashboard-header button[id^="Menu__label"] {
+  min-width: 40px;
+  min-height: 40px;
+  border: 1px solid #66778d !important;
+  border-radius: 10px !important;
+  background: #263345 !important;
+  color: #edf5ff !important;
+}
+html[data-refined-canvas-formatting] .ic-Dashboard-header button[id^="Menu__label"]:is(:hover, :focus-visible, [aria-expanded="true"]) {
+  background: #30435c !important;
+  border-color: #7088a8 !important;
+}
+@media (prefers-reduced-motion: no-preference) {
+  html[data-refined-canvas-formatting] .ic-Dashboard-header button[id^="Menu__label"] {
+    transition: background-color 160ms ease, border-color 160ms ease;
+  }
+}
+
+html[data-refined-canvas-formatting] .ic-DashboardCard[data-refined-card-hidden],
+html:not([data-refined-canvas-formatting]) .refined-manage-cards,
+.refined-manage-cards[hidden] { display: none !important; }
+html[data-refined-canvas-formatting] .ic-Dashboard-header__actions {
+  column-gap: 12px;
+}
+html[data-refined-canvas-formatting] .ic-Dashboard-header__actions > button[data-refined-dashboard-switch] {
+  margin-inline: 0 !important;
+}
+html[data-refined-canvas-formatting] .ic-Dashboard-header button.refined-manage-cards {
+  min-height: 40px;
+  margin-inline: 0;
+  padding: 0 14px;
+  border: 1px solid #66778d !important;
+  border-radius: 10px !important;
+  background: #263345 !important;
+  color: #edf5ff !important;
+  cursor: pointer;
+}
+html[data-refined-canvas-formatting] .ic-Dashboard-header button.refined-manage-cards:is(:hover, :focus-visible) {
+  background: #30435c !important;
+  border-color: #7088a8 !important;
+}
+.refined-card-visibility fieldset { max-height: 45vh; overflow: auto; }
+
+.refined-module-pin { display: none; }
+html[data-refined-canvas-formatting] #context_modules .ig-header:has(> .refined-module-pin) {
+  display: flex;
+  align-items: center;
+}
+html[data-refined-canvas-formatting] .refined-module-pin {
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  margin-inline: auto 0;
+  padding: 0;
+  color: #edf5ff;
+  background: #263345;
+  border: 1px solid #66778d;
+  border-radius: 10px;
+  cursor: pointer;
+}
+html[data-refined-canvas-formatting] .refined-module-pin:is(:hover, :focus-visible, [aria-pressed="true"]) {
+  background: #30435c;
+  border-color: #7088a8;
+}
+.refined-module-pin[aria-pressed="true"] svg { fill: currentColor; }
+
+/* Discussion index, threads, and reply editor surfaces. */
+html[data-refined-canvas-dark][data-refined-discussions] #content :is(
+  .discussion, .discussion-topic, .discussion-section, .entry,
+  .entry-content, .discussion_entry, .discussion-entry,
+  [data-testid*="discussion" i][data-testid*="container" i],
+  [data-testid*="reply" i][data-testid*="container" i],
+  [data-cid~="ToggleDetails"], [class*="textInput__facade"],
+  .tox-tinymce, .tox-editor-header, .tox-toolbar-overlord,
+  .tox-toolbar, .tox-toolbar__primary, .tox-statusbar
+) {
+  background-color: var(--night-panel) !important;
+  border-color: var(--night-border) !important;
+  color: var(--night-text) !important;
+}
+html[data-refined-canvas-dark][data-refined-discussions] #content :is(
+  [data-cid~="Heading"], [data-cid~="Text"], [class$="-text"], label, .message,
+  .user_content, .tox-tbtn, .tox-mbtn, .tox-statusbar *
+) {
+  color: var(--night-text) !important;
+}
+html[data-refined-canvas-dark][data-refined-discussions] #content a :is(
+  [data-cid~="Text"], [class$="-text"], [data-cid~="Heading"]
+) {
+  color: inherit !important;
+}
+html[data-refined-canvas-dark][data-refined-discussions] #content :is(
+  input[type="search"], input[type="text"], textarea, select,
+  [contenteditable="true"], [data-cid~="IconButton"] > [class*="baseButton__content"]
+) {
+  background-color: var(--night-raised) !important;
+  border-color: var(--night-border) !important;
+  color: var(--night-text) !important;
+}
+html[data-refined-canvas-dark][data-refined-discussions] #content :is(.tox-tbtn, .tox-mbtn) svg {
+  fill: currentColor !important;
+}
+html[data-refined-canvas-dark][data-refined-discussions] #content :is(.ig-row, .tox-tbtn, .tox-mbtn):hover {
+  background-color: var(--night-raised) !important;
+}
+
+/* Canvas puts the empty discussion messages on their own white surface. */
+html[data-refined-canvas-dark][data-refined-discussions] #content .discussions-v2__container-image {
+  background-color: var(--night-panel) !important;
+  border-color: var(--night-border) !important;
+  color: var(--night-text) !important;
+}
+html[data-refined-canvas-dark][data-refined-discussions] #content .discussions-v2__container-image :is(span, p) {
+  color: var(--night-text) !important;
+}
+
+html[data-refined-canvas-dark][data-refined-discussions] #content [data-testid="discussions-index-container"]:has(#discussion-search) {
+  background: transparent !important;
+}
+html[data-refined-canvas-dark][data-refined-discussions] label:is([for="discussion-filter"], [for="discussion-search"]) [class*="textInput__facade"] {
+  background: var(--night-panel) !important;
+  border-color: var(--night-border) !important;
+  border-radius: 9px;
+  overflow: hidden;
+  color: var(--night-text) !important;
+}
+html[data-refined-canvas-dark][data-refined-discussions] label:is([for="discussion-filter"], [for="discussion-search"]) [class*="textInput__facade"]:focus-within {
+  border-color: var(--night-link) !important;
+}
+html[data-refined-canvas-dark][data-refined-discussions] #content :is(#discussion-filter, #discussion-search),
+html[data-refined-canvas-dark][data-refined-discussions] label:is([for="discussion-filter"], [for="discussion-search"]) :is(
+  [class*="textInput__layout"], [class*="textInput__inputLayout"]
+) {
+  background: transparent !important;
+  color: var(--night-text) !important;
+}
+html[data-refined-canvas-dark][data-refined-discussions] #content [class*="-view--flex-flex"]:has(> * #discussion-filter):has(> * #discussion-search) {
+  gap: 12px;
+}
+html[data-refined-canvas-dark][data-refined-discussions] #discussion-search::placeholder { color: #b8c5d7; opacity: 1; }
+html[data-refined-canvas-dark]:is([data-refined-discussions], [data-refined-grades], [data-refined-submission]:has([data-testid="attemptSelect"][aria-expanded="true"])) [role="listbox"][id^="Selectable___"] {
+  border: 1px solid var(--night-border);
+  border-radius: 9px;
+  overflow: hidden;
+}
+
+/* Announcement detail toolbar and its portalled InstUI menus. Keep native
+   controls and semantics while matching Refined Canvas's rounded surfaces. */
+html[data-refined-canvas-dark][data-refined-discussions] #module_sequence_footer_container > div:has([data-testid="splitscreenButton"]) {
+  background: var(--night-bg) !important;
+  color: var(--night-text) !important;
+  padding: 8px 0;
+}
+html[data-refined-canvas-dark][data-refined-discussions] #discussion-drawer-layout :is(button, [role="button"]) {
+  background: #263345 !important;
+  border: 1px solid #66778d !important;
+  border-radius: 10px !important;
+  color: #edf5ff !important;
+}
+html[data-refined-canvas-dark][data-refined-discussions] #discussion-drawer-layout button [class*="baseButton__content"] {
+  border: 0 !important;
+  background: transparent !important;
+  color: inherit !important;
+  border-radius: inherit;
+}
+html[data-refined-canvas-dark][data-refined-discussions] #content #discussion-drawer-layout button:focus:not(:focus-visible) {
+  outline: none !important;
+  box-shadow: none !important;
+}
+html[data-refined-canvas-dark][data-refined-discussions] #content #discussion-drawer-layout button:focus-visible {
+  outline: 2px solid #83baff !important;
+  outline-offset: 3px !important;
+}
+html[data-refined-canvas-dark][data-refined-discussions] #discussion-drawer-layout button:is(:disabled, [aria-disabled="true"]) {
+  opacity: .55;
+}
+html[data-refined-canvas-dark][data-refined-discussions] #content #discussion-drawer-layout button svg {
+  color: inherit !important;
+}
+html[data-refined-canvas-formatting][data-refined-discussions] #discussion-drawer-layout :is([data-testid="splitscreenButton"], [data-testid="ExpandCollapseThreads-button"]) > [class*="baseButton__content"] {
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+  min-block-size: 38px;
+  padding: 0 14px;
+}
+html[data-refined-canvas-dark][data-refined-discussions] #content #discussion-drawer-layout [class*="textInput__facade"] {
+  background: #263345 !important;
+  color: #edf5ff !important;
+  border: 1px solid #66778d !important;
+  border-radius: 10px !important;
+  overflow: hidden;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 4%);
+  transition: background-color 160ms ease, border-color 160ms ease, box-shadow 180ms ease !important;
+}
+/* Include the facade in specificity: the shared discussion input rule also
+   contains a two-attribute icon-button selector inside :is(). */
+html[data-refined-canvas-dark][data-refined-discussions] #discussion-drawer-layout [class*="textInput__facade"] :is([class*="textInput__layout"], [class*="textInput__inputLayout"], [class*="textInput__afterElement"], input[type="text"]) {
+  background: transparent !important;
+  color: #edf5ff !important;
+}
+html[data-refined-canvas-dark][data-refined-discussions] #content #discussion-drawer-layout [class*="textInput__facade"]:is(:hover, :focus-within) {
+  background: #30435c !important;
+  border-color: #7088a8 !important;
+}
+html[data-refined-canvas-dark][data-refined-discussions] #content #discussion-drawer-layout [class*="textInput__facade"]:focus-within {
+  background: #293b52 !important;
+  border-color: #9bc9ff !important;
+  outline: none;
+  box-shadow: 0 0 0 3px rgb(131 186 255 / 24%), inset 0 1px 0 rgb(255 255 255 / 5%);
+}
+/* One continuous focus ring around the field, rather than a second clipped
+   outline around the nested input. Forced-colors retains a system outline. */
+html[data-refined-canvas-dark][data-refined-discussions] #discussion-drawer-layout [class*="textInput__facade"] input:focus-visible {
+  outline: none;
+}
+html[data-refined-canvas-dark][data-refined-discussions] #discussion-drawer-layout [class*="textInput__facade"]:focus-within::before,
+html[data-refined-canvas-dark][data-refined-discussions] #discussion-drawer-layout [class*="textInput__facade"]:focus-within::after {
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+html[data-refined-canvas-dark][data-refined-discussions] #discussion-drawer-layout [class*="textInput__facade"] svg {
+  color: #b8c5d7 !important;
+  transition: color 160ms ease;
+}
+html[data-refined-canvas-dark][data-refined-discussions] #discussion-drawer-layout [class*="textInput__facade"]:focus-within svg {
+  color: #9bc9ff !important;
+}
+html[data-refined-canvas-dark][data-refined-discussions] #discussion-drawer-layout input::placeholder {
+  color: #b8c5d7 !important;
+  opacity: 1;
+}
+html[data-refined-canvas-dark]:is([data-refined-discussions], [data-refined-grades], [data-refined-submission]:has([data-testid="attemptSelect"][aria-expanded="true"])) :is([data-cid="Options"], [class*="options__label"], [role="listbox"], [role="menu"], [role="menuitem"]) {
+  background: var(--night-panel) !important;
+  color: var(--night-text) !important;
+  border-color: var(--night-border) !important;
+}
+html[data-refined-canvas-dark][data-refined-discussions] [role="menu"] {
+  border: 1px solid var(--night-border);
+  border-radius: 9px;
+  overflow: hidden;
+}
+/* Paint the whole option row, including the checkmark gutter, uniformly. */
+html[data-refined-canvas-dark]:is([data-refined-discussions], [data-refined-grades], [data-refined-submission]:has([data-testid="attemptSelect"][aria-expanded="true"])) [role="listbox"] :is([role="group"], [data-cid="Options.Item"], [role="option"]) {
+  background: #263345 !important;
+  color: #edf5ff !important;
+}
+html[data-refined-canvas-dark]:is([data-refined-discussions], [data-refined-grades], [data-refined-submission]:has([data-testid="attemptSelect"][aria-expanded="true"])) [role="listbox"] [data-cid="Options.Item"]:has(> [role="option"]):is(:hover, :focus-within, :has(> [aria-selected="true"]), [class*="optionItem--highlighted"]) {
+  background: #30435c !important;
+}
+html[data-refined-canvas-dark]:is([data-refined-discussions], [data-refined-grades], [data-refined-submission]:has([data-testid="attemptSelect"][aria-expanded="true"])) [role="listbox"][id^="Selectable___"] {
+  background: #263345 !important;
+  border: 1px solid #66778d !important;
+  border-radius: 12px;
+  padding: 6px !important;
+  box-shadow: 0 12px 28px rgb(0 0 0 / 30%), 0 2px 6px rgb(0 0 0 / 18%);
+  transform-origin: center top;
+  animation: refined-discussion-options-enter 180ms cubic-bezier(.2, .8, .2, 1);
+}
+@keyframes refined-discussion-options-enter {
+  from { opacity: 0; transform: translateY(-5px) scale(.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+/* Let the listbox own the popup surface; Canvas's positioning shell otherwise
+   adds a second square border and clips the rounded animated menu. */
+html[data-refined-canvas-dark]:is([data-refined-discussions], [data-refined-grades], [data-refined-submission]:has([data-testid="attemptSelect"][aria-expanded="true"])) [data-position-content]:has([role="listbox"][id^="Selectable___"]),
+html[data-refined-canvas-dark]:is([data-refined-discussions], [data-refined-grades], [data-refined-submission]:has([data-testid="attemptSelect"][aria-expanded="true"])) [data-position-content]:has([role="listbox"][id^="Selectable___"]) > span,
+html[data-refined-canvas-dark]:is([data-refined-discussions], [data-refined-grades], [data-refined-submission]:has([data-testid="attemptSelect"][aria-expanded="true"])) [data-position-content]:has([role="listbox"][id^="Selectable___"]) > span > span {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+html[data-refined-canvas-dark]:is([data-refined-discussions], [data-refined-grades], [data-refined-submission]:has([data-testid="attemptSelect"][aria-expanded="true"])) [role="listbox"] [data-cid="Options.Item"]:has(> [role="option"]) {
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 3px 0 !important;
+  border: 1px solid transparent !important;
+  box-shadow: inset 3px 0 transparent;
+  cursor: pointer;
+}
+html[data-refined-canvas-dark]:is([data-refined-discussions], [data-refined-grades], [data-refined-submission]:has([data-testid="attemptSelect"][aria-expanded="true"])) [role="listbox"] [data-cid="Options.Item"]:has(> [aria-selected="true"]) {
+  box-shadow: inset 3px 0 #9bc9ff;
+}
+html[data-refined-canvas-dark]:is([data-refined-discussions], [data-refined-grades], [data-refined-submission]:has([data-testid="attemptSelect"][aria-expanded="true"])) [role="listbox"] [data-cid="Options.Item"]:has(> [role="option"]):is(:hover, :focus-within, [data-refined-option-active], [class*="optionItem--highlighted"]) {
+  background: #30435c !important;
+  border-color: #7088a8 !important;
+}
+html[data-refined-canvas-dark]:is([data-refined-discussions], [data-refined-grades], [data-refined-submission]:has([data-testid="attemptSelect"][aria-expanded="true"])) [role="listbox"] :is([data-cid="Options"], [class*="options__label"]) {
+  background: #263345 !important;
+}
+html[data-refined-canvas-dark]:is([data-refined-discussions], [data-refined-grades], [data-refined-submission]:has([data-testid="attemptSelect"][aria-expanded="true"])) [role="listbox"] [data-cid="Options.Item"] {
+  transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-refined-canvas-dark][data-refined-discussions] #content #discussion-drawer-layout [class*="textInput__facade"],
+  html[data-refined-canvas-dark][data-refined-discussions] #discussion-drawer-layout [class*="textInput__facade"] svg,
+  html[data-refined-canvas-dark]:is([data-refined-discussions], [data-refined-grades], [data-refined-submission]:has([data-testid="attemptSelect"][aria-expanded="true"])) [role="listbox"] [data-cid="Options.Item"] {
+    transition: none !important;
+  }
+  html[data-refined-canvas-dark]:is([data-refined-discussions], [data-refined-grades], [data-refined-submission]:has([data-testid="attemptSelect"][aria-expanded="true"])) [role="listbox"][id^="Selectable___"] {
+    animation: none;
+  }
+}
+@media (forced-colors: active) {
+  html[data-refined-canvas-dark][data-refined-discussions] #content #discussion-drawer-layout [class*="textInput__facade"]:focus-within {
+    outline: 2px solid Highlight;
+    outline-offset: 2px;
+  }
+  html[data-refined-canvas-dark]:is([data-refined-discussions], [data-refined-grades], [data-refined-submission]:has([data-testid="attemptSelect"][aria-expanded="true"])) [role="listbox"] [role="option"][aria-selected="true"] {
+    outline: 2px solid Highlight;
+    outline-offset: -2px;
+  }
+}
+/* The row alone owns hover/selection paint. Canvas otherwise paints a second
+   opaque rectangle over it, hiding both the transition and selection marker. */
+html[data-refined-canvas-dark]:is([data-refined-discussions], [data-refined-grades], [data-refined-submission]:has([data-testid="attemptSelect"][aria-expanded="true"])) [role="listbox"][id^="Selectable___"] [data-cid="Options.Item"] > :is([role="option"], [class*="optionItem__content"]) {
+  background: transparent !important;
+  color: inherit !important;
+  transition: none !important;
+  box-shadow: none !important;
+}
+html[data-refined-canvas-dark]:is([data-refined-discussions], [data-refined-grades], [data-refined-submission]:has([data-testid="attemptSelect"][aria-expanded="true"])) [role="listbox"][id^="Selectable___"] [role="group"] {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+html[data-refined-canvas-dark]:is([data-refined-discussions], [data-refined-grades], [data-refined-submission]:has([data-testid="attemptSelect"][aria-expanded="true"])) [role="listbox"][id^="Selectable___"] [class*="options__label"] {
+  padding: 6px 10px 8px !important;
+  margin-bottom: 4px;
+  border: 0 !important;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .025em;
+}
+html[data-refined-canvas-dark][data-refined-discussions] [class*="options__label"] {
+  color: #b8c5d7 !important;
+  border-bottom: 1px solid var(--night-border);
+}
+html[data-refined-canvas-dark][data-refined-discussions] [role="menuitem"]:is(:hover, :focus, :focus-within) {
+  background: var(--night-raised) !important;
+}
+html[data-refined-canvas-dark][data-refined-discussions] :is([role="menuitem"], [role="option"]) * {
+  color: inherit !important;
+}
+html[data-refined-canvas-dark][data-refined-discussions] [data-testid="author_avatar"] {
+  background: var(--night-raised) !important;
+  color: var(--night-link) !important;
+  border-color: var(--night-border) !important;
+}
+
+/* Recent Activity empty-state notice. */
+html[data-refined-canvas-dark] .ic-notification:has(.no_recent_messages),
+html[data-refined-canvas-dark] .ic-notification:has(.no_recent_messages) :is(.ic-notification__content, .ic-notification__message) {
+  background: var(--night-panel) !important;
+  color: var(--night-text) !important;
+  border-color: var(--night-border) !important;
+}
+html[data-refined-canvas-dark] .ic-notification:has(.no_recent_messages) :is(.ic-notification__title, .notification_message) {
+  color: var(--night-text) !important;
+}
+html[data-refined-canvas-dark] .ic-notification:has(.no_recent_messages) .ic-notification__icon {
+  background: var(--night-raised) !important;
+  color: var(--night-link) !important;
+  border-color: var(--night-border) !important;
+}
+
+/* Course-home actions use the same controls as module navigation/submission. */
+html[data-refined-canvas-formatting][data-refined-course-home] #right-side .refined-sidebar-export {
+  margin: 0 0 5px;
+}
+html[data-refined-canvas-formatting][data-refined-course-home] #right-side .refined-sidebar-export button {
+  width: 100%;
+  text-align: start;
+}
+html[data-refined-canvas-formatting] :is([data-refined-course-home] :is(#content, #right-side) .btn, [data-refined-modules] #content :is(#expand_collapse_all, button.offline_web_export)) {
+  box-sizing: border-box;
+  min-height: 40px;
+  padding: 8px 14px;
+  border: 1px solid #66778d !important;
+  border-radius: 10px !important;
+  background: #263345 !important;
+  color: #edf5ff !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  text-decoration: none !important;
+  transition: background-color 160ms ease, border-color 160ms ease !important;
+}
+html[data-refined-canvas-formatting] :is([data-refined-course-home] :is(#content, #right-side) .btn, [data-refined-modules] #content :is(#expand_collapse_all, button.offline_web_export)):hover:not(:disabled, [aria-disabled="true"]) {
+  background: #30435c !important;
+  border-color: #7088a8 !important;
+}
+html[data-refined-canvas-formatting] :is([data-refined-course-home] :is(#content, #right-side) .btn, [data-refined-modules] #content :is(#expand_collapse_all, button.offline_web_export)):focus:not(:focus-visible) {
+  outline: none !important;
+}
+html[data-refined-canvas-formatting] :is([data-refined-course-home] :is(#content, #right-side) .btn, [data-refined-modules] #content :is(#expand_collapse_all, button.offline_web_export)):focus-visible {
+  outline: 2px solid #83baff !important;
+  outline-offset: 3px !important;
+}
+html[data-refined-canvas-formatting] :is([data-refined-course-home] :is(#content, #right-side) .btn, [data-refined-modules] #content :is(#expand_collapse_all, button.offline_web_export)):is(:disabled, [aria-disabled="true"]) {
+  opacity: .55;
+}
+html[data-refined-canvas-formatting]:is([data-refined-course-home], [data-refined-modules]) #content small.muted:has(> a[href$="/offline_web_exports"]) {
+  display: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-refined-canvas-formatting] :is([data-refined-course-home] :is(#content, #right-side) .btn, [data-refined-modules] #content :is(#expand_collapse_all, button.offline_web_export)) {
+    transition: none !important;
+  }
+}
+
+/* Course home keeps the native To Do links and dismiss controls. */
+html[data-refined-canvas-formatting][data-refined-course-home] [data-testid="ToDoSidebar"] .todo-list-header {
+  font-size: 18px;
+  font-weight: 650;
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--night-border, #c7d2df);
+}
+html[data-refined-canvas-formatting][data-refined-course-home] #planner-todosidebar-item-list > li {
+  margin-bottom: 6px;
+}
+html[data-refined-canvas-formatting][data-refined-course-home] .ToDoSidebarItem {
+  grid-template-columns: minmax(0, 1fr) 26px;
+  padding: 8px 7px 8px 10px;
+  border-radius: 12px;
+}
+html[data-refined-canvas-formatting][data-refined-course-home] .ToDoSidebarItem:is(:hover, :focus-within) {
+  border-color: var(--night-link, #537eae);
+}
+html[data-refined-canvas-formatting][data-refined-course-home] .ToDoSidebarItem__Info > [color="secondary"] {
+  display: none;
+}
+html[data-refined-canvas-formatting][data-refined-course-home] .ToDoSidebarItem__Title a {
+  display: block;
+  font-size: 14px;
+  line-height: 1.35;
+}
+html[data-refined-canvas-formatting][data-refined-course-home] [data-testid="ToDoSidebarItem__InformationRow"] {
+  margin: 4px 0 0;
+  padding: 0;
+  opacity: .85;
+}
+html[data-refined-canvas-formatting][data-refined-course-home] .ToDoSidebarItem__Close button {
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+}
+html[data-refined-canvas-formatting][data-refined-course-home] .ToDoSidebarItem__Close button:is(:hover, :focus-visible) > [class*="baseButton__content"] {
+  background: var(--night-raised, #e3eeff) !important;
+}
+
+/* Calendar toolbar, schedule, and sidebar. */
+html[data-refined-calendar] {
+  --refined-calendar-button: #263345;
+  --refined-calendar-button-hover: #30435c;
+  --refined-calendar-button-border: #66778d;
+  --refined-calendar-button-text: #edf5ff;
+}
+html[data-refined-calendar][data-refined-canvas-formatting] #calendar_header {
+  padding: 5px 12px;
+  border-radius: 12px;
+}
+html[data-refined-calendar][data-refined-canvas-formatting] :is(
+  #calendar_header .btn, #calendar_header .navigation_title_text,
+  #calendar-app .fc-button, #calendar-feed-button, #calendar-toggle-button,
+  .ui-dialog:has(#edit_event) :is(.btn, #edit-calendar-event-submit-button)
+) {
+  background: var(--refined-calendar-button) !important;
+  color: var(--refined-calendar-button-text) !important;
+  border: 1px solid var(--refined-calendar-button-border) !important;
+  border-radius: 10px !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+html[data-refined-calendar][data-refined-canvas-formatting] :is(
+  #calendar_header .btn, #calendar_header .navigation_title_text,
+  #calendar-app .fc-button, #calendar-feed-button, #calendar-toggle-button,
+  .ui-dialog:has(#edit_event) :is(.btn, #edit-calendar-event-submit-button)
+):is(:hover, :focus-visible, .active, .fc-state-active) {
+  background: var(--refined-calendar-button-hover) !important;
+  border-color: #8fa8c7 !important;
+}
+html[data-refined-calendar][data-refined-canvas-formatting] #edit-calendar-event-submit-button > [class*="baseButton__content"] {
+  background: transparent !important;
+  color: inherit !important;
+}
+html[data-refined-calendar][data-refined-canvas-formatting] #calendar-app .fc-view-container {
+  border-radius: 12px;
+  overflow: clip;
+}
+html[data-refined-calendar][data-refined-canvas-formatting] #calendar-app .fc-day-header { padding-block: 7px; }
+html[data-refined-calendar][data-refined-canvas-formatting] #calendar-app .fc-event { border-radius: 6px; margin-inline: 3px; }
+html[data-refined-calendar][data-refined-canvas-dark] #calendar-app :is(.fc-view-container, .fc-list-view, .fc-list-heading td, .fc-list-item td, .fc-list-empty) {
+  background: var(--night-panel) !important;
+  border-color: var(--night-border) !important;
+  color: var(--night-text) !important;
+}
+html[data-refined-calendar][data-refined-canvas-dark] #calendar-app .fc-list-item:hover td { background: var(--night-raised) !important; }
+html[data-refined-calendar][data-refined-canvas-dark] #calendar-app :is(.fc-today, .fc-day.fc-today) {
+  background: #283953 !important;
+}
+html[data-refined-calendar][data-refined-canvas-dark] :is(#calendar-list-holder, #calendars-context-list, #calendar-feed) {
+  color: var(--night-text) !important;
+  border-color: var(--night-border) !important;
+}
+html[data-refined-calendar][data-refined-canvas-formatting] #calendar-list-holder {
+  border: 1px solid var(--night-border, #ccd5e0);
+  border-radius: 12px;
+  padding: 10px;
+}
+
+/* The event editor is portaled outside Calendar's main content. */
+html[data-refined-calendar][data-refined-canvas-dark] :is(.ui-dialog:has(#edit_event), #edit_event, #edit_event_tabs) {
+  background: var(--night-bg) !important;
+  color: var(--night-text) !important;
+  border-color: var(--night-border) !important;
+}
+html[data-refined-calendar][data-refined-canvas-dark] #edit_event :is(
+  .ui-tabs-panel, .ui-tabs-nav, .ui-tabs-nav li, [class*="textInput__facade"]
+) {
+  background: var(--night-panel) !important;
+  color: var(--night-text) !important;
+  border-color: var(--night-border) !important;
+}
+html[data-refined-calendar][data-refined-canvas-dark] #edit_event :is(
+  label, legend, [class*="formFieldLayout__label"], [class$="-text"], .ui-tabs-nav a
+) {
+  color: var(--night-text) !important;
+}
+html[data-refined-calendar][data-refined-canvas-dark] #edit_event :is(
+  input:not([type="checkbox"], [type="radio"]), textarea, select
+) {
+  background: var(--night-panel) !important;
+  color: var(--night-text) !important;
+  border-color: var(--night-border) !important;
+}
+html[data-refined-calendar][data-refined-canvas-dark] #edit_event :is(
+  .ui-tabs-nav li.ui-tabs-active, .ui-tabs-nav li:hover, [class*="textInput__facade"]:focus-within
+) {
+  background: var(--night-raised) !important;
+  border-color: var(--night-link) !important;
+}
+html[data-refined-calendar][data-refined-canvas-dark] :is(
+  [class*="contextView__content"]:has([role="listbox"]),
+  [role="listbox"], [role="option"], #ui-datepicker-div, #ui-datepicker-div .ui-datepicker-header,
+  #ui-datepicker-div .ui-state-default
+) {
+  background: var(--night-panel) !important;
+  color: var(--night-text) !important;
+  border-color: var(--night-border) !important;
+}
+html[data-refined-calendar][data-refined-canvas-dark] :is(
+  [role="option"]:is(:hover, [aria-selected="true"]), #ui-datepicker-div .ui-state-default:is(:hover, .ui-state-active)
+) { background: var(--night-raised) !important; }
+html[data-refined-calendar][data-refined-canvas-formatting] .ui-dialog:has(#edit_event) { border-radius: 12px; }
+@media (prefers-reduced-motion: reduce) {
+  html[data-refined-calendar][data-refined-canvas-formatting] :is(
+    #calendar_header .btn, #calendar_header .navigation_title_text, #calendar-app .fc-button,
+    #calendar-feed-button, #calendar-toggle-button, .ui-dialog:has(#edit_event) :is(.btn, #edit-calendar-event-submit-button)
+  ) { transition: none; }
+}
+
+html[data-refined-calendar][data-refined-canvas-formatting] #calendar_header :is(
+  .calendar_navigator, .navigation_buttons, .calendar_view_buttons, .header-right-flex
+) {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+html[data-refined-calendar][data-refined-canvas-formatting] #calendar_header :is(.calendar_navigator, .header-right-flex) {
+  flex-wrap: wrap;
+}
+html[data-refined-calendar][data-refined-canvas-formatting] #calendar_header .header-bar.flex-container {
+  align-items: center;
+  gap: 6px 12px;
+  min-height: 0;
+  padding-block: 0;
+}
+html[data-refined-calendar][data-refined-canvas-formatting] #calendar_header :is(
+  .calendar_view_buttons > .btn, .navigation_buttons > .btn, #create_new_event_link
+) {
+  margin-inline: 0 !important;
+}
+html[data-refined-calendar][data-refined-canvas-formatting] #calendar_header :is(
+  .navigate_today, .navigation_buttons > .btn, .calendar_view_buttons > .btn, #create_new_event_link
+) {
+  box-sizing: border-box;
+  min-block-size: 32px;
+  padding-block: 0;
+  line-height: 30px;
+}
+html[data-refined-calendar][data-refined-canvas-formatting] #calendar_header .navigation_title {
+  align-self: center;
+  margin-block: 0;
+  line-height: 1;
+}
+html[data-refined-calendar][data-refined-canvas-formatting] #calendar_header .navigation_title_text {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-block-size: 32px;
+  padding-inline: 12px;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.25;
+  white-space: nowrap;
+  cursor: pointer;
+}
+html[data-refined-calendar][data-refined-canvas-formatting] #calendar_header .navigation_title_text::after {
+  content: "";
+  inline-size: 5px;
+  block-size: 5px;
+  border: solid currentColor;
+  border-width: 0 1.5px 1.5px 0;
+  transform: translateY(-2px) rotate(45deg);
+}
+html[data-refined-calendar][data-refined-canvas-dark] #calendars-context-list .context_list_context {
+  color: var(--night-text) !important;
+  border-radius: 8px;
+}
+html[data-refined-calendar][data-refined-canvas-dark] #calendars-context-list .context_list_context:is(:hover, :focus-within) {
+  background: var(--night-raised) !important;
+}
+html[data-refined-calendar][data-refined-canvas-dark] #calendars-context-list .context_list_context :is(label, button) {
+  color: var(--night-text) !important;
+}
+html[data-refined-calendar][data-refined-canvas-dark] #calendars-context-list .ContextList__MoreBtn {
+  background: transparent !important;
+}
+html[data-refined-calendar][data-refined-canvas-dark] #calendars-context-list .ContextList__MoreBtn:is(:hover, :focus-visible) {
+  background: #30435c !important;
+}
+html[data-refined-calendar][data-refined-canvas-dark] #calendar-app .fc-event:is(:hover, :focus-visible) {
+  background: #30435c !important;
+  color: var(--night-text) !important;
+}
+html[data-refined-calendar][data-refined-canvas-dark] .ui-widget-overlay {
+  background: rgb(0 0 0 / 75%) !important;
+  opacity: 1 !important;
+}
+/* Student Grades controls and calculator placement. */
+html[data-refined-canvas-formatting][data-refined-grades] .refined-grades-filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 10px;
+}
+html[data-refined-canvas-formatting][data-refined-grades] .refined-grades-filter-row > #refined-grade-calculator-title {
+  margin-inline-start: auto;
+}
+.refined-grade-calculator[hidden] { display: none; }
+
+html[data-refined-canvas-dark][data-refined-grades] :is(#grade-summary-content, #student-grades-right-content) :is(.btn, .Button, button, select, textarea, input:not([type="checkbox"], [type="radio"], [type="hidden"]), [class*="textInput__facade"]) {
+  background: #263345 !important;
+  color: #edf5ff !important;
+  border: 1px solid #66778d !important;
+  border-radius: 10px !important;
+  box-shadow: none;
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+html[data-refined-canvas-dark][data-refined-grades] #grade-summary-content #GradeSummarySelectMenuGroup :is(button > [class*="baseButton__content"], [class*="textInput__facade"] :is(input, [class*="textInput__layout"], [class*="textInput__inputLayout"])) {
+  background: transparent !important;
+  color: inherit !important;
+  border: 0 !important;
+}
+html[data-refined-canvas-dark][data-refined-grades] :is(#grade-summary-content, #student-grades-right-content) :is(.btn, .Button, button, select, textarea, input:not([type="checkbox"], [type="radio"], [type="hidden"]), [class*="textInput__facade"]):is(:hover, :focus-visible, :focus-within):not(:disabled, [aria-disabled="true"]) {
+  background-color: #30435c !important;
+  border-color: #7088a8 !important;
+}
+html[data-refined-canvas-dark][data-refined-grades] :is(#grade-summary-content, #student-grades-right-content) :is(button, input, select, textarea, .Button, .btn):focus-visible {
+  outline: 2px solid #83baff;
+  outline-offset: 2px;
+}
+html[data-refined-canvas-dark][data-refined-grades] #grade-summary-content #GradeSummarySelectMenuGroup [class*="textInput__facade"]:focus-within {
+  border-color: #9bc9ff !important;
+  box-shadow: 0 0 0 3px rgb(131 186 255 / 24%);
+}
+html[data-refined-canvas-dark][data-refined-grades] #grade-summary-content #GradeSummarySelectMenuGroup [class*="textInput__facade"] input[role="combobox"]:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+html[data-refined-canvas-dark][data-refined-grades] #GradeSummarySelectMenuGroup [class*="textInput__facade"]:focus-within::before,
+html[data-refined-canvas-dark][data-refined-grades] #GradeSummarySelectMenuGroup [class*="textInput__facade"]:focus-within::after {
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+@media (forced-colors: active) {
+  html[data-refined-canvas-dark][data-refined-grades] #grade-summary-content #GradeSummarySelectMenuGroup [class*="textInput__facade"]:focus-within {
+    outline: 2px solid Highlight;
+    outline-offset: 2px;
+  }
+}
+html[data-refined-canvas-dark][data-refined-grades] #apply_select_menus:disabled { opacity: .55; }
+@media print {
+  #refined-grade-calculator-title, #refined-grade-calculator-panel { display: none !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-refined-canvas-dark][data-refined-grades] :is(#grade-summary-content, #student-grades-right-content) :is(.btn, .Button, button, select, textarea, input, [class*="textInput__facade"]) {
+    transition: none !important;
+  }
+}
+
+/* New Quizzes start screen, attempt controls, and Canvas module navigation. */
+html[data-refined-canvas-dark] #content #new-quizzes-root {
+  color: var(--night-text);
+  color-scheme: dark;
+}
+html[data-refined-canvas-dark] #content #new-quizzes-root :is(
+  div:has(> * > [data-automation="sdk-start-resume-button"]),
+  div:has(> [data-automation="sdk-take-component"]), header.header,
+  [data-automation^="sdk-sidebar-"], .tox-sidebar,
+  [class*="-view-alert"], [class$="-pill"],
+  [role="dialog"], [role="listbox"], .lrn_question, .lrn_response
+) {
+  background-color: var(--night-panel) !important;
+  border-color: var(--night-border) !important;
+  color: var(--night-text) !important;
+}
+html[data-refined-canvas-dark] #content #new-quizzes-root :is(
+  h1, h2, h3, p, label, legend, [class$="-text"], [class*="-pill__text"], [role="option"]
+) {
+  color: var(--night-text) !important;
+}
+html[data-refined-canvas-dark] #content #new-quizzes-root :is(a[href]:not(.btn, .Button, [data-automation="sdk-return-button"]), [class$="-pill"]) {
+  color: var(--night-link) !important;
+}
+
+html[data-refined-canvas-dark] #content #new-quizzes-root :is(
+  button, .btn, .Button, [data-automation="sdk-return-button"], select, textarea, [class*="textInput__facade"],
+  input:not([type="hidden"], [type="checkbox"], [type="radio"], [type="range"], [type="file"])
+) {
+  background: #263345 !important;
+  border: 1px solid #66778d !important;
+  border-radius: 10px !important;
+  color: #edf5ff !important;
+  transition: background-color 160ms ease, border-color 160ms ease !important;
+}
+html[data-refined-canvas-dark] #content #new-quizzes-root :is(
+  button, .btn, .Button, [data-automation="sdk-return-button"], select, textarea, [class*="textInput__facade"],
+  input:not([type="hidden"], [type="checkbox"], [type="radio"], [type="range"], [type="file"])
+):is(:hover, :focus-within):not(:disabled, [aria-disabled="true"]) {
+  background: #30435c !important;
+  border-color: #7088a8 !important;
+}
+html[data-refined-canvas-dark] #content #new-quizzes-root :is(button, [data-automation="sdk-return-button"]) > [class*="baseButton__content"],
+html[data-refined-canvas-dark] #content #new-quizzes-root [class*="textInput__facade"] :is(input, [class*="textInput__layout"], [class*="textInput__inputLayout"]) {
+  background: transparent !important;
+  border: 0 !important;
+  color: inherit !important;
+}
+html[data-refined-canvas-dark] #content #new-quizzes-root :is([data-testid^="module-navigation-"], [data-automation="sdk-start-resume-button"], [data-automation="sdk-return-button"]) > [class*="baseButton__content"] {
+  min-height: 38px;
+  padding-inline: 14px;
+}
+html[data-refined-canvas-dark] #content #new-quizzes-root :is(button, [data-automation="sdk-return-button"]):focus:not(:focus-visible),
+html[data-refined-canvas-dark] #content #new-quizzes-root [class*="textInput__facade"] input:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+html[data-refined-canvas-dark] #content #new-quizzes-root :is(button, input, select, textarea, a):focus-visible,
+html[data-refined-canvas-dark] #content #new-quizzes-root [class*="textInput__facade"]:focus-within {
+  outline: 2px solid #83baff;
+  outline-offset: 2px;
+}
+html[data-refined-canvas-dark] #content #new-quizzes-root input:is([type="checkbox"], [type="radio"], [type="range"]) {
+  accent-color: #83baff;
+}
+html[data-refined-canvas-dark] #content #new-quizzes-root :is([class*="radioInput__facade"], [class*="checkboxFacade__facade"]) {
+  background-color: #263345 !important;
+  border-color: #8299b5 !important;
+  color: #edf5ff !important;
+}
+/* InstUI paints selection on the facade itself, not on a pseudo-element. */
+html[data-refined-canvas-dark] #content #new-quizzes-root input[type="radio"]:checked + label [class*="radioInput__facade"] {
+  background-color: #9bc9ff !important;
+  border-color: #9bc9ff !important;
+  box-shadow: inset 0 0 0 4px #263345 !important;
+}
+html[data-refined-canvas-dark] #content #new-quizzes-root :is(label:hover, label:focus-within) [class*="radioInput__facade"] {
+  border-color: #9bc9ff !important;
+}
+html[data-refined-canvas-dark] #content #new-quizzes-root :is(.tox-mbtn, .tox-tbtn) {
+  border-radius: 7px !important;
+  border-color: transparent !important;
+}
+html[data-refined-canvas-dark] #content #new-quizzes-root :is(.tox-mbtn, .tox-tbtn):is([aria-pressed="true"], [aria-expanded="true"], .tox-tbtn--enabled) {
+  background: #30435c !important;
+  border-color: #83baff !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-refined-canvas-dark] #content #new-quizzes-root :is(button, .btn, .Button, [data-automation="sdk-return-button"], select, textarea, input, [class*="textInput__facade"]) {
+    transition: none !important;
+  }
+}
+
+/* Keep Canvas's quiz navigation geometry and improve contrast. */
+html[data-refined-canvas-dark] #content #new-quizzes-root :is(
+  [data-automation="sdk-sidebar-item-button"],
+  [data-automation="sdk-sidebar-item-button"] [aria-hidden="true"] span,
+  [data-automation="sidebar-title-button"],
+  [data-automation="sidebar-instructions-button"],
+  [data-automation="sidebar-title-text"],
+  [data-automation="sidebar-instructions-text"]
+) {
+  color: #edf5ff !important;
+}
+html[data-refined-canvas-dark] #content #new-quizzes-root svg[name="IconQuiz"] {
+  color: #9bc9ff !important;
+  fill: currentColor !important;
+}
+html[data-refined-canvas-dark] #content #new-quizzes-root [data-automation^="sdk-sidebar-"] [role="navigation"] {
+  color-scheme: dark;
+  scrollbar-color: #66778d var(--night-panel);
+}
+html[data-refined-canvas-dark] #content #new-quizzes-root [data-automation^="sdk-sidebar-"] [role="navigation"] > div:has(svg[name="IconPin"]) {
+  background-color: var(--night-raised) !important;
+  border-color: var(--night-border) !important;
+}
+html[data-refined-canvas-dark] #content #new-quizzes-root [data-automation^="sdk-sidebar-"] svg:is([name="IconPin"], [name="IconQuizTitle"], [name="IconQuizInstructions"]) {
+  color: #9bc9ff !important;
+  fill: currentColor !important;
+}
+
+html[data-refined-canvas-dark] #content #new-quizzes-root .tox-menubar {
+  gap: 2px;
+  padding: 3px 6px;
+}
+html[data-refined-canvas-dark] #content #new-quizzes-root :is(.tox-menubar .tox-mbtn, .tox-toolbar__group :is(.tox-tbtn, .tox-mbtn)) {
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  border-radius: 5px !important;
+  box-shadow: none !important;
+}
+html[data-refined-canvas-dark] #content #new-quizzes-root :is(.tox-menubar .tox-mbtn, .tox-toolbar__group :is(.tox-tbtn, .tox-mbtn)):is(:hover, :focus-visible, [aria-expanded="true"], [aria-pressed="true"], .tox-tbtn--enabled) {
+  background: #30435c !important;
+}
+html[data-refined-canvas-dark] #content #new-quizzes-root :is(.rce-wrapper, .tox-edit-area__iframe) {
+  background-color: var(--night-panel) !important;
+}
+html[data-refined-canvas-formatting] #new-quizzes-root .rce-wrapper > [direction="row"]:has(button) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-block-start: 8px;
+}
+/* Canvas groups multiple controls inside one flex item. Space the buttons
+   within those groups as well as the groups themselves. */
+html[data-refined-canvas-formatting] #new-quizzes-root .rce-wrapper > [direction="row"] > span:has(button),
+html[data-refined-canvas-formatting] #new-quizzes-root .rce-wrapper > [direction="row"] > span > span:has(> button) {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* InstUI mounts the quiz confirmation and its mask outside the quiz root. */
+html[data-refined-canvas-dark] [data-cid="Modal"] > :has(> [data-automation="sdk-confirmation-modal"]) {
+  background: rgb(8 12 20 / 78%) !important;
+}
+html[data-refined-canvas-dark] [data-automation="sdk-confirmation-modal"],
+html[data-refined-canvas-dark] [data-automation="sdk-confirmation-modal"] :is([data-cid="ModalHeader"], [data-cid="ModalBody"], [data-cid="ModalFooter"]) {
+  background: var(--night-panel) !important;
+  color: var(--night-text) !important;
+  border-color: var(--night-border) !important;
+}
+html[data-refined-canvas-dark] [data-automation="sdk-confirmation-modal"] button {
+  background: #263345 !important;
+  color: #edf5ff !important;
+  border: 1px solid #66778d !important;
+  border-radius: 10px !important;
+}
+html[data-refined-canvas-dark] [data-automation="sdk-confirmation-modal"] [data-cid="ModalBody"] :is([data-cid~="Text"], [class$="-text"]) {
+  color: var(--night-text) !important;
+}
+html[data-refined-canvas-dark] [data-automation="sdk-confirmation-modal"] button > [class*="baseButton__content"] {
+  background: transparent !important;
+  color: inherit !important;
+  border: 0 !important;
+}
+html[data-refined-canvas-dark] [data-automation="sdk-confirmation-modal"] button svg {
+  color: inherit !important;
+  fill: currentColor !important;
+}
+html[data-refined-canvas-dark] [data-automation="sdk-confirmation-modal"] button:is(:hover, :focus-visible):not(:disabled, [aria-disabled="true"]) {
+  background: #30435c !important;
+  border-color: #83baff !important;
+}
+
+/* New Quizzes results, including Attempt History and read-only responses. */
+html[data-refined-canvas-dark] #content #new-quizzes-root:has([data-automation="sdk-results-quiz-details"]) :is(
+  div:has(> [data-automation="sdk-results-quiz-details"]),
+  table, thead, tbody, tr, th, td,
+  [data-automation="sdk-item-wrapper"] .fs-mask > div:has(> div + [class*="screenReaderContent"] + div),
+  [data-automation="sdk-item-wrapper"] .fs-mask > div:has(> div + [class*="screenReaderContent"] + div) > div:first-child
+) {
+  background-color: var(--night-panel) !important;
+  color: var(--night-text) !important;
+  border-color: var(--night-border) !important;
+}
+html[data-refined-canvas-dark] #content #new-quizzes-root:has([data-automation="sdk-results-quiz-details"]) :is(
+  thead, th, [data-automation="sdk-session-item-results-list-header"]
+) {
+  background-color: var(--night-raised) !important;
+  color: var(--night-text) !important;
+  border-color: var(--night-border) !important;
+}
+html[data-refined-canvas-dark] #content #new-quizzes-root:has([data-automation="sdk-results-quiz-details"]) :is(
+  [class*="toggleDetails__toggle"], [data-automation="take-again-exit-or-take-button"], td button
+) {
+  min-block-size: 36px;
+  padding-inline: 12px;
+}
+html[data-refined-canvas-dark] #content #new-quizzes-root:has([data-automation="sdk-results-quiz-details"]) :is(
+  [class*="toggleDetails__toggle"], [data-automation="take-again-exit-or-take-button"], td button
+) svg {
+  color: inherit !important;
+  fill: currentColor !important;
+}
+
+/* Assignment details, feedback, attachment, and attempt controls. */
+html[data-refined-canvas-dark][data-refined-submission] #content :is(
+  [data-testid="view_feedback_button"],
+  [data-testid="uploaded_files_table"] :is(button, [data-testid="download-file"] > a[href]), [data-testid="new-attempt-button"],
+  [class*="textInput__facade"]:has([data-testid="attemptSelect"])
+) {
+  background: #263345 !important;
+  color: #edf5ff !important;
+  border: 1px solid #66778d !important;
+  border-radius: 10px !important;
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+html[data-refined-canvas-dark][data-refined-submission] #content :is(
+  [data-testid="view_feedback_button"],
+  [data-testid="uploaded_files_table"] :is(button, [data-testid="download-file"] > a[href]), [data-testid="new-attempt-button"],
+  [class*="textInput__facade"]:has([data-testid="attemptSelect"])
+):is(:hover, :focus-visible, :focus-within):not(:disabled, [aria-disabled="true"]) {
+  background: #30435c !important;
+  border-color: #7088a8 !important;
+}
+html[data-refined-canvas-dark][data-refined-submission] #content :is(
+  [data-testid="view_feedback_button"], [data-testid="uploaded_files_table"] :is(button, [data-testid="download-file"] > a[href]), [data-testid="new-attempt-button"]
+) > [class*="baseButton__content"],
+html[data-refined-canvas-dark][data-refined-submission] #content [class*="textInput__facade"]:has([data-testid="attemptSelect"]) :is(
+  input, [class*="textInput__layout"], [class*="textInput__inputLayout"], [class*="textInput__afterElement"]
+) {
+  background: transparent !important;
+  color: inherit !important;
+  border: 0 !important;
+}
+html[data-refined-canvas-dark][data-refined-submission] #content [class*="textInput__facade"]:has([data-testid="attemptSelect"]):focus-within {
+  outline: 2px solid #83baff;
+  outline-offset: 2px;
+}
+html[data-refined-canvas-dark][data-refined-submission] #content [data-testid="attemptSelect"]:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-refined-canvas-dark][data-refined-submission] #content :is(
+    [data-testid="view_feedback_button"],
+    [data-testid="uploaded_files_table"] :is(button, [data-testid="download-file"] > a[href]), [data-testid="new-attempt-button"],
+    [class*="textInput__facade"]:has([data-testid="attemptSelect"])
+  ) { transition: none !important; }
 }
